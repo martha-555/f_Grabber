@@ -1,30 +1,47 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import axios from 'axios'
+
 import './App.css'
 
+type ServerResponse = {
+  id: number
+  name: string
+}
+
 function App() {
-  const [count, setCount] = useState(0)
+  const [dataFromServer, setDataFromServer] = useState<ServerResponse | null | 'error'>(null)
+
+  async function fetchData(url: string): Promise<void> {
+    try {
+      const response = await axios.get<ServerResponse>(url)
+      setDataFromServer(response.data)
+    } catch (error) {
+      console.error('Error fetching data:', error)
+      setDataFromServer('error')
+    }
+  }
+
+  const handleClickButton = () => {
+    fetchData('https://grabber-server.con.ua')
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
-    </>
+    <div className="wrap">
+      <button type="button" onClick={handleClickButton}>
+        Відправити запит на сервер
+      </button>
+
+      {dataFromServer && dataFromServer !== 'error' && (
+        <div className="content">
+          <p>Id: {dataFromServer.id}</p>
+          <p>Name: {dataFromServer.name}</p>
+        </div>
+      )}
+
+      {dataFromServer === 'error' && (
+        <h1>Упс! Нажаль під час отримання даних від сервера сталася помилка 🤷‍♂️</h1>
+      )}
+    </div>
   )
 }
 
