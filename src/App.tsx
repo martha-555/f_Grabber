@@ -1,7 +1,5 @@
-import { useState } from 'react'
-import axios from 'axios'
-
 import './App.css'
+import { useFetchData } from './hooks/useFetchData'
 
 type ServerResponse = {
   id: number
@@ -9,20 +7,10 @@ type ServerResponse = {
 }
 
 function App() {
-  const [dataFromServer, setDataFromServer] = useState<ServerResponse | null | 'error'>(null)
-
-  async function fetchData(url: string): Promise<void> {
-    try {
-      const response = await axios.get<ServerResponse>(url)
-      setDataFromServer(response.data)
-    } catch (error) {
-      console.error('Error fetching data:', error)
-      setDataFromServer('error')
-    }
-  }
+  const { data, error, loading, fetchData } = useFetchData<ServerResponse>()
 
   const handleClickButton = () => {
-    fetchData('https://grabber-server.con.ua')
+    fetchData('/')
   }
 
   return (
@@ -31,15 +19,15 @@ function App() {
         Відправити запит на сервер
       </button>
 
-      {dataFromServer && dataFromServer !== 'error' && (
-        <div className="content">
-          <p>Id: {dataFromServer.id}</p>
-          <p>Name: {dataFromServer.name}</p>
-        </div>
-      )}
+      {loading && <p>Loading...</p>}
 
-      {dataFromServer === 'error' && (
-        <h1>Упс! Нажаль під час отримання даних від сервера сталася помилка 🤷‍♂️</h1>
+      {error && <h1>Упс! Нажаль під час отримання даних від сервера сталася помилка 🤷‍♂️</h1>}
+
+      {data && (
+        <div className="content">
+          <p>Id: {data.id}</p>
+          <p>Name: {data.name}</p>
+        </div>
       )}
     </div>
   )
