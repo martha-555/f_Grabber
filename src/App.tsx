@@ -10,7 +10,7 @@ function App() {
   const { data, error, loading, fetchData } = useFetchData<ServerResponse>()
 
   const handleClickButton = () => {
-    fetchData('/')
+    fetchData('/ping/')
   }
 
   return (
