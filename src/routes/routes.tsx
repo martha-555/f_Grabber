@@ -11,10 +11,11 @@ import {
   Profile,
   Register,
 } from '../pages'
+import { PATHS } from '../paths'
 
 export const routes = [
   {
-    path: '/',
+    path: PATHS.home,
     element: <PageWrapper />,
     children: [
       {
@@ -22,39 +23,39 @@ export const routes = [
         element: <Main />,
       },
       {
-        path: 'products',
+        path: PATHS.products,
         element: <Products />,
       },
       {
-        path: 'products/:id',
+        path: PATHS.product,
         element: <ProductDetails />,
       },
       {
-        path: 'add-product',
+        path: PATHS.addProduct,
         element: <AddProduct />,
       },
       {
-        path: 'login',
+        path: PATHS.login,
         element: <Login />,
       },
       {
-        path: 'register',
+        path: PATHS.register,
         element: <Register />,
       },
       {
-        path: 'cart',
+        path: PATHS.cart,
         element: <Cart />,
       },
       {
-        path: 'orders',
+        path: PATHS.orders,
         element: <Orders />,
       },
       {
-        path: 'profile',
+        path: PATHS.profile,
         element: <Profile />,
       },
       {
-        path: 'admin',
+        path: PATHS.admin,
         element: <Admin />,
       },
     ],
