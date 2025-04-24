@@ -1,14 +1,16 @@
-import PageWrapper from '../components/PageWrapper/PageWrapper'
-import AddProduct from '../pages/AddProduct'
-import Admin from '../pages/Admin'
-import Cart from '../pages/Cart'
-import Login from '../pages/Login'
-import Main from '../pages/Main'
-import Orders from '../pages/Orders'
-import ProductDetails from '../pages/ProductDetails'
-import Products from '../pages/Products'
-import Profile from '../pages/Profile'
-import Register from '../pages/Register'
+import { PageWrapper } from '../hoc'
+import {
+  AddProduct,
+  Admin,
+  Cart,
+  Login,
+  Main,
+  Orders,
+  ProductDetails,
+  Products,
+  Profile,
+  Register,
+} from '../pages'
 
 export const routes = [
   {
