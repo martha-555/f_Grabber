@@ -3,6 +3,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import useApi from '../../hooks/useApi'
+import { Link } from 'react-router-dom'
+import { PATHS } from '../../paths'
 
 interface LoginFormProps {}
 
@@ -19,7 +21,7 @@ const defaultValues: FormData = {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({}) => {
-  const { data, error, loading, login } = useApi()
+  const { error, loading, login } = useApi()
   const {
     register,
     handleSubmit,
@@ -63,12 +65,16 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
       </section>
 
       <section className="auth-register-form-section">
-        <a href="#" className="text-xs">
+        <Link to="#" className="text-xs">
           Забули пароль?
-        </a>
+        </Link>
+        <Link to={PATHS.register} className="text-xs">
+          Немає аккаунту? Зареєструватися
+        </Link>
       </section>
+      <section className="auth-register-form-section"></section>
 
-      <button type="submit" className="button">
+      <button type="submit" className="button" disabled={loading}>
         Увійти
       </button>
     </form>

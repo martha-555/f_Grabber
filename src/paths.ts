@@ -12,13 +12,13 @@ export const PATHS = {
 }
 
 export const API_ENDPOINTS = {
-  getProducts: '/api/products',
-  getProduct: '/api/products/1',
-  addProduct: '/api/products',
-  login: '/api/login',
-  logout: '/api/logout',
-  register: '/api/register',
-  getOrders: '/api/orders',
-  getProfile: '/api/profile',
-  refreshToken: '/api/refresh',
+  getProducts: '/api/products/',
+  getProduct: '/api/products/1/',
+  addProduct: '/api/products/',
+  login: '/api/login/',
+  logout: '/api/logout/',
+  register: '/api/register/',
+  getOrders: '/api/orders/',
+  getProfile: '/api/profile/',
+  refreshToken: '/api/refresh/',
 }

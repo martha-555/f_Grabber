@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
+import { API_ENDPOINTS } from '../paths'
+import { TUserRequest } from '../types/user'
 
 // Створюємо екземпляр axios з базовим URL, який береться з середовища виконання
 const axiosClient = axios.create({
@@ -24,7 +26,7 @@ export default function useApi() {
   const getMe = async () => {
     setLoading(true)
     try {
-      const response = await axiosClient.get('/api/users/me/', {
+      const response = await axiosClient.get(API_ENDPOINTS.getProfile, {
         withCredentials: true,
       })
       setData(response.data)
@@ -41,7 +43,7 @@ export default function useApi() {
   const login = async (credentials: { email: string; password: string }) => {
     setLoading(true)
     try {
-      const response = await axiosClient.post('/api/users/login/', credentials, {
+      const response = await axiosClient.post(API_ENDPOINTS.login, credentials, {
         withCredentials: true,
       })
       setData(response.data)
@@ -55,10 +57,10 @@ export default function useApi() {
   }
 
   // Функція для реєстрації
-  const register = async (userInfo: { email: string; password: string; name: string }) => {
+  const register = async (userInfo: TUserRequest) => {
     setLoading(true)
     try {
-      const response = await axiosClient.post('/api/users/register/', userInfo, {
+      const response = await axiosClient.post(API_ENDPOINTS.register, userInfo, {
         withCredentials: true,
       })
       setData(response.data)
@@ -76,7 +78,7 @@ export default function useApi() {
     setLoading(true)
     try {
       const response = await axiosClient.post(
-        '/api/users/refresh/',
+        API_ENDPOINTS.refreshToken,
         { token },
         {
           withCredentials: true,
@@ -96,7 +98,7 @@ export default function useApi() {
   const logout = async () => {
     setLoading(true)
     try {
-      await axiosClient.post('/api/users/logout/', { withCredentials: true })
+      await axiosClient.post(API_ENDPOINTS.logout, { withCredentials: true })
       setData(null)
       setError(null)
     } catch (error) {
