@@ -67,7 +67,7 @@ const RegisterForm: React.FC = () => {
     if (!error) {
       reset()
     }
-  }, [data, reset])
+  }, [error, reset])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
