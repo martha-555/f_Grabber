@@ -5,7 +5,7 @@ import { Link, Outlet } from 'react-router-dom'
 const PageWrapper = () => {
   return (
     <>
-      <header className="font-montserrat w-full bg-[#D9D9D9] py-8 px-[6.806%]">
+      <header className="font-[montserrat] w-full bg-[#D9D9D9] py-8 px-[6.806%]">
         <div className="max-w-[1221px] mx-auto flex items-center gap-[5.486%] w-full">
           <h1 className="text-[20px] font-medium whitespace-nowrap">
             <Link to="/">Grabber</Link>
@@ -27,8 +27,9 @@ const PageWrapper = () => {
           <button className="h-[40px] px-6 rounded-[20px] bg-white text-[16px] whitespace-nowrap">
             Створити оголошення
           </button>
-
-          <img src={defaultAvatar} alt="avatar" className="w-10 h-10 rounded-full block" />
+          <Link to="/profile">
+            <img src={defaultAvatar} alt="avatar" className="w-10 h-10 rounded-full block" />
+          </Link>
         </div>
       </header>
 
