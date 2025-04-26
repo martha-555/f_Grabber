@@ -32,8 +32,9 @@ const PageWrapper = () => {
           </Link>
         </div>
       </header>
-
-      <Outlet />
+      <section className="content grow-1 w-full justify-center items-center">
+        <Outlet />
+      </section>
     </>
   )
 }

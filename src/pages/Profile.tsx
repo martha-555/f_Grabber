@@ -1,9 +1,8 @@
-import { useEffect } from 'react'
 import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
 import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
 import { HttpMethod, User } from '../types/types'
-import EditProfileForm from '../components/EditProfileForm'
+import EditProfileForm from '../components/EditProfileForm/EditProfileForm'
 
 type Params = {
   path: string
@@ -12,6 +11,7 @@ type Params = {
 
 const Profile = () => {
   const fetchUserProfile = useBackendRequest()
+
   const backendURL = import.meta.env.VITE_API_URL
 
   const {
@@ -22,6 +22,7 @@ const Profile = () => {
     queryKey: ['profile'],
     queryFn: () => fetchUserProfile<User>({ path: '/api/profile/', method: 'GET' }),
   })
+
   console.log(userData)
   console.log({ isLoading })
 
@@ -38,11 +39,15 @@ const Profile = () => {
         password: 'Marta123',
       }),
     })
+
     const data = await response.json()
+
     console.log({ data })
+
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
+
     return data
   }
 
