@@ -1,4 +1,3 @@
-
 import { routes } from './routes/routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -9,3 +8,7 @@ function App() {
     <>
       <RouterProvider router={routers} />
     </>
+  )
+}
+
+export default App
