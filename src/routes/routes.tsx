@@ -15,7 +15,7 @@ import { PATHS } from '../paths'
 
 export const routes = [
   {
-    path: PATHS.home,
+    path: PATHS.HOME,
     element: <PageWrapper />,
     children: [
       {
@@ -23,39 +23,39 @@ export const routes = [
         element: <Main />,
       },
       {
-        path: PATHS.products,
+        path: PATHS.PRODUCTS.list,
         element: <Products />,
       },
       {
-        path: PATHS.product,
+        path: PATHS.PRODUCTS.details,
         element: <ProductDetails />,
       },
       {
-        path: PATHS.addProduct,
+        path: PATHS.PRODUCTS.add,
         element: <AddProduct />,
       },
       {
-        path: PATHS.login,
+        path: PATHS.AUTH.login,
         element: <Login />,
       },
       {
-        path: PATHS.register,
+        path: PATHS.AUTH.register,
         element: <Register />,
       },
       {
-        path: PATHS.cart,
+        path: PATHS.CART,
         element: <Cart />,
       },
       {
-        path: PATHS.orders,
+        path: PATHS.ORDERS,
         element: <Orders />,
       },
       {
-        path: PATHS.profile,
+        path: PATHS.PROFILE,
         element: <Profile />,
       },
       {
-        path: PATHS.admin,
+        path: PATHS.ADMIN,
         element: <Admin />,
       },
     ],
