@@ -57,7 +57,7 @@ const RegisterForm: React.FC = () => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     execute(() =>
       registerUser({
-        email: data.email,
+        email: data.email.toLowerCase(),
         password: data.password,
         first_name: data.first_name,
         last_name: data.last_name,

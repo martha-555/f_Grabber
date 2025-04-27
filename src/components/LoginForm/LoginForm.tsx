@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -34,11 +34,15 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
 
   const { error, loading, execute } = useApiRequest()
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    execute(() => login(data)) // Pass login function to execute
+  // Виклик reset при успішній реєстрації
+  useEffect(() => {
     if (!error) {
       reset()
     }
+  }, [error, reset])
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    execute(() => login({ email: data.email.toLowerCase(), password: data.password })) // Pass login function to execute
   }
 
   return (
