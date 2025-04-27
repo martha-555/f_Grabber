@@ -2,9 +2,10 @@ import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import useApi from '../../hooks/useApi'
+import { useApiRequest } from '../../hooks/useApiRequest'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import { login } from '../../api/login'
 
 interface LoginFormProps {}
 
@@ -21,7 +22,6 @@ const defaultValues: FormData = {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({}) => {
-  const { error, loading, login } = useApi()
   const {
     register,
     handleSubmit,
@@ -32,8 +32,10 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     resolver: zodResolver(schema),
   })
 
+  const { error, loading, execute } = useApiRequest()
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    login(data)
+    execute(() => login(data)) // Pass login function to execute
     if (!error) {
       reset()
     }
@@ -68,7 +70,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         <Link to="#" className="text-xs">
           Забули пароль?
         </Link>
-        <Link to={PATHS.register} className="text-xs">
+        <Link to={PATHS.AUTH.register} className="text-xs">
           Немає аккаунту? Зареєструватися
         </Link>
       </section>
