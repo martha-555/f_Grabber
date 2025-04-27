@@ -1,18 +1,21 @@
-import PageWrapper from '../components/PageWrapper/PageWrapper'
-import AddProduct from '../pages/AddProduct'
-import Admin from '../pages/Admin'
-import Cart from '../pages/Cart'
-import Login from '../pages/Login'
-import Main from '../pages/Main'
-import Orders from '../pages/Orders'
-import ProductDetails from '../pages/ProductDetails'
-import Products from '../pages/Products'
-import Profile from '../pages/Profile'
-import Register from '../pages/Register'
+import { PageWrapper } from '../hoc'
+import {
+  AddProduct,
+  Admin,
+  Cart,
+  Login,
+  Main,
+  Orders,
+  ProductDetails,
+  Products,
+  Profile,
+  Register,
+} from '../pages'
+import { PATHS } from '../paths'
 
 export const routes = [
   {
-    path: '/',
+    path: PATHS.HOME,
     element: <PageWrapper />,
     children: [
       {
@@ -20,39 +23,39 @@ export const routes = [
         element: <Main />,
       },
       {
-        path: 'products',
+        path: PATHS.PRODUCTS.list,
         element: <Products />,
       },
       {
-        path: 'products/:id',
+        path: PATHS.PRODUCTS.details,
         element: <ProductDetails />,
       },
       {
-        path: 'add-product',
+        path: PATHS.PRODUCTS.add,
         element: <AddProduct />,
       },
       {
-        path: 'login',
+        path: PATHS.AUTH.login,
         element: <Login />,
       },
       {
-        path: 'register',
+        path: PATHS.AUTH.register,
         element: <Register />,
       },
       {
-        path: 'cart',
+        path: PATHS.CART,
         element: <Cart />,
       },
       {
-        path: 'orders',
+        path: PATHS.ORDERS,
         element: <Orders />,
       },
       {
-        path: 'profile',
+        path: PATHS.PROFILE,
         element: <Profile />,
       },
       {
-        path: 'admin',
+        path: PATHS.ADMIN,
         element: <Admin />,
       },
     ],

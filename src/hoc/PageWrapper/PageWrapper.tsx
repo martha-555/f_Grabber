@@ -4,8 +4,8 @@ import { Link, Outlet } from 'react-router-dom'
 
 const PageWrapper = () => {
   return (
-    <>
-      <header className="font-montserrat w-full bg-[#D9D9D9] py-8 px-[6.806%]">
+    <div className="max-w-360 min-w-150 mx-auto flex flex-col items-center justify-center min-h-screen">
+      <header className="w-full bg-[#D9D9D9] py-8 px-[6.806%]">
         <div className="max-w-[1221px] mx-auto flex items-center gap-[5.486%] w-full">
           <h1 className="text-[20px] font-medium whitespace-nowrap">
             <Link to="/">Grabber</Link>
@@ -32,8 +32,10 @@ const PageWrapper = () => {
         </div>
       </header>
 
-      <Outlet />
-    </>
+      <section className="content grow-1 w-full justify-center items-center">
+        <Outlet />
+      </section>
+    </div>
   )
 }
 
