@@ -1,17 +1,18 @@
 import axios from 'axios'
+import { handleAxiosError } from './errorHandler'
 
-// Function to create an Axios client with a base URL and interceptors
 function createAxiosClient(baseURL: string) {
-  const client = axios.create({
-    baseURL,
-  })
+  if (!baseURL) {
+    throw new Error('Base URL is not defined')
+  }
 
-  // Add a response interceptor to handle errors globally
+  const client = axios.create({ baseURL })
+
   client.interceptors.response.use(
-    (response) => response, // Pass the response as is
+    (response) => response,
     (error) => {
-      console.error('Error in response:', error) // Log the error
-      return Promise.reject(error) // Reject the promise with the error
+      handleAxiosError(error)
+      return Promise.reject(error)
     },
   )
 
