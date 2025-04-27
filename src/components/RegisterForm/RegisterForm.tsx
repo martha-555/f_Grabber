@@ -2,11 +2,10 @@ import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { API_ENDPOINTS, PATHS } from '../../paths'
+import { PATHS } from '../../paths'
 import { Link } from 'react-router-dom'
 import { useApiRequest } from '../../hooks/useApiRequest'
 import { register as registerUser } from '../../api/register'
-import axios from 'axios'
 
 // Схема валідації форми за допомогою Zod
 const schema = z
