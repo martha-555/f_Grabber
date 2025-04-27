@@ -3,10 +3,6 @@ import { axiosClient } from './axiosClient'
 
 // Function to log out the user
 export async function logout() {
-  try {
-    await axiosClient.post(API_ENDPOINTS.AUTH.logout, {}, { withCredentials: true })
-    return null
-  } catch (error) {
-    throw error
-  }
+  await axiosClient.post(API_ENDPOINTS.AUTH.logout, { withCredentials: true })
+  return null
 }

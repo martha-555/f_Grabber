@@ -3,12 +3,8 @@ import { API_ENDPOINTS } from '../paths'
 
 // Function to log in a user
 export async function login(credentials: { email: string; password: string }) {
-  try {
-    const response = await axiosClient.post(API_ENDPOINTS.AUTH.login, credentials, {
-      withCredentials: true,
-    })
-    return response.data
-  } catch (error) {
-    throw error
-  }
+  const response = await axiosClient.post(API_ENDPOINTS.AUTH.login, credentials, {
+    withCredentials: true,
+  })
+  return response.data
 }
