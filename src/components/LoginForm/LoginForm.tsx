@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
-      <h1 className="text-center font-medium text-3xl mb-7">Увійти</h1>
+      <h1 className="mb-7 text-center text-3xl font-medium">Увійти</h1>
       <section className="auth-register-form-section">
         <input
           type="email"

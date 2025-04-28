@@ -8,29 +8,29 @@
 }
 @layer components {
   .input-text {
-    @apply border-1 rounded-3xl px-2 py-3 w-full focus:outline-none;
+    @apply w-full rounded-3xl border-1 px-2 py-3 focus:outline-none;
 
     &::placeholder {
       @apply text-black/50;
     }
   }
   .auth-register-form {
-    @apply flex flex-col gap-5 w-90;
+    @apply flex w-90 flex-col gap-5;
 
     button[type='submit'] {
       @apply mt-16;
     }
   }
   .auth-register-form-section {
-    @apply flex flex-col items-center gap-2 relative;
+    @apply relative flex flex-col items-center gap-2;
 
     .error-text {
-      @apply text-red-500 text-sm; /*absolute -top-3 right-3 bg-white*/
+      @apply text-sm text-red-500; /*absolute -top-3 right-3 bg-white*/
     }
   }
 
   .button {
-    @apply bg-[#B9E2FF] rounded-3xl px-2 py-3 hover:bg-[#8ED0FF] hover:cursor-pointer transition duration-300;
+    @apply rounded-3xl bg-[#B9E2FF] px-2 py-3 transition duration-300 hover:cursor-pointer hover:bg-[#8ED0FF];
 
     &:hover {
       box-shadow: inset rgba(0, 0, 0, 0.5) 0px 0px 6px 0px;

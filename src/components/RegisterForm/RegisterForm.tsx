@@ -74,7 +74,7 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
-      <h1 className="text-center font-medium text-3xl mb-7">Реєстрація</h1>
+      <h1 className="mb-7 text-center text-3xl font-medium">Реєстрація</h1>
       {/* Поле для введення імені */}
       <section className="auth-register-form-section">
         <input
