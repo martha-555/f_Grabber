@@ -42,7 +42,7 @@ type FormData = z.infer<typeof schema>
 
 const RegisterForm: React.FC = () => {
   // Використання кастомного хука для роботи з API
-  const { error, loading, execute } = useApiRequest()
+  const { loading, execute, statusCode } = useApiRequest()
   const {
     register, // Метод для реєстрації полів форми
     handleSubmit, // Метод для обробки відправки форми
@@ -67,10 +67,10 @@ const RegisterForm: React.FC = () => {
 
   // Виклик reset при успішній реєстрації
   useEffect(() => {
-    if (!error) {
+    if (statusCode === 200) {
       reset()
     }
-  }, [error, reset])
+  }, [statusCode, reset])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">

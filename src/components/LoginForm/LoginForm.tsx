@@ -32,17 +32,16 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     resolver: zodResolver(schema),
   })
 
-  const { error, loading, execute } = useApiRequest()
+  const { loading, execute, statusCode } = useApiRequest()
 
-  // Виклик reset при успішній реєстрації
   useEffect(() => {
-    if (!error) {
+    if (statusCode === 200) {
       reset()
     }
-  }, [error, reset])
+  }, [statusCode, reset])
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    execute(() => login({ email: data.email.toLowerCase(), password: data.password })) // Pass login function to execute
+    execute(() => login({ email: data.email.toLowerCase(), password: data.password }))
   }
 
   return (
@@ -58,7 +57,6 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         />
         {errors.email && <p className="error-text">{errors.email.message}</p>}
       </section>
-
       <section className="auth-register-form-section">
         <input
           type="password"
@@ -69,7 +67,6 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         />
         {errors.password && <p className="error-text">{errors.password.message}</p>}
       </section>
-
       <section className="auth-register-form-section">
         <Link to="#" className="text-xs">
           Забули пароль?
@@ -79,7 +76,6 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         </Link>
       </section>
       <section className="auth-register-form-section"></section>
-
       <button type="submit" className="button" disabled={loading}>
         Увійти
       </button>
