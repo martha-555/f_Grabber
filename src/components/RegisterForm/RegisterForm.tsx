@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import useApi from '../../hooks/useApi'
 import { PATHS } from '../../paths'
 import { Link } from 'react-router-dom'
+import { useApiRequest } from '../../hooks/useApiRequest'
+import { register as registerUser } from '../../api/register'
 
 // Схема валідації форми за допомогою Zod
 const schema = z
@@ -41,8 +42,7 @@ type FormData = z.infer<typeof schema>
 
 const RegisterForm: React.FC = () => {
   // Використання кастомного хука для роботи з API
-  const { data, error, loading, register: registerUser } = useApi()
-
+  const { error, loading, execute } = useApiRequest()
   const {
     register, // Метод для реєстрації полів форми
     handleSubmit, // Метод для обробки відправки форми
@@ -54,13 +54,15 @@ const RegisterForm: React.FC = () => {
 
   // Функція для обробки відправки форми
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    registerUser({
-      email: data.email,
-      password: data.password,
-      first_name: data.first_name,
-      last_name: data.last_name,
-      phone_number: data.phone_number,
-    })
+    execute(() =>
+      registerUser({
+        email: data.email.toLowerCase(),
+        password: data.password,
+        first_name: data.first_name,
+        last_name: data.last_name,
+        phone_number: data.phone_number,
+      }),
+    ) // Виклик функції реєстрації користувача
   }
 
   // Виклик reset при успішній реєстрації
@@ -68,7 +70,7 @@ const RegisterForm: React.FC = () => {
     if (!error) {
       reset()
     }
-  }, [data, reset])
+  }, [error, reset])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
@@ -141,7 +143,7 @@ const RegisterForm: React.FC = () => {
       </section>
       {/* Посилання для переходу на сторінку входу */}
       <section className="auth-register-form-section">
-        <Link to={PATHS.login} className="text-xs">
+        <Link to={PATHS.AUTH.login} className="text-xs">
           Вже є акаунт? Увійти
         </Link>
       </section>

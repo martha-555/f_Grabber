@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import useApi from '../../hooks/useApi'
+import { useApiRequest } from '../../hooks/useApiRequest'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import { login } from '../../api/login'
 
 interface LoginFormProps {}
 
@@ -21,8 +22,6 @@ const defaultValues: FormData = {
 }
 
 const LoginForm: React.FC<LoginFormProps> = ({}) => {
-  const { error, loading, login } = useApi()
-
   const {
     register,
     handleSubmit,
@@ -33,12 +32,17 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     resolver: zodResolver(schema),
   })
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    login(data)
+  const { error, loading, execute } = useApiRequest()
 
+  // Виклик reset при успішній реєстрації
+  useEffect(() => {
     if (!error) {
       reset()
     }
+  }, [error, reset])
+
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    execute(() => login({ email: data.email.toLowerCase(), password: data.password })) // Pass login function to execute
   }
 
   return (
@@ -70,7 +74,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         <Link to="#" className="text-xs">
           Забули пароль?
         </Link>
-        <Link to={PATHS.register} className="text-xs">
+        <Link to={PATHS.AUTH.register} className="text-xs">
           Немає аккаунту? Зареєструватися
         </Link>
       </section>

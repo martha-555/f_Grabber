@@ -6,10 +6,10 @@ import { HttpMethod, User } from '../types/types'
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm'
 import Login from './Login'
 
-type Params = {
-  path: string
-  method?: HttpMethod
-}
+// type Params = {
+//   path: string
+//   method?: HttpMethod
+// }
 
 const Profile = () => {
   const fetchUserProfile = useBackendRequest()
@@ -52,9 +52,6 @@ const Profile = () => {
       )}
       {isError && (
         <div>
-          {/* <button onClick={() => request({ path: '/api/register/', method: 'POST' })}>
-            register
-          </button> */}
           <Login />
         </div>
       )}
