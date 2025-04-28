@@ -8,5 +8,6 @@ export async function refreshToken(token: string) {
     { token },
     { withCredentials: true },
   )
+
   return response.data
 }

@@ -6,5 +6,6 @@ export async function register(userInfo: TUserRequest) {
   const response = await axiosClient.post(API_ENDPOINTS.AUTH.register, userInfo, {
     withCredentials: true,
   })
+
   return response.data
 }
