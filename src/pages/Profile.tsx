@@ -1,8 +1,10 @@
 import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
-import { useQuery } from '@tanstack/react-query'
+import { QueryClient, useQueryClient, useQuery } from '@tanstack/react-query'
+
 import useBackendRequest from '../hooks/useBackendRequest'
 import { HttpMethod, User } from '../types/types'
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm'
+import Login from './Login'
 
 type Params = {
   path: string
@@ -12,8 +14,6 @@ type Params = {
 const Profile = () => {
   const fetchUserProfile = useBackendRequest()
 
-  const backendURL = import.meta.env.VITE_API_URL
-
   const {
     data: userData,
     isLoading,
@@ -21,39 +21,12 @@ const Profile = () => {
   } = useQuery({
     queryKey: ['profile'],
     queryFn: () => fetchUserProfile<User>({ path: '/api/profile/', method: 'GET' }),
+    retry: 1, // Зменшіть кількість спроб
+    retryDelay: 1000, // Затримка між спробами
   })
 
-  console.log(userData)
+  console.log({ userData })
   console.log({ isLoading })
-
-  /*--- ФУНКЦІЯ ДЛЯ ВХОДУ */
-  const request = async <T,>({ path, method = 'GET' }: Params): Promise<T> => {
-    const response = await fetch(`${backendURL}${path}`, {
-      method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include',
-      body: JSON.stringify({
-        email: 'martagolov4ak@gmail.com',
-        password: 'Marta123',
-      }),
-    })
-
-    const data = await response.json()
-
-    console.log({ data })
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-
-    return data
-  }
-
-  // console.log({ data })
-  // if (isLoading) return <div>Loading...</div>
-  // if (isError) return <div>Error fetching profile</div>
 
   return (
     <>
@@ -79,13 +52,10 @@ const Profile = () => {
       )}
       {isError && (
         <div>
-          <p>Увійдіть або зареєструйтесь</p>
-          <button
-            className="border p-[10] rounded-xl bg-gray-300"
-            onClick={() => request({ path: '/api/login/', method: 'POST' })}
-          >
-            login
-          </button>
+          {/* <button onClick={() => request({ path: '/api/register/', method: 'POST' })}>
+            register
+          </button> */}
+          <Login />
         </div>
       )}
     </>
