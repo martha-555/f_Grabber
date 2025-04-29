@@ -9,8 +9,10 @@ export function useApiRequest<T>() {
   // Function to execute the API call
   const execute = async (apiMethod: () => Promise<T>) => {
     setLoading(true) // Set loading to true before the API call
+
     try {
       const response = await apiMethod() // Execute the API method
+
       setData(response) // Set the response data
       setError(null) // Clear any previous errors
     } catch (error) {
