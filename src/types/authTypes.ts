@@ -16,3 +16,7 @@ export type TLoginCredentialsRequest = {
 export type TLoginResponse = {
   message: string
 }
+
+export type TForgotPasswordRequest = {
+  email: string
+}
