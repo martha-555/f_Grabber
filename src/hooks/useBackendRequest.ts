@@ -1,29 +1,41 @@
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { HttpMethod } from '../types/types'
 
-type Params = {
+type Params<D> = {
   path: string
   method?: HttpMethod
+  data?: D
 }
 
 const backendURL = import.meta.env.VITE_API_URL
 
+const api = axios.create({
+  baseURL: backendURL,
+  withCredentials: true,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+})
+
 const useBackendRequest = () => {
-  const request = async <T>({ path, method = 'GET' }: Params): Promise<T> => {
-    const response = await fetch(`${backendURL}${path}`, {
+  const request = async <T = any, D = any>({
+    path,
+    method = 'GET',
+    data,
+  }: Params<D>): Promise<T> => {
+    const config: AxiosRequestConfig<D> = {
+      url: path,
       method,
-      credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+      data,
+    }
 
-    const data = await response.json()
+    const response: AxiosResponse<T> = await api.request(config)
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 
-    return data
+    return response.data
   }
 
   return request
