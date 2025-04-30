@@ -40,6 +40,8 @@ export default tseslint.config(
       'react/react-in-jsx-scope': 'off',
       'react/jsx-no-target-blank': 'warn',
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+
+      // Спрощене правило для розділення блоків коду
       'padding-line-between-statements': [
         'error',
         { blankLine: 'always', prev: '*', next: 'return' },
