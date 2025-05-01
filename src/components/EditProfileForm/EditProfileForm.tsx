@@ -1,14 +1,25 @@
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { editProfileSchema } from '../../features/userValidation'
+import { User } from '../../types/types'
 
-const EditProfileForm = () => {
+import UploadAvatar from '../UploadAvatar/UploadAvatar'
+
+type Props = {
+  user: User
+}
+
+const EditProfileForm = ({ user }: Props) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
-  } = useForm()
+  } = useForm({ resolver: zodResolver(editProfileSchema) })
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -16,6 +27,15 @@ const EditProfileForm = () => {
 
   const handleClick = () => {
     setIsOpen(true)
+  }
+
+  const currentFile = watch('avatar')
+
+  // Обробник для файлу
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files?.[0]) {
+      setValue('avatar', e.target.files[0], { shouldValidate: true })
+    }
   }
 
   return (
@@ -29,20 +49,33 @@ const EditProfileForm = () => {
             className="fixed absolute right-[24%] top-[25%] flex h-[50%] w-[50%] flex-col gap-10 border bg-gray-200 p-5"
             onSubmit={handleSubmit(onSubmit)}
           >
+            <UploadAvatar
+              initialAvatar={user.avatar} // Тепер приймає File, string або null/undefined
+              onChange={(file) => setValue('avatar', file, { shouldValidate: true })}
+              error={errors.avatar?.message}
+            />
             <input
               className="border"
-              defaultValue="nnnnnn"
-              {...register('firstName', { required: true })}
-              placeholder="First Name"
+              defaultValue={user.first_name}
+              {...register('first_name', { required: true })}
+              placeholder="Ім'я"
             />
-            {errors.firstName && <span>First Name is required</span>}
+            {errors.first_name && <span>{errors.first_name.message}</span>}
+            <input
+              className="border"
+              defaultValue={user.last_name}
+              {...register('last_name', { required: true })}
+              placeholder="Прізвище"
+            />
+            {errors.last_name && <span>{errors.last_name.message}</span>}
 
             <input
               className="border"
+              defaultValue={user.email}
               {...register('email', { required: true })}
               placeholder="Email"
             />
-            {errors.email && <span>Email is required</span>}
+            {errors.email && <span>{errors.email.message}</span>}
             <div>
               <button className="mr-10 rounded-xl border bg-gray-300 p-[10]" type="submit">
                 Зберегти

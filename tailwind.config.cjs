@@ -5,6 +5,12 @@ module.exports = {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
       },
+      fontSize: {
+        px16: 'clamp(14px, 1.2vw, 16px)',
+        px20: 'clamp(16px, 1.5vw, 20px)',
+        px24: 'clamp(18px, 2vw, 24px)',
+        px32: 'clamp(20px, 3vw, 32px)',
+      },
       colors: {
         primary: '#B9E2FF',
         hover: '#8ED0FF',
@@ -16,6 +22,12 @@ module.exports = {
       },
       spacing: {
         90: '22.5rem',
+      },
+      borderWidth: {
+        0.5: '0.5px',
+      },
+      boxShadow: {
+        blur: '0px 4px 26.2px 0px rgba(0, 0, 0, 0.12)',
       },
     },
   },
