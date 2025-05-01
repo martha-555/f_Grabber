@@ -12,6 +12,7 @@ export type TLoginCredentialsRequest = {
   email: string
   password: string
 }
+
 export type TLoginResponse = {
   message: string
 }
