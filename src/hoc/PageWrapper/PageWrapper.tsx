@@ -1,7 +1,7 @@
 import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
-import LogOutButton from '../../components/LogOutButton/LogOutButton.tsx'
+import { PATHS } from '../../paths'
 
 const PageWrapper = () => {
   return (
@@ -31,7 +31,7 @@ const PageWrapper = () => {
           </button>
           <Link to="/profile">
             {' '}
-            <Link to={PATHS.AUTH.login} className="cursor-pointer">
+            <Link to={PATHS.PROFILE} className="cursor-pointer">
               <img src={defaultAvatar} alt="avatar" className="block h-10 w-10 rounded-full" />
             </Link>
           </Link>
