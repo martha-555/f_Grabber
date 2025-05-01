@@ -1,7 +1,6 @@
 import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
-import LogOutButton from '../../components/LogOutButton/LogOutButton.tsx'
 
 const PageWrapper = () => {
   return (

@@ -1,8 +1,7 @@
 import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
-import { QueryClient, useQueryClient, useQuery } from '@tanstack/react-query'
-
+import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
-import { HttpMethod, User } from '../types/types'
+import { User } from '../types/types'
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm'
 import Login from './Login'
 
