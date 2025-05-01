@@ -12,6 +12,7 @@ function createAxiosClient(baseURL: string) {
     (response) => response,
     (error) => {
       handleAxiosError(error)
+
       return Promise.reject(error)
     },
   )

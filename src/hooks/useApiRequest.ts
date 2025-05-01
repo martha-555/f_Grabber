@@ -10,8 +10,10 @@ export function useApiRequest<T>() {
   // Function to execute the API call
   const execute = async (apiMethod: () => Promise<T>) => {
     setLoading(true) // Set loading to true before the API call
+
     try {
       const response = await apiMethod() // Execute the API method
+
       setData(response) // Set the response data
       setStatusCode(200) // Set status code to 200 on success
       setError(null) // Clear any previous errors

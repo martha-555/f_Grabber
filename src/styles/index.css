@@ -1,36 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-@import 'tailwindcss';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
   html {
     font-family: 'Montserrat', sans-serif;
   }
 }
+
 @layer components {
   .input-text {
-    @apply w-full rounded-3xl border-1 px-2 py-3 focus:outline-none;
+    @apply w-full rounded-3xl border-2 px-2 py-3 focus:outline-none;
 
     &::placeholder {
       @apply text-black/50;
     }
   }
+
   .auth-register-form {
     @apply flex w-90 flex-col gap-5;
+    @apply flex w-full flex-col gap-5 md:w-1/2; /* Використано стандартні класи ширини для адаптивності */
 
     button[type='submit'] {
       @apply mt-16;
     }
   }
+
   .auth-register-form-section {
     @apply relative flex flex-col items-center gap-2;
 
     .error-text {
       @apply text-sm text-red-500; /*absolute -top-3 right-3 bg-white*/
+      @apply text-sm text-red-500;
     }
   }
 
   .button {
     @apply rounded-3xl bg-[#B9E2FF] px-2 py-3 transition duration-300 hover:cursor-pointer hover:bg-[#8ED0FF];
+    @apply rounded-3xl bg-primary px-2 py-3 transition duration-300 hover:cursor-pointer hover:bg-hover;
 
     &:hover {
       box-shadow: inset rgba(0, 0, 0, 0.5) 0px 0px 6px 0px;
