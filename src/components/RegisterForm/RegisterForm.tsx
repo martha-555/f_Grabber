@@ -67,7 +67,7 @@ const RegisterForm: React.FC = () => {
 
   // Виклик reset при успішній реєстрації
   useEffect(() => {
-    if (statusCode === 200) {
+    if (statusCode && statusCode >= 200 && statusCode < 300) {
       reset()
     }
   }, [statusCode, reset])
