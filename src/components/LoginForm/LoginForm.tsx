@@ -35,7 +35,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
   const { loading, execute, statusCode } = useApiRequest()
 
   useEffect(() => {
-    if (statusCode === 200) {
+    if (statusCode && statusCode >= 200 && statusCode < 300) {
       reset()
     }
   }, [statusCode, reset])

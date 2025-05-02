@@ -5,5 +5,8 @@ import { axiosClient } from './axiosClient'
 export async function getProfile() {
   const response = await axiosClient.get(API_ENDPOINTS.PROFILE.get, { withCredentials: true })
 
-  return response.data
+  return {
+    data: response.data,
+    status: response.status,
+  }
 }
