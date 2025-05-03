@@ -25,38 +25,40 @@ const EditProfileForm = () => {
         <button onClick={handleClick} className="rounded-xl border bg-gray-300 p-[10]">
           Редагувати профіль
         </button>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <form
-            className="flex flex-col gap-10 border bg-gray-200 p-5"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <input
-              className="border"
-              defaultValue="nnnnnn"
-              {...register('firstName', { required: true })}
-              placeholder="First Name"
-            />
-            {errors.firstName && <span>First Name is required</span>}
+        {isOpen && (
+          <Modal onClose={() => setIsOpen(false)}>
+            <form
+              className="flex flex-col gap-10 border bg-gray-200 p-5"
+              onSubmit={handleSubmit(onSubmit)}
+            >
+              <input
+                className="border"
+                defaultValue="nnnnnn"
+                {...register('firstName', { required: true })}
+                placeholder="First Name"
+              />
+              {errors.firstName && <span>First Name is required</span>}
 
-            <input
-              className="border"
-              {...register('email', { required: true })}
-              placeholder="Email"
-            />
-            {errors.email && <span>Email is required</span>}
-            <div>
-              <button className="mr-10 rounded-xl border bg-gray-300 p-[10]" type="submit">
-                Зберегти
-              </button>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="rounded-xl border bg-gray-300 p-[10]"
-              >
-                Скасувати
-              </button>
-            </div>
-          </form>
-        </Modal>
+              <input
+                className="border"
+                {...register('email', { required: true })}
+                placeholder="Email"
+              />
+              {errors.email && <span>Email is required</span>}
+              <div>
+                <button className="mr-10 rounded-xl border bg-gray-300 p-[10]" type="submit">
+                  Зберегти
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="rounded-xl border bg-gray-300 p-[10]"
+                >
+                  Скасувати
+                </button>
+              </div>
+            </form>
+          </Modal>
+        )}
       </div>
     </>
   )
