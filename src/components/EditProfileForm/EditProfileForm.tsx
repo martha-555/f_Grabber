@@ -29,7 +29,9 @@ const EditProfileForm = ({ user }: Props) => {
       setValue('avatar', e.target.files[0], { shouldValidate: true })
     }
   }
+
   console.log({ user })
+
   const onSubmit = () => {
     console.log(555)
   }
@@ -38,7 +40,7 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="text-px32 ml-[9.37rem] p-[0.625rem] font-medium">Редагувати профіль</div>
+          <div className="ml-[9.37rem] p-[0.625rem] text-px32 font-medium">Редагувати профіль</div>
           <form
             className="mx-auto mt-[5.37rem] flex max-w-[74.86%]"
             onSubmit={handleSubmit(onSubmit)}
@@ -49,7 +51,7 @@ const EditProfileForm = ({ user }: Props) => {
               error={errors.avatar?.message}
             />
             <div className="flex flex-1 flex-col gap-[2.5rem] p-5">
-              <div className="text-px24 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
+              <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-px24 font-medium">
                 Персональна інформація
               </div>
               <ProfileInput

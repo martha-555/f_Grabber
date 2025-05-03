@@ -16,6 +16,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
     if (initialAvatar instanceof File) {
       const url = URL.createObjectURL(initialAvatar)
       setPreview(url)
+
       return () => URL.revokeObjectURL(url)
     } else {
       setPreview(initialAvatar || null)
@@ -25,6 +26,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     console.log({ file })
+
     if (file) {
       // Спочатку очищаємо попередній URL, якщо він існує
       preview && URL.revokeObjectURL(preview)

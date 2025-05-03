@@ -11,10 +11,12 @@ const EditProfile = () => {
     initialData: () => queryClient.getQueryData(['profile']), // "Підглядаємо" в кеш
   })
   console.log({ data })
+
   return (
     <div>
       <EditProfileForm user={data} />
     </div>
   )
 }
+
 export default EditProfile
