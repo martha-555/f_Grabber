@@ -16,7 +16,6 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
     if (initialAvatar instanceof File) {
       const url = URL.createObjectURL(initialAvatar)
       setPreview(url)
-
       return () => URL.revokeObjectURL(url)
     } else {
       setPreview(initialAvatar || null)
@@ -25,7 +24,14 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) onChange(file)
+    console.log({ file })
+    if (file) {
+      // Спочатку очищаємо попередній URL, якщо він існує
+      preview && URL.revokeObjectURL(preview)
+      const url = URL.createObjectURL(file)
+      setPreview(url)
+      onChange(file)
+    }
   }
 
   return (
@@ -37,10 +43,9 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
         accept="image/*"
         className="hidden"
       />
-
-      <div onClick={() => inputRef.current?.click()} className="avatar-preview">
+      <div onClick={() => inputRef.current?.click()}>
         {preview ? (
-          <img src={preview} alt="User avatar" className="avatar-image" />
+          <img src={preview} alt="User avatar" className="w-[31.45%]" />
         ) : (
           <img src={defaultProfileAvatar} alt="Default avatar" className="default-avatar" />
         )}

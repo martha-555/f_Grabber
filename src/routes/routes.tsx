@@ -11,6 +11,7 @@ import {
   Profile,
   Register,
 } from '../pages'
+import EditProfile from '../pages/EditProfile'
 import { PATHS } from '../paths'
 
 export const routes = [
@@ -51,8 +52,12 @@ export const routes = [
         element: <Orders />,
       },
       {
-        path: PATHS.PROFILE,
+        path: PATHS.PROFILE.profile,
         element: <Profile />,
+      },
+      {
+        path: PATHS.PROFILE.edit,
+        element: <EditProfile />,
       },
       {
         path: PATHS.ADMIN,
