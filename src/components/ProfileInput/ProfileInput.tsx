@@ -16,6 +16,10 @@ const ProfileInput = ({ data, labelText, name, register, error }: Props) => {
       </label>
       <input
         id={data}
+        onClick={(e: React.MouseEvent<HTMLInputElement>) => {
+          const target = e.target as HTMLInputElement
+          target.select()
+        }}
         className="flex-1 border-none bg-[#F7F7F7] p-[0.625rem] pr-[1.25rem] text-end outline-none"
         defaultValue={data}
         {...register(name, { required: true })}

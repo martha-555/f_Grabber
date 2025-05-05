@@ -34,7 +34,7 @@ const Profile = () => {
   return (
     <>
       {!isLoading && userData && (
-        <div className="mx-auto mt-[6.43rem] max-w-[80%] overflow-hidden p-[3px]">
+        <div className="mx-auto mt-[6.43rem] max-w-[80%] p-[3px]">
           <h1 className="mb-[5.93rem] p-[0.625rem] text-px32 font-medium">Мій профіль</h1>
           <div className="flex justify-center gap-[3.06rem]">
             <div className="flex max-w-[46%] gap-5 rounded-[25px] py-[4.37rem] pl-[1.94rem] pr-[1.94rem] shadow-blur">
