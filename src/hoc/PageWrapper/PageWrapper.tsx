@@ -1,14 +1,23 @@
 import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
+<<<<<<< HEAD
 import LogOutButton from '../../components/LogOutButton/LogOutButton'
+=======
+>>>>>>> main
 
 const PageWrapper = () => {
   return (
     <>
+<<<<<<< HEAD
       <header className="w-full bg-[#2D336B] px-[6.12rem] py-[2.06rem] text-[#FFFFFF]">
         <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
           <h1 className="whitespace-nowrap text-px20 font-medium">
+=======
+      <header className="w-full bg-[#D9D9D9] px-[6.806%] py-8 font-[montserrat]">
+        <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
+          <h1 className="whitespace-nowrap text-[20px] font-medium">
+>>>>>>> main
             <Link to="/">Grabber</Link>
           </h1>
 
@@ -33,7 +42,11 @@ const PageWrapper = () => {
           <LogOutButton />
         </div>
       </header>
+<<<<<<< HEAD
       <section className="content grow-1 w-full items-center">
+=======
+      <section className="content grow-1 w-full items-center justify-center">
+>>>>>>> main
         <Outlet />
       </section>
     </>
