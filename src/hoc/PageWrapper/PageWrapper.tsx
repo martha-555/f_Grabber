@@ -1,14 +1,13 @@
 import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
-import LogOutButton from '../../components/LogOutButton/LogOutButton.tsx'
 
 const PageWrapper = () => {
   return (
     <>
-      <header className="font-[montserrat] w-full bg-[#D9D9D9] py-8 px-[6.806%]">
-        <div className="max-w-[1221px] mx-auto flex items-center gap-[5.486%] w-full">
-          <h1 className="text-[20px] font-medium whitespace-nowrap">
+      <header className="w-full bg-[#D9D9D9] px-[6.806%] py-8 font-[montserrat]">
+        <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
+          <h1 className="whitespace-nowrap text-[20px] font-medium">
             <Link to="/">Grabber</Link>
           </h1>
 
@@ -29,12 +28,11 @@ const PageWrapper = () => {
             Створити оголошення
           </button>
           <Link to="/profile">
-            <img src={defaultAvatar} alt="avatar" className="w-10 h-10 rounded-full block" />
+            <img src={defaultAvatar} alt="avatar" className="block h-10 w-10 rounded-full" />
           </Link>
         </div>
       </header>
-      <section className="content grow-1 w-full justify-center items-center">
-
+      <section className="content grow-1 w-full items-center justify-center">
         <Outlet />
       </section>
     </>

@@ -42,4 +42,20 @@
       box-shadow: inset rgba(0, 0, 0, 0.5) 0px 0px 6px 0px;
     }
   }
+
+  .close-button {
+    @apply absolute right-6 top-4 flex flex-col transition-transform duration-300 ease-in-out;
+
+    &::after,
+    &::before {
+      @apply absolute h-0.5 w-4 bg-black;
+      content: '';
+    }
+    &::after {
+      @apply rotate-45;
+    }
+    &::before {
+      @apply -rotate-45;
+    }
+  }
 }

@@ -1,8 +1,7 @@
 import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
-import { QueryClient, useQueryClient, useQuery } from '@tanstack/react-query'
-
+import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
-import { HttpMethod, User } from '../types/types'
+import { User } from '../types/types'
 import EditProfileForm from '../components/EditProfileForm/EditProfileForm'
 import Login from './Login'
 
@@ -31,18 +30,18 @@ const Profile = () => {
   return (
     <>
       {!isLoading && userData && (
-        <div className="w-[77.63%] mx-auto font-[montserrat] overflow-hidden mt-[6.4%]">
+        <div className="mx-auto mt-[6.4%] w-[77.63%] overflow-hidden font-[montserrat]">
           <div className="flex w-[82.26%] justify-between">
-            <h1 className="text-3xl font-medium pb-[3.58%]">Мій профіль</h1>
+            <h1 className="pb-[3.58%] text-3xl font-medium">Мій профіль</h1>
             <section>
               <div className="pb-[2.39%] text-2xl font-normal">Інформація</div>
-              <div className="font-normal text-base">Номер телефону: {userData?.phone_number}</div>
+              <div className="text-base font-normal">Номер телефону: {userData?.phone_number}</div>
             </section>
             <EditProfileForm />
           </div>
           <section className="flex items-center">
             <img src={defaultProfileAvatar} alt="" />
-            <div className="pl-[2.5%] font-normal text-3xl">{userData?.first_name}</div>
+            <div className="pl-[2.5%] text-3xl font-normal">{userData?.first_name}</div>
           </section>
           <section className="pt-[2.78%]">
             <div className="p-[0.79%] text-3xl font-medium">Мої оголошення</div>
