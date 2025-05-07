@@ -1,6 +1,7 @@
 import React, { ReactNode, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import userProfileStore from '../../store/userProfileStore'
 
 type TPrivateRouteProps = {
   children: ReactNode
@@ -8,15 +9,17 @@ type TPrivateRouteProps = {
 
 const PrivateRoute: React.FC<TPrivateRouteProps> = ({ children }) => {
   const navigate = useNavigate()
-  const isAuthenticated = false
+  const isLoggedIn = userProfileStore((state) => state.isLoggedIn)
+  const isLoading = userProfileStore((state) => state.isLoading)
+
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isLoading && !isLoggedIn) {
       navigate(PATHS.AUTH.login, { replace: true })
     }
-  }, [isAuthenticated, navigate])
+  }, [isLoggedIn, isLoading, navigate])
 
   // Нічого не рендеримо, поки не визначено статус авторизації
-  if (!isAuthenticated) {
+  if (!isLoggedIn) {
     return null
   }
 

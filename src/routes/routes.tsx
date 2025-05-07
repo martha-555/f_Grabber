@@ -1,4 +1,5 @@
 import { PageWrapper } from '../hoc'
+import PrivateRoute from '../hoc/PrivateRoute/PrivateRoute'
 import {
   AddProduct,
   Admin,
@@ -53,7 +54,11 @@ export const routes = [
       },
       {
         path: PATHS.PROFILE.profile,
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: PATHS.PROFILE.edit,
