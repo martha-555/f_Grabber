@@ -1,6 +1,6 @@
 export type HttpMethod = 'GET' | 'POST' | 'DELETE'
 
-export type User = {
+export type TUserProfile = {
   date_joined?: Date
   email: string
   first_name: string

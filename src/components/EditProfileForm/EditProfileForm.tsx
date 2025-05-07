@@ -1,14 +1,14 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
-import { User } from '../../types/types'
+import { TUserProfile } from '../../types/types'
 import UploadAvatar from '../UploadAvatar/UploadAvatar'
 import ProfileInput from '../ProfileInput/ProfileInput'
 
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 
 type Props = {
-  user: User
+  user: TUserProfile
 }
 
 const EditProfileForm = ({ user }: Props) => {
