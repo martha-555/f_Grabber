@@ -1,20 +1,16 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useApiRequest } from '../../hooks/useApiRequest'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PATHS } from '../../paths'
-import { login } from '../../api/login'
+import useLogin from '../../api/login'
+import { LoginSchema } from '../../features/userValidation'
+import userProfileStore from '../../store/userProfileStore'
 
 interface LoginFormProps {}
 
-const schema = z.object({
-  email: z.string().email('Невірний формат електронної пошти'),
-  password: z.string().min(6, 'Пароль має містити щонайменше 6 символів'),
-})
-
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<typeof LoginSchema>
 
 const defaultValues: FormData = {
   email: '',
@@ -29,19 +25,27 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     reset,
   } = useForm<FormData>({
     defaultValues,
-    resolver: zodResolver(schema),
+    resolver: zodResolver(LoginSchema),
   })
 
-  const { loading, execute, statusCode } = useApiRequest()
+  const setUserProfile = userProfileStore((state) => state.setUserProfile)
 
-  useEffect(() => {
-    if (statusCode && statusCode >= 200 && statusCode < 300) {
-      reset()
-    }
-  }, [statusCode, reset])
+  const navigate = useNavigate()
+
+  const { mutate: login, status } = useLogin()
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    execute(() => login({ email: data.email.toLowerCase(), password: data.password }))
+    login(data, {
+      onSuccess: (response) => {
+        console.log('Login successful:', response)
+        setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false })
+        reset()
+        navigate(PATHS.PROFILE.profile)
+      },
+      onError: (error) => {
+        console.error('Login error:', error)
+      },
+    })
   }
 
   return (
@@ -76,7 +80,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         </Link>
       </section>
       <section className="auth-register-form-section"></section>
-      <button type="submit" className="button" disabled={loading}>
+      <button type="submit" className="button" disabled={status === 'pending'}>
         Увійти
       </button>
     </form>
