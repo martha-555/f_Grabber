@@ -1,4 +1,4 @@
-export type TUserRequest = {
+export type TRegisterCredentialsRequest = {
   email: string
   password: string
   first_name: string
@@ -6,4 +6,13 @@ export type TUserRequest = {
   phone_number: string
 }
 
-export type TUserResponse = {}
+export type TRegisterResponse = {}
+
+export type TLoginCredentialsRequest = {
+  email: string
+  password: string
+}
+
+export type TLoginResponse = {
+  message: string
+}

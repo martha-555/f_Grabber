@@ -1,28 +1,45 @@
 import { useState } from 'react'
+import { handleAxiosError } from '../api/errorHandler'
+import { AxiosError } from 'axios'
 
 // Generic hook for API calls
 export function useApiRequest<T>() {
-  const [data, setData] = useState<T | null>(null) // State to store API response data
-  const [error, setError] = useState<string | null>(null) // State to store error messages
-  const [loading, setLoading] = useState<boolean>(false) // State to track loading status
+  const [data, setData] = useState<T | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [loading, setLoading] = useState<boolean>(false)
+  const [statusCode, setStatusCode] = useState<number | null>(null)
 
-  // Function to execute the API call
-  const execute = async (apiMethod: () => Promise<T>) => {
-    setLoading(true) // Set loading to true before the API call
+  const execute = async (apiMethod: () => Promise<{ data: T; status: number }>) => {
+    setLoading(true)
+    setError(null)
+    setStatusCode(null)
 
     try {
-      const response = await apiMethod() // Execute the API method
+      const result = await apiMethod()
 
-      setData(response) // Set the response data
-      setError(null) // Clear any previous errors
-    } catch (error) {
-      // Handle errors and set error message
-      setError(error instanceof Error ? error.message : 'Unknown error')
-      setData(null) // Clear data on error
+      setData(result.data)
+      setStatusCode(result.status)
+
+    } catch (err: unknown) {
+      const axiosError = err as AxiosError
+
+      // Виклик глобального хендлера помилок
+      handleAxiosError(axiosError)
+
+      // Локальне збереження статусу
+      const status = axiosError?.response?.status || null
+      const message =
+        (axiosError?.response?.data as { message?: string })?.message ||
+        axiosError?.message ||
+        'Unknown error'
+
+      setStatusCode(status)
+      setError(message)
+      setData(null)
     } finally {
-      setLoading(false) // Set loading to false after the API call
+      setLoading(false)
     }
   }
 
-  return { data, error, loading, execute } // Return state and execute function
+  return { data, error, loading, statusCode, execute }
 }
