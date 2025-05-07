@@ -24,4 +24,3 @@ export function handleAxiosError(error: AxiosError) {
     // toast.error("Помилка налаштування запиту: " + error.message)
   }
 }
-

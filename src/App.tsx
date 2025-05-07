@@ -20,7 +20,7 @@ export default function App() {
     } else if (error) {
       setUserProfile({ ...userProfileInStore, isLoggedIn: false, isLoading: false, isError: true })
     }
-  }, [status, userData, error, setUserProfile])
+  }, [status, userData, error, setUserProfile, userProfileInStore])
 
   return <RouterProvider router={routers} />
 }

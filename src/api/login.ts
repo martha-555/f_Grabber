@@ -10,6 +10,7 @@ const useLogin = () => {
   return useMutation({
     mutationFn: async (data: TLoginCredentialsRequest) => {
       const response = await fetchLogin({ path: API_ENDPOINTS.AUTH.login, method: 'POST', data })
+
       return response as TUserProfile
     },
   })
