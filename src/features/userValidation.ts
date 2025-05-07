@@ -42,6 +42,11 @@ export const registerSchema = baseUserSchema
     }
   })
 
+export const LoginSchema = z.object({
+  email: z.string().email('Невірний формат електронної пошти'),
+  password: z.string().min(6, 'Пароль має містити щонайменше 6 символів'),
+})
+
 export const editProfileSchema = baseUserSchema.extend({
   avatar: z
     .union([z.string().url(), z.instanceof(File)])
