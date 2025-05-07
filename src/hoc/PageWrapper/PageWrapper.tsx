@@ -2,6 +2,7 @@ import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import LogOutButton from '../../components/LogOutButton/LogOutButton'
 
 const PageWrapper = () => {
   return (
@@ -29,8 +30,7 @@ const PageWrapper = () => {
             Створити оголошення
           </button>
           <Link to="/profile">
-            {' '}
-            <Link to={PATHS.PROFILE} className="cursor-pointer">
+            <Link to={PATHS.PROFILE.profile} className="cursor-pointer">
               <img src={defaultAvatar} alt="avatar" className="block h-10 w-10 rounded-full" />
             </Link>
           </Link>

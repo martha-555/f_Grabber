@@ -1,7 +1,7 @@
 import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
 import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
-import { User } from '../types/types'
+import { TUserProfile } from '../types/types'
 import editIcon from '../assets/images/editIcon.png'
 import Login from './Login'
 import { formatDate } from '../features/formatDate'
@@ -18,7 +18,7 @@ const Profile = () => {
     isError,
   } = useQuery({
     queryKey: ['profile'],
-    queryFn: () => fetchUserProfile<User>({ path: '/api/profile/' }),
+    queryFn: () => fetchUserProfile<TUserProfile>({ path: '/api/profile/' }),
     retry: 1,
     retryDelay: 1000,
   })
