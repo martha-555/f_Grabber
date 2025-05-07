@@ -1,14 +1,23 @@
+import { useMutation } from '@tanstack/react-query'
+import useBackendRequest from '../hooks/useBackendRequest'
 import { API_ENDPOINTS } from '../paths'
-import {TRegisterCredentialsRequest  } from '../types/user'
-import { axiosClient } from './axiosClient'
+import { TRegisterCredentialsRequest } from '../types/authTypes'
+import { TUserProfile } from '../types/types'
 
-export async function register(userInfo: TRegisterCredentialsRequest) {
-  const response = await axiosClient.post(API_ENDPOINTS.AUTH.register, userInfo, {
-    withCredentials: true,
+const useRegister = () => {
+  const fetchRegister = useBackendRequest()
+
+  return useMutation({
+    mutationFn: async (data: TRegisterCredentialsRequest) => {
+      const response = await fetchRegister({
+        path: API_ENDPOINTS.AUTH.register,
+        method: 'POST',
+        data,
+      })
+
+      return response as TUserProfile
+    },
   })
-
-  return {
-    data: response.data,
-    status: response.status,
-  }
 }
+
+export default useRegister

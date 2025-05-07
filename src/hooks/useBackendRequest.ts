@@ -31,7 +31,7 @@ const useBackendRequest = () => {
 
     const response: AxiosResponse<T> = await api.request(config)
 
-    if (response.status !== 200) {
+    if (response.status < 200 || response.status >= 300) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
 

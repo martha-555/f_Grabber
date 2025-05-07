@@ -1,9 +1,13 @@
+import { useMutation } from '@tanstack/react-query'
+import useBackendRequest from '../hooks/useBackendRequest'
 import { API_ENDPOINTS } from '../paths'
-import { axiosClient } from './axiosClient'
 
-// Function to log out the user
-export async function logout() {
-  await axiosClient.post(API_ENDPOINTS.AUTH.logout, { withCredentials: true })
+const useLogout = () => {
+  const fetchLogout = useBackendRequest()
 
-  return null
+  return useMutation({
+    mutationFn: () => fetchLogout({ path: API_ENDPOINTS.AUTH.logout, method: 'POST' }),
+  })
 }
+
+export default useLogout
