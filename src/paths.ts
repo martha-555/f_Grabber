@@ -10,7 +10,10 @@ export const PATHS = {
     login: '/login',
     register: '/register',
   },
-  PROFILE: '/profile',
+  PROFILE: {
+    profile: '/profile',
+    edit: '/profile/edit',
+  },
   ORDERS: '/orders',
   ADMIN: '/admin',
 }

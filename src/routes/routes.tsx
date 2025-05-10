@@ -1,4 +1,5 @@
 import { PageWrapper } from '../hoc'
+import PrivateRoute from '../hoc/PrivateRoute/PrivateRoute'
 import {
   AddProduct,
   Admin,
@@ -11,6 +12,7 @@ import {
   Profile,
   Register,
 } from '../pages'
+import EditProfile from '../pages/EditProfile'
 import { PATHS } from '../paths'
 
 export const routes = [
@@ -32,7 +34,11 @@ export const routes = [
       },
       {
         path: PATHS.PRODUCTS.add,
-        element: <AddProduct />,
+        element: (
+          <PrivateRoute>
+            <AddProduct />
+          </PrivateRoute>
+        ),
       },
       {
         path: PATHS.AUTH.login,
@@ -51,12 +57,28 @@ export const routes = [
         element: <Orders />,
       },
       {
-        path: PATHS.PROFILE,
-        element: <Profile />,
+        path: PATHS.PROFILE.profile,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: PATHS.PROFILE.edit,
+        element: (
+          <PrivateRoute>
+            <EditProfile />
+          </PrivateRoute>
+        ),
       },
       {
         path: PATHS.ADMIN,
-        element: <Admin />,
+        element: (
+          <PrivateRoute>
+            <Admin />
+          </PrivateRoute>
+        ),
       },
     ],
   },

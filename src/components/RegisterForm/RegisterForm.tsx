@@ -1,76 +1,53 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { PATHS } from '../../paths'
-import { Link } from 'react-router-dom'
-import { useApiRequest } from '../../hooks/useApiRequest'
-import { register as registerUser } from '../../api/register'
-
-// Схема валідації форми за допомогою Zod
-const schema = z
-  .object({
-    first_name: z.string().nonempty("Ім'я є обов'язковим"), // Поле для імені, обов'язкове
-    last_name: z.string().nonempty("Прізвище є обов'язковим"), // Поле для прізвища, обов'язкове
-    phone_number: z
-      .string()
-      .nonempty("Номер телефону є обов'язковим") // Поле для номера телефону, обов'язкове
-      .regex(/^\+380\d{9}$/, 'Номер телефону має бути у форматі +380XXXXXXXXX'), // Перевірка формату номера
-    email: z
-      .string()
-      .nonempty("Електронна пошта є обов'язковою") // Поле для електронної пошти, обов'язкове
-      .email('Некоректна електронна пошта'), // Перевірка формату електронної пошти
-    password: z
-      .string()
-      .nonempty("Пароль є обов'язковим") // Поле для паролю, обов'язкове
-      .min(6, 'Пароль має містити щонайменше 6 символів'), // Мінімальна довжина паролю
-    confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"), // Поле для підтвердження паролю, обов'язкове
-  })
-  .superRefine((data, ctx) => {
-    // Перевірка, чи збігаються пароль і підтвердження паролю
-    if (data.confirmPassword !== data.password) {
-      ctx.addIssue({
-        code: 'custom',
-        path: ['confirmPassword'],
-        message: 'Паролі не збігаються', // Повідомлення про помилку
-      })
-    }
-  })
+import { Link, useNavigate } from 'react-router-dom'
+import { registerSchema } from '../../features/userValidation'
+import useRegister from '../../api/register'
+import userProfileStore from '../../store/userProfileStore'
 
 // Тип даних форми, отриманий з схеми
-type FormData = z.infer<typeof schema>
+type FormData = z.infer<typeof registerSchema>
 
 const RegisterForm: React.FC = () => {
-  // Використання кастомного хука для роботи з API
-  const { error, loading, execute } = useApiRequest()
   const {
     register, // Метод для реєстрації полів форми
     handleSubmit, // Метод для обробки відправки форми
     formState: { errors }, // Об'єкт для зберігання помилок валідації
     reset, // Метод для скидання форми
   } = useForm<FormData>({
-    resolver: zodResolver(schema), // Підключення схеми валідації
+    resolver: zodResolver(registerSchema), // Підключення схеми валідації
   })
+  const setUserProfile = userProfileStore((state) => state.setUserProfile)
+  const navigate = useNavigate()
+
+  const { mutate: registerUser, status } = useRegister()
 
   // Функція для обробки відправки форми
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    execute(() =>
-      registerUser({
+    registerUser(
+      {
         email: data.email.toLowerCase(),
         password: data.password,
         first_name: data.first_name,
         last_name: data.last_name,
         phone_number: data.phone_number,
-      }),
-    ) // Виклик функції реєстрації користувача
+      },
+      {
+        onSuccess: (response) => {
+          console.log('Registration successful:', response) // Успішна реєстрація
+          setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false }) // Збереження профілю користувача в стані
+          reset() // Скидання форми при успішній реєстрації
+          navigate(PATHS.PROFILE.profile)
+        },
+        onError: (error) => {
+          console.error('Registration error:', error) // Обробка помилок
+        },
+      },
+    )
   }
-
-  // Виклик reset при успішній реєстрації
-  useEffect(() => {
-    if (!error) {
-      reset()
-    }
-  }, [error, reset])
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
@@ -148,7 +125,7 @@ const RegisterForm: React.FC = () => {
         </Link>
       </section>
       {/* Кнопка для відправки форми */}
-      <button type="submit" className="button" disabled={loading}>
+      <button type="submit" className="button" disabled={status === 'pending'}>
         Зареєструватися
       </button>
     </form>
