@@ -5,17 +5,15 @@ import useLogout from '../../api/logout'
 const LogOutButton = () => {
   const resetUserProfile = userProfileStore((state) => state.resetUserProfile)
 
-  const { mutate: logout } = useLogout()
+  const { mutateAsync: logout } = useLogout()
 
-  const handleLogOut = () => {
-    logout(undefined, {
-      onSuccess: () => {
-        resetUserProfile()
-      },
-      onError: (error) => {
-        console.error('Logout failed:', error)
-      },
-    })
+  const handleLogOut = async () => {
+    try {
+      await logout()
+      resetUserProfile()
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
   }
 
   return <Button className="min-w-btn-small" text="Вихід" onClick={handleLogOut} />
