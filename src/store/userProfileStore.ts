@@ -14,7 +14,7 @@ type TuserProfileActions = {
   resetUserProfile: () => void
 }
 
-const initialState: TUserProfileState = {
+export const initialState: TUserProfileState = {
   id: undefined,
   date_joined: undefined,
   email: '',
