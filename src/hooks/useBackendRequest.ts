@@ -32,11 +32,13 @@ const useBackendRequest = () => {
 
     try {
       const response: AxiosResponse<T> = await api.request(config)
+
       return response.data
     } catch (error) {
       if (axios.isAxiosError(error)) {
         throw new Error(`HTTP error! status: ${error.response?.status}, message: ${error.message}`)
       }
+
       throw error
     }
   }
