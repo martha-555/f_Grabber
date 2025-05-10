@@ -19,7 +19,7 @@ const PrivateRoute: React.FC<TPrivateRouteProps> = ({ children }) => {
   }, [isLoggedIn, isLoading, navigate])
 
   // Нічого не рендеримо, поки не визначено статус авторизації
-  if (!isLoggedIn) {
+  if (!isLoggedIn || isLoading) {
     return null
   }
 
