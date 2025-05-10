@@ -37,7 +37,6 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     login(data, {
       onSuccess: (response) => {
-        console.log('Login successful:', response)
         setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false })
         reset()
         navigate(PATHS.PROFILE.profile)
