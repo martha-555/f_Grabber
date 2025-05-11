@@ -9,5 +9,8 @@ export async function refreshToken(token: string) {
     { withCredentials: true },
   )
 
-  return response.data
+  return {
+    data: response.data,
+    status: response.status,
+  }
 }

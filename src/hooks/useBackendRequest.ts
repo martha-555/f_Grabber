@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { HttpMethod } from '../types/types'
+
+type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
 type Params<Data> = {
   path: string
@@ -29,9 +30,17 @@ const useBackendRequest = () => {
       data,
     }
 
-    const response: AxiosResponse<Response> = await api.request(config)
+    try {
+      const response: AxiosResponse<Response> = await api.request(config)
 
-    return response.data
+      return response.data
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new Error(`HTTP error! status: ${error.response?.status}, message: ${error.message}`)
+      }
+
+      throw error
+    }
   }
 
   return request
