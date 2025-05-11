@@ -25,13 +25,18 @@ export const API_ENDPOINTS = {
     add: '/api/products/',
   },
   AUTH: {
-    login: '/api/login/',
-    logout: '/api/logout/',
-    register: '/api/register/',
-    refreshToken: '/api/refresh/',
+    login: '/user/login/',
+    logout: '/user/logout/',
+    register: '/user/register/',
+    forgotPassword: '/user/forgot-password/',
+    refreshToken: '/user/refresh/',
   },
   PROFILE: {
-    get: '/api/profile/',
+    get: '/user/profile/',
+    patch: '/user/profile/',
+    uploadProfilePhoto: '/user/upload-profile-image/',
+    setNewPassword: '/user/reset-password/',
+    deleteUser: '/user/delete/',
   },
   ORDERS: {
     list: '/api/orders/',
