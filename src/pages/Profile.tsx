@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
 import { TUserProfile } from '../types/types'
 import editIcon from '../assets/images/editIcon.png'
-import Login from './Login'
 import { formatDate } from '../features/formatDate'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
@@ -12,11 +11,7 @@ import ProfileField from '../components/ProfileField/ProfileField'
 const Profile = () => {
   const fetchUserProfile = useBackendRequest()
 
-  const {
-    data: userData,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { data: userData, isLoading } = useQuery({
     queryKey: ['profile'],
     queryFn: () => fetchUserProfile<TUserProfile>({ path: '/api/profile/' }),
     retry: 1,
@@ -67,11 +62,6 @@ const Profile = () => {
           <section className="pt-[2.78%]">
             <div className="mb-[4.25rem] p-[0.625rem] text-px32 font-medium">Мої оголошення</div>
           </section>
-        </div>
-      )}
-      {isError && (
-        <div>
-          <Login />
         </div>
       )}
     </>
