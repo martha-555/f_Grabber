@@ -12,7 +12,7 @@
 
 @layer components {
   .input-text {
-    @apply border-textPrimary w-full rounded-3xl border px-2 py-3 focus:outline-none;
+    @apply w-full rounded-3xl border border-textPrimary px-2 py-3 focus:outline-none;
 
     &::placeholder {
       @apply text-textPrimary;
@@ -20,7 +20,7 @@
   }
 
   .warning-icon-for-input {
-    @apply after:bg-warning-icon relative after:absolute after:right-10 after:top-1/2 after:block after:h-5 after:w-5 after:translate-y-[-50%] after:bg-contain after:bg-center after:bg-no-repeat after:content-[""];
+    @apply relative after:absolute after:right-10 after:top-1/2 after:block after:h-5 after:w-5 after:translate-y-[-50%] after:bg-warning-icon after:bg-contain after:bg-center after:bg-no-repeat after:content-[""];
   }
 
   .auth-register-form {
@@ -35,12 +35,12 @@
     @apply relative flex flex-col items-center gap-2;
 
     .error-text {
-      @apply text-error text-sm;
+      @apply text-sm text-error;
     }
   }
 
   .button {
-    @apply bg-bgBtn hover:bg-bgBtnHover text-textSecondary hover:text-textPrimary rounded-3xl px-2 py-3 transition duration-300 hover:cursor-pointer;
+    @apply rounded-3xl bg-bgBtn px-2 py-3 text-textSecondary transition duration-300 hover:cursor-pointer hover:bg-bgBtnHover hover:text-textPrimary;
 
     &:hover {
       box-shadow: inset rgba(0, 0, 0, 0.5) 0px 0px 6px 0px;
@@ -52,7 +52,7 @@
 
     &::after,
     &::before {
-      @apply bg-textPrimary absolute h-0.5 w-4;
+      @apply absolute h-0.5 w-4 bg-textPrimary;
       content: '';
     }
     &::after {

@@ -1,4 +1,4 @@
-const { error } = require("console");
+const { error } = require('console')
 
 module.exports = {
   mode: 'jit',
