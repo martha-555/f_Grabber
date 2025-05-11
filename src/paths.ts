@@ -19,21 +19,28 @@ export const PATHS = {
 }
 
 export const API_ENDPOINTS = {
-  PRODUCTS: {
-    list: '/api/products/',
-    details: '/api/products/1/',
-    add: '/api/products/',
+  ADS: {
+    create: 'ads/',
+    moderation: 'ads/moderation/',
+    addImage: 'ads/{ad_id}/add-image/',
+    approve: 'ads/{ad_id}/approve/',
+    reject: 'ads/{ad_id}/reject/',
   },
   AUTH: {
-    login: '/api/login/',
-    logout: '/api/logout/',
-    register: '/api/register/',
-    refreshToken: '/api/refresh/',
+    login: 'user/login/',
+    logout: 'user/logout/',
+    register: 'user/register/',
+    forgotPassword: 'user/forgot-password/',
+    refreshToken: 'user/refresh/',
   },
   PROFILE: {
-    get: '/api/profile/',
+    get: 'user/profile/',
+    patch: 'user/profile/',
+    uploadProfilePhoto: 'user/upload-profile-image/',
+    setNewPassword: 'user/reset-password/',
+    deleteUser: 'user/delete/',
   },
   ORDERS: {
-    list: '/api/orders/',
+    list: 'orders/',
   },
 }
