@@ -1,22 +1,13 @@
 import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
-import { useQuery } from '@tanstack/react-query'
-import useBackendRequest from '../hooks/useBackendRequest'
-import { TUserProfile } from '../types/types'
 import editIcon from '../assets/images/editIcon.png'
 import { formatDate } from '../features/formatDate'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import ProfileField from '../components/ProfileField/ProfileField'
+import useFetchUserProfile from '../api/fetchUserProfile'
 
 const Profile = () => {
-  const fetchUserProfile = useBackendRequest()
-
-  const { data: userData, isLoading } = useQuery({
-    queryKey: ['profile'],
-    queryFn: () => fetchUserProfile<TUserProfile>({ path: '/api/profile/' }),
-    retry: 1,
-    retryDelay: 1000,
-  })
+  const { data: userData, isLoading } = useFetchUserProfile()
 
   return (
     <>
