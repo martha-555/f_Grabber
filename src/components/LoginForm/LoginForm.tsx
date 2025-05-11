@@ -51,34 +51,44 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
       <h1 className="mb-7 text-center text-3xl font-medium">Увійти</h1>
       <section className="auth-register-form-section">
-        <input
-          type="email"
-          {...register('email')}
-          id="register-email"
-          className="input-text"
-          placeholder="Електронна пошта"
-        />
-        {errors.email && <p className="error-text">{errors.email.message}</p>}
+        <label className={`w-full ${errors.email ? 'warning-icon-for-input' : ''}`}>
+          <input
+            type="email"
+            {...register('email')}
+            id="register-email"
+            className={`input-text ${errors.email ? 'border-error' : ''}`}
+            placeholder="Електронна пошта"
+          />
+        </label>
       </section>
       <section className="auth-register-form-section">
-        <input
-          type="password"
-          {...register('password')}
-          id="register-password"
-          className="input-text"
-          placeholder="Пароль"
-        />
-        {errors.password && <p className="error-text">{errors.password.message}</p>}
+        <label className={`w-full ${errors.password ? 'warning-icon-for-input' : ''}`}>
+          <input
+            type="password"
+            {...register('password')}
+            id="register-password"
+            className={`input-text ${errors.password ? 'border-error' : ''}`}
+            placeholder="Пароль"
+          />
+        </label>
       </section>
       <section className="auth-register-form-section">
-        <Link to="#" className="text-xs">
+        {errors.email && (
+          <p className="error-text ml-5 self-start text-xs">{errors.email.message}</p>
+        )}
+        {errors.password && (
+          <p className="error-text ml-5 self-start text-xs">{errors.password.message}</p>
+        )}
+      </section>
+      <section className="auth-register-form-section">
+        <Link to="#" className="ml-5 self-start text-xs">
           Забули пароль?
         </Link>
-        <Link to={PATHS.AUTH.register} className="text-xs">
+        <Link to={PATHS.AUTH.register} className="ml-5 self-start text-xs">
           Немає аккаунту? Зареєструватися
         </Link>
       </section>
-      <section className="auth-register-form-section"></section>
+
       <button type="submit" className="button" disabled={status === 'pending'}>
         Увійти
       </button>
