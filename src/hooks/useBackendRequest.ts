@@ -1,10 +1,10 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { HttpMethod } from '../types/types'
 
-type Params<D> = {
+type Params<Data> = {
   path: string
   method?: HttpMethod
-  data?: D
+  data?: Data
 }
 
 const backendURL = import.meta.env.VITE_API_URL
@@ -18,22 +18,18 @@ const api = axios.create({
 })
 
 const useBackendRequest = () => {
-  const request = async <T = any, D = any>({
+  const request = async <Response, Data = void>({
     path,
     method = 'GET',
     data,
-  }: Params<D>): Promise<T> => {
-    const config: AxiosRequestConfig<D> = {
+  }: Params<Data>): Promise<Response> => {
+    const config: AxiosRequestConfig<Data> = {
       url: path,
       method,
       data,
     }
 
-    const response: AxiosResponse<T> = await api.request(config)
-
-    if (response.status !== 200) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
+    const response: AxiosResponse<Response> = await api.request(config)
 
     return response.data
   }
