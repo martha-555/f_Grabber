@@ -56,11 +56,17 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
             className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
           />
         ) : (
-          <img
-            src={(initialAvatar as string) || defaultProfileAvatar}
-            alt="Default avatar"
-            className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
-          />
+          (initialAvatar && (
+            <img
+              src={initialAvatar as string}
+              alt="Default avatar"
+              className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
+            />
+          )) || (
+            <div className="flex h-[173px] w-[173px] items-center justify-center rounded-[20px] bg-[#F7F7F7]">
+              <img className="h-[92.11px] w-[78.8px]" src={defaultProfileAvatar} alt="" />
+            </div>
+          )
         )}
         <img className="absolute right-[-1rem] top-[7rem]" src={editIcon} alt="" />
       </div>

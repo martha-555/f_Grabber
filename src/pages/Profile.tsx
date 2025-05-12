@@ -16,11 +16,17 @@ const Profile = () => {
           <h1 className="mb-[5.93rem] p-[0.625rem] text-px32 font-medium">Мій профіль</h1>
           <div className="flex justify-center gap-[3.06rem]">
             <div className="flex max-w-[46%] gap-5 rounded-[25px] py-[4.37rem] pl-[1.94rem] pr-[1.94rem] shadow-blur">
-              <img
-                className="h-[173px] w-[173px] rounded-[20px] object-cover object-[50%_20%]"
-                src={(userData.user_photo as string) || defaultProfileAvatar}
-                alt=""
-              />
+              {userData.user_photo ? (
+                <img
+                  className="h-[173px] w-[173px] rounded-[20px] object-cover object-[50%_20%]"
+                  src={userData.user_photo as string}
+                  alt=""
+                />
+              ) : (
+                <div className="flex h-[173px] w-[173px] items-center justify-center rounded-[20px] bg-[#F7F7F7]">
+                  <img className="h-[92.11px] w-[78.8px]" src={defaultProfileAvatar} alt="" />
+                </div>
+              )}
               <div className="column flex flex-col">
                 <p className="p-[0.625rem] pr-0 text-px24">{`${userData.first_name} ${userData.last_name}`}</p>
                 <p className="p-[0.625rem] pr-0 text-px16">Місцезнаходження: {userData.location}</p>
