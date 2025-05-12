@@ -68,7 +68,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
             </div>
           )
         )}
-        <img className="absolute right-[-1rem] top-[7rem]" src={editIcon} alt="" />
+        <img className="absolute right-[-2rem] top-[8rem]" src={editIcon} alt="" />
       </div>
 
       {error && <div className="error">{error}</div>}

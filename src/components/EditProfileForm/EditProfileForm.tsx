@@ -7,6 +7,7 @@ import ProfileInput from '../ProfileInput/ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
 import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
+import toast, { Toaster } from 'react-hot-toast'
 
 type Props = {
   user: TUserProfile
@@ -31,7 +32,7 @@ const EditProfileForm = ({ user }: Props) => {
   const resetForm = () => {
     reset({
       ...initialValues,
-      user_photo: user?.user_photo, // Явно вкажіть початкове фото
+      user_photo: user?.user_photo,
     })
   }
 
@@ -52,12 +53,18 @@ const EditProfileForm = ({ user }: Props) => {
   const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
-
     const isDataChanged = JSON.stringify(allValues) !== JSON.stringify(initialValues)
 
     if (isDataChanged) {
       await profileMutation.mutateAsync(data)
-      user_photo && (await photoMutation.mutateAsync(user_photo))
+      if (user_photo instanceof File) await photoMutation.mutateAsync(user_photo)
+
+      if (!profileMutation.isError && !photoMutation.isError) {
+        toast.success('Зміни збережено успішно!', {
+          id: 'profile-editor-toasts',
+          duration: 2000,
+        })
+      }
     }
   }
 
@@ -139,6 +146,14 @@ const EditProfileForm = ({ user }: Props) => {
           </form>
         </div>
       )}
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          id: 'profile-editor-toasts',
+          className:
+            '!bg-[#FFFFFF] !text-[1.5rem]  text-[#000000] rounded-[100px] flex flex-row-reverse !max-w-none !w-fit !whitespace-nowrap px-[1.25rem] py-[0.625rem]',
+        }}
+      />
     </>
   )
 }

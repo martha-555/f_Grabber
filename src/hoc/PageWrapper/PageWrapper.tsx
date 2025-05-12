@@ -2,8 +2,12 @@ import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
 import LogOutButton from '../../components/LogOutButton/LogOutButton'
+import userProfileStore from '../../store/userProfileStore'
+import PrivateRoute from '../PrivateRoute/PrivateRoute'
 
 const PageWrapper = () => {
+  const user = userProfileStore()
+
   return (
     <>
       <header className="w-full bg-[#2D336B] px-[6.12rem] py-[2.06rem] text-[#FFFFFF]">
@@ -27,9 +31,15 @@ const PageWrapper = () => {
           <button className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]">
             Створити оголошення
           </button>
-          <Link to="/profile">
-            <img src={defaultAvatar} alt="avatar" className="block h-10 w-10 rounded-full" />
-          </Link>
+          <PrivateRoute>
+            <Link to="/profile">
+              <img
+                src={(user.user_photo as string) || defaultAvatar}
+                alt="avatar"
+                className="block h-10 w-10 rounded-full"
+              />
+            </Link>
+          </PrivateRoute>
           <LogOutButton />
         </div>
       </header>

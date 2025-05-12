@@ -5,9 +5,16 @@ import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import ProfileField from '../components/ProfileField/ProfileField'
 import useFetchUserProfile from '../api/useFetchUserProfile'
+import { useEffect } from 'react'
+import userProfileStore from '../store/userProfileStore'
 
 const Profile = () => {
   const { data: userData, isLoading } = useFetchUserProfile()
+  const updateUserProfile = userProfileStore((state) => state.updateUserProfile)
+
+  useEffect(() => {
+    if (userData) updateUserProfile(userData)
+  }, [userData])
 
   return (
     <>

@@ -1,10 +1,10 @@
 import { EditProfileForm } from '../components'
-import useFetchUserProfile from '../api/useFetchUserProfile'
+import userProfileStore from '../store/userProfileStore'
 
 const EditProfile = () => {
-  const { data } = useFetchUserProfile()
+  const user = userProfileStore()
 
-  return <div>{data && <EditProfileForm user={data} />}</div>
+  return <div>{user && <EditProfileForm user={user} />}</div>
 }
 
 export default EditProfile
