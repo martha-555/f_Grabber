@@ -4,12 +4,11 @@ import { API_ENDPOINTS } from '../paths'
 import { TUserProfile } from '../types/types'
 
 const useFetchUserProfile = () => {
-  const fetchUserProfile = useBackendRequest()
+  const fetchUserData = useBackendRequest()
 
   return useQuery({
     queryKey: ['profile'],
-    queryFn: () =>
-      fetchUserProfile<TUserProfile>({ path: API_ENDPOINTS.PROFILE.get, method: 'GET' }),
+    queryFn: () => fetchUserData<TUserProfile>({ path: API_ENDPOINTS.PROFILE.get, method: 'GET' }),
     retry: false,
   })
 }

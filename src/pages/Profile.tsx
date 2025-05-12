@@ -4,7 +4,7 @@ import { formatDate } from '../features/formatDate'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import ProfileField from '../components/ProfileField/ProfileField'
-import useFetchUserProfile from '../api/fetchUserProfile'
+import useFetchUserProfile from '../api/useFetchUserProfile'
 
 const Profile = () => {
   const { data: userData, isLoading } = useFetchUserProfile()
@@ -16,7 +16,11 @@ const Profile = () => {
           <h1 className="mb-[5.93rem] p-[0.625rem] text-px32 font-medium">Мій профіль</h1>
           <div className="flex justify-center gap-[3.06rem]">
             <div className="flex max-w-[46%] gap-5 rounded-[25px] py-[4.37rem] pl-[1.94rem] pr-[1.94rem] shadow-blur">
-              <img src={defaultProfileAvatar} alt="" />
+              <img
+                className="h-[173px] w-[173px] rounded-[20px] object-cover object-[50%_20%]"
+                src={(userData.user_photo as string) || defaultProfileAvatar}
+                alt=""
+              />
               <div className="column flex flex-col">
                 <p className="p-[0.625rem] pr-0 text-px24">{`${userData.first_name} ${userData.last_name}`}</p>
                 <p className="p-[0.625rem] pr-0 text-px16">Місцезнаходження: {userData.location}</p>
@@ -34,7 +38,9 @@ const Profile = () => {
               <div className="pl-[1.25rem]">
                 <div className="flex items-center gap-[6.06rem] py-[1.15rem] pl-[0.625rem] pr-[1.37rem]">
                   <p className="text-px24 font-medium">Персональна інформація</p>
-                  <img src={editIcon} alt="" />
+                  <Link to={PATHS.PROFILE.edit}>
+                    <img src={editIcon} alt="" />
+                  </Link>
                 </div>
                 <div className="pr-[1.37rem] text-px16">
                   <ProfileField text="Ім’я" data={userData.first_name} />

@@ -1,5 +1,5 @@
 import { EditProfileForm } from '../components'
-import useFetchUserProfile from '../api/fetchUserProfile'
+import useFetchUserProfile from '../api/useFetchUserProfile'
 
 const EditProfile = () => {
   const { data } = useFetchUserProfile()

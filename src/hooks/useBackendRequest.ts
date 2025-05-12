@@ -6,6 +6,7 @@ type Params<Data> = {
   path: string
   method?: HttpMethod
   data?: Data
+  contentType?: string
 }
 
 const backendURL = import.meta.env.VITE_API_URL
@@ -13,9 +14,6 @@ const backendURL = import.meta.env.VITE_API_URL
 const api = axios.create({
   baseURL: backendURL,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 })
 
 const useBackendRequest = () => {
@@ -23,11 +21,15 @@ const useBackendRequest = () => {
     path,
     method = 'GET',
     data,
+    contentType = 'application/json',
   }: Params<Data>): Promise<Response> => {
     const config: AxiosRequestConfig<Data> = {
       url: path,
       method,
       data,
+      headers: {
+        'Content-Type': contentType,
+      },
     }
 
     try {

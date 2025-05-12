@@ -2,7 +2,7 @@ import { routes } from './routes/routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useEffect } from 'react'
 import userProfileStore, { initialState } from './store/userProfileStore'
-import useFetchUserProfile from './api/fetchUserProfile'
+import useFetchUserProfile from './api/useFetchUserProfile'
 
 export default function App() {
   const routers = createBrowserRouter(routes)

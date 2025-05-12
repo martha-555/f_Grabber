@@ -1,10 +1,11 @@
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
 import { TUserProfile } from '../../types/types'
 import UploadAvatar from '../UploadAvatar/UploadAvatar'
 import ProfileInput from '../ProfileInput/ProfileInput'
-
+import submitUserData from '../../api/useSubmitUserData'
+import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 
 type Props = {
@@ -18,33 +19,45 @@ const EditProfileForm = ({ user }: Props) => {
     email: user?.email,
     phone_number: user?.phone_number,
     location: user?.location || '',
-    avatar: user?.avatar || defaultProfileAvatar,
+    user_photo:
+      typeof user?.user_photo === 'string' || user?.user_photo instanceof File
+        ? user.user_photo
+        : user?.user_photo || defaultProfileAvatar,
+  }
+
+  const profileMutation = submitUserData()
+  const photoMutation = submitUserPhoto()
+
+  const resetForm = () => {
+    reset({
+      ...initialValues,
+      user_photo: user?.user_photo, // Явно вкажіть початкове фото
+    })
   }
 
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
+    control,
+    getValues,
     reset,
     formState: { isValid, isDirty, errors },
-  } = useForm({
+  } = useForm<TUserProfile>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
     defaultValues: initialValues,
   })
 
-  const editUserData = watch()
+  const onSubmit = async () => {
+    const allValues = getValues()
+    const { user_photo, ...data } = allValues
 
-  const onSubmit = () => {
-    const isDataChanged = JSON.stringify(editUserData) !== JSON.stringify(initialValues)
-    console.log({ isDataChanged })
-    console.log({ editUserData })
-    console.log({ initialValues })
+    const isDataChanged = JSON.stringify(allValues) !== JSON.stringify(initialValues)
 
     if (isDataChanged) {
-      console.log('є зміни')
+      await profileMutation.mutateAsync(data)
+      user_photo && (await photoMutation.mutateAsync(user_photo))
     }
   }
 
@@ -56,10 +69,16 @@ const EditProfileForm = ({ user }: Props) => {
           <form className="mx-auto mt-[5.37rem] max-w-[74.86%]" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex gap-[3.19rem]">
               <div className="rounded-[20px] px-[2.06rem] pt-5 shadow-blur">
-                <UploadAvatar
-                  initialAvatar={user.avatar}
-                  onChange={(file) => setValue('avatar', file, { shouldValidate: true })}
-                  error={errors.avatar?.message}
+                <Controller
+                  name="user_photo"
+                  control={control}
+                  render={({ field }) => (
+                    <UploadAvatar
+                      initialAvatar={field.value}
+                      onChange={(file) => field.onChange(file)}
+                      error={errors.user_photo?.message}
+                    />
+                  )}
                 />
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
@@ -104,7 +123,7 @@ const EditProfileForm = ({ user }: Props) => {
             </div>
             <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex w-[49.44%] gap-[12.75rem]">
               <button
-                onClick={() => reset()}
+                onClick={() => resetForm()}
                 className="flex-1 rounded-[20px] border border-[#2D336B] px-[3.69rem] py-[0.625rem] text-[#2D336B] active:scale-95"
               >
                 Відмінити зміни
