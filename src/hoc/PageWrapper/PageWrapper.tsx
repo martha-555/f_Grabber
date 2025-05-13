@@ -25,10 +25,7 @@ const PageWrapper = () => {
               className="absolute left-4 top-1/2 block h-5 w-5 -translate-y-1/2 transform"
             />
           </div>
-          <Link
-            to={PATHS.PRODUCTS.add}
-            className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]"
-          >
+          <Link to={PATHS.PRODUCTS.add} className="button bg-white text-[#000000]">
             Створити оголошення
           </Link>
           <Link
