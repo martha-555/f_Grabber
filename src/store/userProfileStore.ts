@@ -24,7 +24,7 @@ export const initialState: TUserProfileState = {
   location: undefined,
   avatar: undefined,
   isLoggedIn: false,
-  isLoading: false,
+  isLoading: true,
   isError: false,
 }
 
