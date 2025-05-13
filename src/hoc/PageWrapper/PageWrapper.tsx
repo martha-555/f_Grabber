@@ -2,6 +2,7 @@ import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
 import LogOutButton from '../../components/LogOutButton/LogOutButton'
+import { PATHS } from '../../paths'
 
 const PageWrapper = () => {
   return (
@@ -24,9 +25,12 @@ const PageWrapper = () => {
               className="absolute left-4 top-1/2 block h-5 w-5 -translate-y-1/2 transform"
             />
           </div>
-          <button className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]">
+          <Link
+            to={PATHS.PRODUCTS.add}
+            className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]"
+          >
             Створити оголошення
-          </button>
+          </Link>
           <Link to="/profile">
             <img src={defaultAvatar} alt="avatar" className="block h-10 w-10 rounded-full" />
           </Link>

@@ -1,5 +1,4 @@
-import { PageWrapper } from '../hoc'
-import PrivateRoute from '../hoc/PrivateRoute/PrivateRoute'
+import { PageWrapper, PrivateRoute } from '../hoc'
 import {
   AddProduct,
   Admin,
@@ -11,8 +10,8 @@ import {
   Products,
   Profile,
   Register,
+  EditProfile,
 } from '../pages'
-import EditProfile from '../pages/EditProfile'
 import { PATHS } from '../paths'
 
 export const routes = [
