@@ -10,7 +10,7 @@ const PageWrapper = () => {
       <header className="w-full bg-[#2D336B] px-[6.12rem] py-[2.06rem] text-[#FFFFFF]">
         <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
           <h1 className="whitespace-nowrap text-px20 font-medium">
-            <Link to="/">Grabber</Link>
+            <Link to={PATHS.HOME}>Grabber</Link>
           </h1>
 
           <div className="relative flex-1">
@@ -31,7 +31,10 @@ const PageWrapper = () => {
           >
             Створити оголошення
           </Link>
-          <Link to="/profile">
+          <Link
+            to={PATHS.PROFILE.profile}
+            className="flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#FFFFFF]"
+          >
             <img src={defaultAvatar} alt="avatar" className="block h-10 w-10 rounded-full" />
           </Link>
           <LogOutButton />
