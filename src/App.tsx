@@ -7,20 +7,34 @@ import useFetchUserProfile from './api/fetchUserProfile'
 export default function App() {
   const routers = createBrowserRouter(routes)
 
-  const setUserProfile = userProfileStore((state) => state.setUserProfile)
   const userProfileInStore = userProfileStore.getState()
 
   const { data: userData, error, status } = useFetchUserProfile()
 
   useEffect(() => {
     if (status === 'pending') {
-      setUserProfile({ ...userProfileInStore, isLoggedIn: false, isLoading: true, isError: false })
+      userProfileInStore.setUserProfile({
+        ...userProfileInStore,
+        isLoggedIn: false,
+        isLoading: true,
+        isError: false,
+      })
     } else if (userData) {
-      setUserProfile({ ...userData, isLoggedIn: true, isLoading: false, isError: false })
+      userProfileInStore.setUserProfile({
+        ...userData,
+        isLoggedIn: true,
+        isLoading: false,
+        isError: false,
+      })
     } else if (error) {
-      setUserProfile({ ...initialState, isLoggedIn: false, isLoading: false, isError: true })
+      userProfileInStore.setUserProfile({
+        ...initialState,
+        isLoggedIn: false,
+        isLoading: false,
+        isError: true,
+      })
     }
-  }, [status, userData, error, setUserProfile, userProfileInStore])
+  }, [status, userData, error, userProfileInStore])
 
   return <RouterProvider router={routers} />
 }
