@@ -9,7 +9,7 @@ const useFetchUserProfile = () => {
   return useQuery({
     queryKey: ['profile'],
     queryFn: () => fetchUserData<TUserProfile>({ path: API_ENDPOINTS.PROFILE.get, method: 'GET' }),
-    retry: false,
+    retry: 1,
   })
 }
 

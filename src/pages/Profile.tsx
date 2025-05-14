@@ -4,21 +4,14 @@ import { formatDate } from '../features/formatDate'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import ProfileField from '../components/ProfileField/ProfileField'
-import useFetchUserProfile from '../api/useFetchUserProfile'
-import { useEffect } from 'react'
 import userProfileStore from '../store/userProfileStore'
 
 const Profile = () => {
-  const { data: userData, isLoading } = useFetchUserProfile()
-  const updateUserProfile = userProfileStore((state) => state.updateUserProfile)
-
-  useEffect(() => {
-    if (userData) updateUserProfile(userData)
-  }, [userData])
+  const userData = userProfileStore((state) => state)
 
   return (
     <>
-      {!isLoading && userData && (
+      {!userData.isLoading && userData && (
         <div className="mx-auto mt-[6.43rem] max-w-[80%] p-[3px]">
           <h1 className="mb-[5.93rem] p-[0.625rem] text-px32 font-medium">Мій профіль</h1>
           <div className="flex justify-center gap-[3.06rem]">
