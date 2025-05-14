@@ -24,6 +24,11 @@ module.exports = {
         bgBtnHover: '#F8F8F8',
         error: '#FF0000',
       },
+      fontSize: {
+        title: '32px',
+        base: '16px',
+        link: '12px',
+      },
       minWidth: {
         'btn-small': '100px',
         'btn-medium': '250px',

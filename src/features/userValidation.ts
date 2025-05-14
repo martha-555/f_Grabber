@@ -47,6 +47,24 @@ export const LoginSchema = z.object({
   password: z.string().min(6, 'Пароль має містити щонайменше 6 символів'),
 })
 
+export const resetPasswordSchema = z
+  .object({
+    password: z
+      .string()
+      .nonempty("Пароль є обов'язковим")
+      .min(6, 'Пароль має містити щонайменше 6 символів'),
+    confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
+  })
+  .superRefine((data, ctx) => {
+    if (data.confirmPassword !== data.password) {
+      ctx.addIssue({
+        code: 'custom',
+        path: ['confirmPassword'],
+        message: 'Паролі не збігаються',
+      })
+    }
+  })
+
 export const editProfileSchema = baseUserSchema.extend({
   avatar: z
     .union([z.string().url(), z.instanceof(File)])
