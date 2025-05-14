@@ -37,7 +37,12 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
   const onSubmit: SubmitHandler<FormData> = (data) => {
     login(data, {
       onSuccess: (response) => {
-        setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false })
+        setUserProfile({
+          ...response,
+          isLoggedIn: true,
+          isError: false,
+          isLoading: false,
+        })
         reset()
         navigate(PATHS.PROFILE.profile)
       },
@@ -81,7 +86,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         )}
       </section>
       <section className="auth-register-form-section">
-        <Link to="/forgot-password" className="ml-5 self-start text-xs">
+        <Link to={PATHS.PASSWORD.forgot} className="ml-5 self-start text-xs">
           Забули пароль?
         </Link>
         <Link to={PATHS.AUTH.register} className="ml-5 self-start text-xs">
