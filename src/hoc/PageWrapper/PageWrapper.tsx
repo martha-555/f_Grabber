@@ -4,6 +4,7 @@ import { Link, Outlet } from 'react-router-dom'
 import LogOutButton from '../../components/LogOutButton/LogOutButton'
 import userProfileStore from '../../store/userProfileStore'
 import PrivateRoute from '../PrivateRoute/PrivateRoute'
+import { PATHS } from '../../paths'
 
 const PageWrapper = () => {
   const user = userProfileStore()
@@ -32,7 +33,7 @@ const PageWrapper = () => {
             Створити оголошення
           </button>
           <PrivateRoute>
-            <Link to="/profile">
+            <Link to={PATHS.PROFILE.profile}>
               <img
                 src={(user.user_photo as string) || defaultAvatar}
                 alt="avatar"
