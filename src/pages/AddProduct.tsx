@@ -40,7 +40,7 @@ const AddProduct = () => {
   const watchCategory = watch('category')
 
   return (
-    <div className="mx-auto max-w-7xl pt-24">
+    <div className="mx-auto max-w-7xl px-4 pt-24">
       <h1 className="mb-24 text-px32 font-medium">Створити оголошення</h1>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         {/* Секція для заголовка оголошення */}
@@ -53,7 +53,7 @@ const AddProduct = () => {
             {...register('title')}
             type="text"
             placeholder="Приклад: iPhone 12, 128 Gb"
-            className={`w-[76%] rounded-full bg-[#F7F7F7] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
+            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
               errors.title ? 'outline-1 outline-error' : ''
             }`}
           />
@@ -70,7 +70,7 @@ const AddProduct = () => {
             {...register('description')}
             rows={3}
             placeholder="Приклад: Б/у, ідеальний стан, користувався обережно. Повна комплектація."
-            className={`w-[76%] rounded-3xl bg-[#F7F7F7] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
+            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
               errors.title ? 'outline-1 outline-error' : ''
             }`}
           ></textarea>
@@ -122,7 +122,7 @@ const AddProduct = () => {
             type="number"
             {...register('price')}
             placeholder="Наприклад: 12000"
-            className={`w-[76%] rounded-3xl bg-[#F7F7F7] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
+            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
               errors.title ? 'outline-1 outline-error' : ''
             }`}
           />
