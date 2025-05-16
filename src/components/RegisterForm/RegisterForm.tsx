@@ -38,7 +38,12 @@ const RegisterForm: React.FC = () => {
       {
         onSuccess: (response) => {
           console.log('Registration successful:', response) // Успішна реєстрація
-          setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false }) // Збереження профілю користувача в стані
+          setUserProfile({
+            userInfo: { ...response },
+            isLoggedIn: true,
+            isError: false,
+            isLoading: false,
+          }) // Збереження профілю користувача в стані
           reset() // Скидання форми при успішній реєстрації
           navigate(PATHS.PROFILE.profile)
         },
