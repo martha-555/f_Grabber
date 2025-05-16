@@ -16,7 +16,7 @@ export default function App() {
     if (status === 'pending') {
       setUserProfile({ ...userProfileInStore, isLoggedIn: false, isLoading: true, isError: false })
     } else if (userData) {
-      setUserProfile({ ...userData, isLoggedIn: true, isLoading: false, isError: false })
+      setUserProfile({ userInfo: userData, isLoggedIn: true, isLoading: false, isError: false })
     } else if (error) {
       setUserProfile({ ...initialState, isLoggedIn: false, isLoading: false, isError: true })
     }

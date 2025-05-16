@@ -73,6 +73,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
 
       {error && <div className="error">{error}</div>}
       <button
+        type="button"
         onClick={() => inputRef.current?.click()}
         className="mt-[1.44rem] rounded-[100px] border-0.5 border-[#2D336B] px-[1.81rem] py-[0.625rem] text-[#2D336B] hover:bg-[#2D336B] hover:text-white active:scale-95"
       >

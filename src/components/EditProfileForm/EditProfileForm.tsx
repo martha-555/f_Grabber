@@ -53,18 +53,22 @@ const EditProfileForm = ({ user }: Props) => {
   const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
-    const isDataChanged = JSON.stringify(allValues) !== JSON.stringify(initialValues)
+    const { user_photo: avatar, ...userData } = initialValues
+    const isDataChanged = JSON.stringify(data) !== JSON.stringify(userData)
+    const isPhotoChanged = !(avatar as string).includes((user_photo as File).name)
+    const noChanges = !isDataChanged && !isPhotoChanged
 
     if (isDataChanged) {
       await profileMutation.mutateAsync(data)
-      if (user_photo instanceof File) await photoMutation.mutateAsync(user_photo)
+    }
 
-      if (!profileMutation.isError && !photoMutation.isError) {
-        toast.success('Зміни збережено успішно!', {
-          id: 'profile-editor-toasts',
-          duration: 2000,
-        })
-      }
+    if (user_photo instanceof File && isPhotoChanged) await photoMutation.mutateAsync(user_photo)
+
+    if (noChanges) {
+      toast.error('Змін не виявлено', {
+        id: 'profile-editor-toasts',
+        duration: 2000,
+      })
     }
   }
 
@@ -72,7 +76,7 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="ml-[9.37rem] p-[0.625rem] text-px32 font-medium">Редагувати профіль</div>
+          <div className="text-px32 ml-[9.37rem] p-[0.625rem] font-medium">Редагувати профіль</div>
           <form className="mx-auto mt-[5.37rem] max-w-[74.86%]" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex gap-[3.19rem]">
               <div className="rounded-[20px] px-[2.06rem] pt-5 shadow-blur">
@@ -89,7 +93,7 @@ const EditProfileForm = ({ user }: Props) => {
                 />
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-px24 font-medium">
+                <div className="text-px24 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
                   Персональна інформація
                 </div>
                 <ProfileInput
