@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { API_ENDPOINTS } from '../paths'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
@@ -6,6 +7,7 @@ type Params<Data> = {
   path: string
   method?: HttpMethod
   data?: Data
+  contentType?: string
 }
 
 const backendURL = import.meta.env.VITE_API_URL
@@ -13,9 +15,6 @@ const backendURL = import.meta.env.VITE_API_URL
 const api = axios.create({
   baseURL: backendURL,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 })
 
 const useBackendRequest = () => {
@@ -23,12 +22,17 @@ const useBackendRequest = () => {
     path,
     method = 'GET',
     data,
+    contentType = 'application/json',
   }: Params<Data>): Promise<Response> => {
     const config: AxiosRequestConfig<Data> = {
       url: path,
       method,
       data,
+      headers: {
+        'Content-Type': contentType,
+      },
     }
+    api.request({ url: API_ENDPOINTS.AUTH.refreshToken, method: 'POST' })
 
     try {
       const response: AxiosResponse<Response> = await api.request(config)

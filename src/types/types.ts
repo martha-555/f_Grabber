@@ -8,5 +8,5 @@ export type TUserProfile = {
   last_name: string
   location?: string
   phone_number: string
-  avatar?: File | string
+  user_photo?: File | string
 }

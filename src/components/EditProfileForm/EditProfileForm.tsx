@@ -1,11 +1,13 @@
-import { useForm } from 'react-hook-form'
+import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
 import { TUserProfile } from '../../types/types'
 import UploadAvatar from '../UploadAvatar/UploadAvatar'
 import ProfileInput from '../ProfileInput/ProfileInput'
-
+import submitUserData from '../../api/useSubmitUserData'
+import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
+import toast, { Toaster } from 'react-hot-toast'
 
 type Props = {
   user: TUserProfile
@@ -18,33 +20,55 @@ const EditProfileForm = ({ user }: Props) => {
     email: user?.email,
     phone_number: user?.phone_number,
     location: user?.location || '',
-    avatar: user?.avatar || defaultProfileAvatar,
+    user_photo:
+      typeof user?.user_photo === 'string' || user?.user_photo instanceof File
+        ? user.user_photo
+        : user?.user_photo || defaultProfileAvatar,
+  }
+
+  const profileMutation = submitUserData()
+  const photoMutation = submitUserPhoto()
+
+  const resetForm = () => {
+    reset({
+      ...initialValues,
+      user_photo: user?.user_photo,
+    })
   }
 
   const {
     register,
     handleSubmit,
-    setValue,
-    watch,
+    control,
+    getValues,
     reset,
     formState: { isValid, isDirty, errors },
-  } = useForm({
+  } = useForm<TUserProfile>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
     defaultValues: initialValues,
   })
 
-  const editUserData = watch()
-
-  const onSubmit = () => {
-    const isDataChanged = JSON.stringify(editUserData) !== JSON.stringify(initialValues)
-    console.log({ isDataChanged })
-    console.log({ editUserData })
-    console.log({ initialValues })
+  const onSubmit = async () => {
+    const allValues = getValues()
+    const { user_photo, ...data } = allValues
+    const { user_photo: avatar, ...userData } = initialValues
+    const isDataChanged = JSON.stringify(data) !== JSON.stringify(userData)
+    const isPhotoChanged = !(avatar as string).includes((user_photo as File).name)
+    const noChanges = !isDataChanged && !isPhotoChanged
 
     if (isDataChanged) {
-      console.log('є зміни')
+      await profileMutation.mutateAsync(data)
+    }
+
+    if (user_photo instanceof File && isPhotoChanged) await photoMutation.mutateAsync(user_photo)
+
+    if (noChanges) {
+      toast.error('Змін не виявлено', {
+        id: 'profile-editor-toasts',
+        duration: 2000,
+      })
     }
   }
 
@@ -52,18 +76,24 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="ml-[9.37rem] p-[0.625rem] text-px32 font-medium">Редагувати профіль</div>
+          <div className="text-px32 ml-[9.37rem] p-[0.625rem] font-medium">Редагувати профіль</div>
           <form className="mx-auto mt-[5.37rem] max-w-[74.86%]" onSubmit={handleSubmit(onSubmit)}>
             <div className="flex gap-[3.19rem]">
               <div className="rounded-[20px] px-[2.06rem] pt-5 shadow-blur">
-                <UploadAvatar
-                  initialAvatar={user.avatar}
-                  onChange={(file) => setValue('avatar', file, { shouldValidate: true })}
-                  error={errors.avatar?.message}
+                <Controller
+                  name="user_photo"
+                  control={control}
+                  render={({ field }) => (
+                    <UploadAvatar
+                      initialAvatar={field.value}
+                      onChange={(file) => field.onChange(file)}
+                      error={errors.user_photo?.message}
+                    />
+                  )}
                 />
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-px24 font-medium">
+                <div className="text-px24 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
                   Персональна інформація
                 </div>
                 <ProfileInput
@@ -104,7 +134,7 @@ const EditProfileForm = ({ user }: Props) => {
             </div>
             <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex w-[49.44%] gap-[12.75rem]">
               <button
-                onClick={() => reset()}
+                onClick={() => resetForm()}
                 className="flex-1 rounded-[20px] border border-[#2D336B] px-[3.69rem] py-[0.625rem] text-[#2D336B] active:scale-95"
               >
                 Відмінити зміни
@@ -120,6 +150,14 @@ const EditProfileForm = ({ user }: Props) => {
           </form>
         </div>
       )}
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          id: 'profile-editor-toasts',
+          className:
+            '!bg-[#FFFFFF] !text-[1.5rem]  text-[#000000] rounded-[100px] flex flex-row-reverse !max-w-none !w-fit !whitespace-nowrap px-[1.25rem] py-[0.625rem]',
+        }}
+      />
     </>
   )
 }

@@ -2,7 +2,7 @@ import { routes } from './routes/routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useEffect } from 'react'
 import userProfileStore, { initialState } from './store/userProfileStore'
-import useFetchUserProfile from './api/fetchUserProfile'
+import useFetchUserProfile from './api/useFetchUserProfile'
 
 export default function App() {
   const routers = createBrowserRouter(routes)
@@ -16,7 +16,7 @@ export default function App() {
     if (status === 'pending') {
       setUserProfile({ ...userProfileInStore, isLoggedIn: false, isLoading: true, isError: false })
     } else if (userData) {
-      setUserProfile({ ...userData, isLoggedIn: true, isLoading: false, isError: false })
+      setUserProfile({ userInfo: userData, isLoggedIn: true, isLoading: false, isError: false })
     } else if (error) {
       setUserProfile({ ...initialState, isLoggedIn: false, isLoading: false, isError: true })
     }

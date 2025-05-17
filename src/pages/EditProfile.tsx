@@ -1,17 +1,10 @@
-import { useQuery } from '@tanstack/react-query'
 import { EditProfileForm } from '../components'
-import useBackendRequest from '../hooks/useBackendRequest'
-import { TUserProfile } from '../types/types'
+import userProfileStore from '../store/userProfileStore'
 
 const EditProfile = () => {
-  const fetchUserProfile = useBackendRequest()
+  const user = userProfileStore()
 
-  const { data } = useQuery({
-    queryKey: ['profile'],
-    queryFn: () => fetchUserProfile<TUserProfile>({ path: '/api/profile/', method: 'GET' }),
-  })
-
-  return <div>{data && <EditProfileForm user={data} />}</div>
+  return <div>{user && <EditProfileForm user={user.userInfo} />}</div>
 }
 
 export default EditProfile
