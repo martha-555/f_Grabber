@@ -38,7 +38,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     login(data, {
       onSuccess: (response) => {
         setUserProfile({
-          ...response,
+          userInfo: { ...response },
           isLoggedIn: true,
           isError: false,
           isLoading: false,
