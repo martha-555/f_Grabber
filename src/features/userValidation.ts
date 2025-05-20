@@ -66,7 +66,7 @@ export const resetPasswordSchema = z
   })
 
 export const editProfileSchema = baseUserSchema.extend({
-  avatar: z
+  user_photo: z
     .union([z.string().url(), z.instanceof(File)])
     .optional()
     .refine(

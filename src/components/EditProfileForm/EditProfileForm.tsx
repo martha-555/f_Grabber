@@ -84,7 +84,7 @@ const EditProfileForm = ({ user }: Props) => {
                   control={control}
                   render={({ field }) => (
                     <UploadAvatar
-                      initialAvatar={field.value}
+                      initialAvatar={user.user_photo}
                       onChange={(file) => field.onChange(file)}
                       error={errors.user_photo?.message}
                     />
