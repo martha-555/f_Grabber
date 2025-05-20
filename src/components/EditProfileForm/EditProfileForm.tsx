@@ -46,7 +46,6 @@ const EditProfileForm = ({ user }: Props) => {
   } = useForm<TUserProfile>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
-    reValidateMode: 'onChange',
     defaultValues: initialValues,
   })
 
@@ -129,6 +128,7 @@ const EditProfileForm = ({ user }: Props) => {
                   labelText="Місцезнаходження"
                   name="location"
                   register={register}
+                  error={errors.location}
                 />
               </div>
             </div>

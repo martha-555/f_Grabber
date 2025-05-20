@@ -6,7 +6,7 @@ export type TUserProfile = {
   first_name: string
   id?: number
   last_name: string
-  location?: string
+  location: string
   phone_number: string
   user_photo?: File | string
 }

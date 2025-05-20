@@ -12,6 +12,7 @@ const ProfileInput = ({ data, labelText, name, register, error }: Props) => {
   return (
     <div className="flex justify-between rounded-[100px] bg-[#F7F7F7] p-[0.625rem]">
       <label className="p-[0.625rem] pl-[1.25rem] text-[#4D4D4D]" htmlFor={data}>
+        <span className="ml-1 text-red-500">*</span>
         {labelText}
       </label>
       <input

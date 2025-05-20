@@ -78,5 +78,8 @@ export const editProfileSchema = baseUserSchema.extend({
         !file || typeof file === 'string' || ['image/jpeg', 'image/png'].includes(file.type),
       'Тільки JPEG/PNG',
     ),
-  location: z.string().optional(),
+  location: z
+    .string()
+    .nonempty('Введіть локацію')
+    .regex(/^[^\d!@#$%^&*()_+=<>?/\\]+$/, 'Локація не має містити цифр чи спецсимволів'),
 })

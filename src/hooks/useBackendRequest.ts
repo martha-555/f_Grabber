@@ -38,6 +38,8 @@ const useBackendRequest = () => {
 
       return response.data
     } catch (error) {
+      console.log({ error })
+
       if (axios.isAxiosError(error)) {
         throw new Error(`HTTP error! status: ${error.response?.status}, message: ${error.message}`)
       }
