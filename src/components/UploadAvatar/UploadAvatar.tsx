@@ -59,7 +59,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
           (initialAvatar && (
             <img
               src={initialAvatar as string}
-              alt="Default avatar"
+              alt="Initial avatar"
               className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
             />
           )) || (
@@ -71,7 +71,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
         <img className="absolute right-[-2rem] top-[8rem]" src={editIcon} alt="" />
       </div>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className="text-red-500">{error}</div>}
       <button
         type="button"
         onClick={() => inputRef.current?.click()}
