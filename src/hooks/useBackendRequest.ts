@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-// import { API_ENDPOINTS } from '../paths'
+import { API_ENDPOINTS } from '../paths'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
@@ -32,16 +32,17 @@ const useBackendRequest = () => {
         'Content-Type': contentType,
       },
     }
-    // api.request({ url: API_ENDPOINTS.AUTH.refreshToken, method: 'POST' })
 
     try {
       const response: AxiosResponse<Response> = await api.request(config)
 
       return response.data
     } catch (error) {
-      console.log({ error })
-
       if (axios.isAxiosError(error)) {
+        if (error.response?.data.code == 'authentication_failed') {
+          api.request({ url: API_ENDPOINTS.AUTH.refreshToken, method: 'POST' })
+        }
+
         throw new Error(`HTTP error! status: ${error.response?.status}, message: ${error.message}`)
       }
 

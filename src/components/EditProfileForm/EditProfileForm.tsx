@@ -81,7 +81,7 @@ const EditProfileForm = ({ user }: Props) => {
 
   useEffect(() => {
     if (errors.user_photo) {
-      const timer = setTimeout(() => resetField('user_photo'), 4000)
+      const timer = setTimeout(() => resetField('user_photo'), 3000)
 
       return () => clearTimeout(timer)
     }
