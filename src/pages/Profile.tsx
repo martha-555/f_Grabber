@@ -58,11 +58,18 @@ const Profile = () => {
               </div>
             </div>
           </div>
-          <Link to={PATHS.PROFILE.edit}>
-            <button className="text-px16 my-[6.75rem] rounded-[20px] bg-[#2D336B] px-[2.72rem] py-[0.625rem] text-[#F8F8F8]">
-              Редагувати профіль
-            </button>
-          </Link>
+          <div className="m-auto flex max-w-[80%] justify-between">
+            <Link to={PATHS.PROFILE.edit}>
+              <button className="text-px16 my-[6.75rem] rounded-[20px] bg-[#2D336B] px-[2.72rem] py-[0.625rem] text-[#F8F8F8]">
+                Редагувати профіль
+              </button>
+            </Link>
+            <Link to={PATHS.PROFILE.changePassword}>
+              <button className="text-px16 my-[6.75rem] rounded-[20px] bg-[#2D336B] px-[2.72rem] py-[0.625rem] text-[#F8F8F8]">
+                Редагувати пароль
+              </button>
+            </Link>
+          </div>
           <section className="pt-[2.78%]">
             <div className="text-px32 mb-[4.25rem] p-[0.625rem] font-medium">Мої оголошення</div>
           </section>

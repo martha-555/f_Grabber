@@ -24,12 +24,19 @@ export const baseUserSchema = z.object({
     .email('Некоректна електронна пошта'),
 })
 
+const passwordValidation = z
+  .string()
+  .nonempty("Пароль є обов'язковим")
+  .min(6, 'Пароль має містити щонайменше 6 символів')
+
+export const passwordSchema = z.object({
+  old_password: passwordValidation,
+  new_password: passwordValidation,
+})
+
 export const registerSchema = baseUserSchema
   .extend({
-    password: z
-      .string()
-      .nonempty("Пароль є обов'язковим")
-      .min(6, 'Пароль має містити щонайменше 6 символів'),
+    password: passwordValidation,
     confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
   })
   .superRefine((data, ctx) => {

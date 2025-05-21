@@ -118,6 +118,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="first_name"
                   register={register}
                   error={errors.first_name}
+                  inputType="text"
                 />
                 <ProfileInput
                   data={user.last_name}
@@ -125,6 +126,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="last_name"
                   register={register}
                   error={errors.last_name}
+                  inputType="text"
                 />
                 <ProfileInput
                   data={user.email}
@@ -132,6 +134,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="email"
                   register={register}
                   error={errors.email}
+                  inputType="email"
                 />
                 <ProfileInput
                   data={user.phone_number}
@@ -139,6 +142,8 @@ const EditProfileForm = ({ user }: Props) => {
                   name="phone_number"
                   register={register}
                   error={errors.phone_number}
+                  inputType="tel"
+                  placeholder="+380"
                 />
                 <ProfileInput
                   data={user.location || ''}
@@ -146,6 +151,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="location"
                   register={register}
                   error={errors.location}
+                  inputType="text"
                 />
               </div>
             </div>

@@ -13,6 +13,7 @@ export const PATHS = {
   PROFILE: {
     profile: '/profile',
     edit: '/profile/edit',
+    changePassword: '/profile/change-password',
   },
   PASSWORD: {
     forgot: '/forgot-password',
@@ -39,6 +40,7 @@ export const API_ENDPOINTS = {
   PASSWORD: {
     forgot: 'user/forgot-password/',
     reset: 'user/reset-password/',
+    change: 'user/change-password/',
   },
   PROFILE: {
     get: 'user/profile/',

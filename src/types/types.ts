@@ -10,3 +10,9 @@ export type TUserProfile = {
   phone_number: string
   user_photo?: File | string
 }
+
+export interface ApiError extends Error {
+  status?: number
+  isAxiosError?: boolean
+  message: string
+}
