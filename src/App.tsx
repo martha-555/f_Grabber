@@ -20,7 +20,12 @@ export default function App() {
         isError: false,
       })
     } else if (userData) {
-      setUserProfile({ userInfo: userData, isLoggedIn: true, isLoading: false, isError: false })
+      userProfileInStore.setUserProfile({
+        userInfo: userData,
+        isLoggedIn: true,
+        isLoading: false,
+        isError: false,
+      })
     } else if (error) {
       userProfileInStore.setUserProfile({
         ...initialState,

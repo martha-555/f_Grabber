@@ -62,12 +62,12 @@ const AddProduct = () => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 pt-24">
-      <h1 className="mb-24 text-px32 font-medium">Створити оголошення</h1>
+      <h1 className="text-px32 mb-24 font-medium">Створити оголошення</h1>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         {/* Секція для заголовка оголошення */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Заголовок оголошення</h2>
-          <p className="font-regular mb-5 text-px16">
+          <h2 className="text-px24 mb-8 font-medium">Заголовок оголошення</h2>
+          <p className="font-regular text-px16 mb-5">
             Введіть коротку назву товару (до 100 символів)
           </p>
           <input
@@ -81,8 +81,8 @@ const AddProduct = () => {
 
         {/* Секція для опису товару */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Опис</h2>
-          <p className="font-regular mb-5 text-px16">
+          <h2 className="text-px24 mb-8 font-medium">Опис</h2>
+          <p className="font-regular text-px16 mb-5">
             Детально опишіть товар, стан, особливості тощо
           </p>
           <textarea
@@ -96,13 +96,13 @@ const AddProduct = () => {
 
         {/* Секція для вибору категорії */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Категорія</h2>
+          <h2 className="text-px24 mb-8 font-medium">Категорія</h2>
 
           <div className="flex flex-wrap gap-5">
             {Object.entries(categories).map(([key, value]) => {
               return (
                 <label
-                  className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-[#2D336B] px-4 py-2 text-px16 duration-300 ${
+                  className={`text-regular transition-[background-color, color] text-px16 cursor-pointer rounded-full border border-[#2D336B] px-4 py-2 duration-300 ${
                     watchCategory === key
                       ? 'bg-[#2D336B] text-white'
                       : 'text-[#2D336B] hover:bg-[#2D336B] hover:text-white'
@@ -125,8 +125,8 @@ const AddProduct = () => {
 
         {/* Секція для завантаження зображень */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Додайте зображення</h2>
-          <p className="font-regular mb-5 text-px16">
+          <h2 className="text-px24 mb-8 font-medium">Додайте зображення</h2>
+          <p className="font-regular text-px16 mb-5">
             Перетягніть файли або натисніть для завантаження
           </p>
 
@@ -135,8 +135,8 @@ const AddProduct = () => {
 
         {/* Секція для введення ціни */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Ціна</h2>
-          <p className="font-regular mb-5 text-px16">Введіть ціну без ком/крапок</p>
+          <h2 className="text-px24 mb-8 font-medium">Ціна</h2>
+          <p className="font-regular text-px16 mb-5">Введіть ціну без ком/крапок</p>
           <input
             type="number"
             {...register('price')}
