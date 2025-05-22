@@ -34,9 +34,8 @@ export const routes = [
       {
         path: PATHS.PRODUCTS.add,
         element: (
-          <PrivateRoute>
-            <AddProduct />
-          </PrivateRoute>
+          // <PrivateRoute></PrivateRoute>
+          <AddProduct />
         ),
       },
       {

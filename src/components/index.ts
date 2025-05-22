@@ -13,3 +13,5 @@ export { default as ProfileField } from './ProfileField/ProfileField'
 export { default as Modal } from './Modal/Modal'
 
 export { default as Button } from './Button/Button'
+
+export { default as AdsImageUploader } from './AdsImageUploader/AdsImageUploader'
