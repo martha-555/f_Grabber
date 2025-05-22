@@ -24,12 +24,19 @@ export const baseUserSchema = z.object({
     .email('Некоректна електронна пошта'),
 })
 
+const passwordValidation = z
+  .string()
+  .nonempty("Пароль є обов'язковим")
+  .min(6, 'Пароль має містити щонайменше 6 символів')
+
+export const passwordSchema = z.object({
+  old_password: passwordValidation,
+  new_password: passwordValidation,
+})
+
 export const registerSchema = baseUserSchema
   .extend({
-    password: z
-      .string()
-      .nonempty("Пароль є обов'язковим")
-      .min(6, 'Пароль має містити щонайменше 6 символів'),
+    password: passwordValidation,
     confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
   })
   .superRefine((data, ctx) => {
@@ -66,7 +73,7 @@ export const resetPasswordSchema = z
   })
 
 export const editProfileSchema = baseUserSchema.extend({
-  avatar: z
+  user_photo: z
     .union([z.string().url(), z.instanceof(File)])
     .optional()
     .refine(
@@ -78,5 +85,8 @@ export const editProfileSchema = baseUserSchema.extend({
         !file || typeof file === 'string' || ['image/jpeg', 'image/png'].includes(file.type),
       'Тільки JPEG/PNG',
     ),
-  location: z.string().optional(),
+  location: z
+    .string()
+    .nonempty('Введіть локацію')
+    .regex(/^[^\d!@#$%^&*()_+=<>?/\\]+$/, 'Локація не має містити цифр чи спецсимволів'),
 })

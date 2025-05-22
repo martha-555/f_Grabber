@@ -16,6 +16,7 @@ import {
 } from '../pages'
 import EditProfile from '../pages/EditProfile'
 import { PATHS } from '../paths'
+import ChangeUserPassword from '../pages/ChangeUserPassword'
 
 export const routes = [
   {
@@ -72,6 +73,14 @@ export const routes = [
         element: (
           <PrivateRoute>
             <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: PATHS.PROFILE.changePassword,
+        element: (
+          <PrivateRoute>
+            <ChangeUserPassword />
           </PrivateRoute>
         ),
       },

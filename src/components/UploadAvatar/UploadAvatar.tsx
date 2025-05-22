@@ -3,12 +3,13 @@ import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import editIcon from '../../assets/images/editIcon.svg'
 
 type UploadAvatarProps = {
-  initialAvatar?: string | File
+  uploadedPhoto?: string | File
   onChange: (file: File) => void
   error?: string
+  userPhoto: string
 }
 
-const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => {
+const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvatarProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(null)
 
@@ -24,17 +25,17 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
   }
 
   useEffect(() => {
-    if (initialAvatar instanceof File) {
-      const url = URL.createObjectURL(initialAvatar)
+    if (uploadedPhoto instanceof File) {
+      const url = URL.createObjectURL(uploadedPhoto)
       setPreview(url)
 
       return () => URL.revokeObjectURL(url)
-    } else if (typeof initialAvatar === 'string') {
-      setPreview(initialAvatar)
+    } else if (typeof uploadedPhoto === 'string') {
+      setPreview(uploadedPhoto)
     } else {
       setPreview(null)
     }
-  }, [initialAvatar])
+  }, [uploadedPhoto])
 
   return (
     <div className="avatar-upload">
@@ -56,10 +57,10 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
             className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
           />
         ) : (
-          (initialAvatar && (
+          (userPhoto && (
             <img
-              src={initialAvatar as string}
-              alt="Default avatar"
+              src={userPhoto}
+              alt="Initial avatar"
               className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
             />
           )) || (
@@ -71,7 +72,7 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
         <img className="absolute right-[-2rem] top-[8rem]" src={editIcon} alt="" />
       </div>
 
-      {error && <div className="error">{error}</div>}
+      {error && <div className="text-red-500">{error}</div>}
       <button
         type="button"
         onClick={() => inputRef.current?.click()}

@@ -8,6 +8,7 @@ import submitUserData from '../../api/useSubmitUserData'
 import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import toast, { Toaster } from 'react-hot-toast'
+import { useEffect } from 'react'
 
 type Props = {
   user: TUserProfile
@@ -42,11 +43,11 @@ const EditProfileForm = ({ user }: Props) => {
     control,
     getValues,
     reset,
-    formState: { isValid, isDirty, errors },
+    resetField,
+    formState: { dirtyFields, errors },
   } = useForm<TUserProfile>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
-    reValidateMode: 'onChange',
     defaultValues: initialValues,
   })
 
@@ -72,6 +73,20 @@ const EditProfileForm = ({ user }: Props) => {
     }
   }
 
+  const isDirtyData = Object.keys(dirtyFields).some(
+    (field) => field !== 'user_photo' || !errors.user_photo,
+  )
+  const canSubmit =
+    isDirtyData && Object.keys(errors).filter((key) => key !== 'user_photo').length === 0
+
+  useEffect(() => {
+    if (errors.user_photo) {
+      const timer = setTimeout(() => resetField('user_photo'), 3000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [errors])
+
   return (
     <>
       {user && (
@@ -85,9 +100,10 @@ const EditProfileForm = ({ user }: Props) => {
                   control={control}
                   render={({ field }) => (
                     <UploadAvatar
-                      initialAvatar={field.value}
+                      uploadedPhoto={field.value}
                       onChange={(file) => field.onChange(file)}
                       error={errors.user_photo?.message}
+                      userPhoto={user.user_photo as string}
                     />
                   )}
                 />
@@ -102,6 +118,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="first_name"
                   register={register}
                   error={errors.first_name}
+                  inputType="text"
                 />
                 <ProfileInput
                   data={user.last_name}
@@ -109,6 +126,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="last_name"
                   register={register}
                   error={errors.last_name}
+                  inputType="text"
                 />
                 <ProfileInput
                   data={user.email}
@@ -116,6 +134,7 @@ const EditProfileForm = ({ user }: Props) => {
                   name="email"
                   register={register}
                   error={errors.email}
+                  inputType="email"
                 />
                 <ProfileInput
                   data={user.phone_number}
@@ -123,12 +142,16 @@ const EditProfileForm = ({ user }: Props) => {
                   name="phone_number"
                   register={register}
                   error={errors.phone_number}
+                  inputType="tel"
+                  placeholder="+380"
                 />
                 <ProfileInput
                   data={user.location || ''}
                   labelText="Місцезнаходження"
                   name="location"
                   register={register}
+                  error={errors.location}
+                  inputType="text"
                 />
               </div>
             </div>
@@ -142,7 +165,7 @@ const EditProfileForm = ({ user }: Props) => {
               <button
                 className="flex-1 rounded-[20px] border border-[#2D336B] bg-[#2D336B] px-[3.69rem] py-[0.625rem] text-[#F8F8F8] active:scale-95 disabled:transform-none disabled:border-gray-300 disabled:bg-gray-300 disabled:active:scale-100"
                 type="submit"
-                disabled={!isDirty || !isValid}
+                disabled={!canSubmit}
               >
                 Зберегти зміни
               </button>
