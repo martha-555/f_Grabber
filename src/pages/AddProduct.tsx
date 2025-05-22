@@ -43,7 +43,7 @@ const AddProduct = () => {
       title: data.title,
       description: data.description,
       price: data.price,
-      status: 'pending' as const,
+      status: 'draft' as const,
       // category: data.category,
     }
 
