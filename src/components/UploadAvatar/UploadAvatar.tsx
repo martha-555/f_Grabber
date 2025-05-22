@@ -3,29 +3,18 @@ import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import editIcon from '../../assets/images/editIcon.svg'
 
 type UploadAvatarProps = {
-  initialAvatar?: string | File | null
+  uploadedPhoto?: string | File
   onChange: (file: File) => void
   error?: string
+  userPhoto: string
 }
 
-const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => {
+const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvatarProps) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [preview, setPreview] = useState<string | null>(null)
 
-  useEffect(() => {
-    if (initialAvatar instanceof File) {
-      const url = URL.createObjectURL(initialAvatar)
-      setPreview(url)
-
-      return () => URL.revokeObjectURL(url)
-    } else {
-      setPreview(initialAvatar || null)
-    }
-  }, [initialAvatar])
-
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    console.log({ file })
 
     if (file) {
       preview && URL.revokeObjectURL(preview)
@@ -34,6 +23,19 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
       onChange(file)
     }
   }
+
+  useEffect(() => {
+    if (uploadedPhoto instanceof File) {
+      const url = URL.createObjectURL(uploadedPhoto)
+      setPreview(url)
+
+      return () => URL.revokeObjectURL(url)
+    } else if (typeof uploadedPhoto === 'string') {
+      setPreview(uploadedPhoto)
+    } else {
+      setPreview(null)
+    }
+  }, [uploadedPhoto])
 
   return (
     <div className="avatar-upload">
@@ -55,12 +57,24 @@ const UploadAvatar = ({ initialAvatar, onChange, error }: UploadAvatarProps) => 
             className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
           />
         ) : (
-          <img src={defaultProfileAvatar} alt="Default avatar" className="" />
+          (userPhoto && (
+            <img
+              src={userPhoto}
+              alt="Initial avatar"
+              className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
+            />
+          )) || (
+            <div className="flex h-[173px] w-[173px] items-center justify-center rounded-[20px] bg-[#F7F7F7]">
+              <img className="h-[92.11px] w-[78.8px]" src={defaultProfileAvatar} alt="" />
+            </div>
+          )
         )}
-        <img className="absolute right-[1rem] top-[7rem]" src={editIcon} alt="" />
+        <img className="absolute right-[-2rem] top-[8rem]" src={editIcon} alt="" />
       </div>
-      {error && <div className="error">{error}</div>}
+
+      {error && <div className="text-red-500">{error}</div>}
       <button
+        type="button"
         onClick={() => inputRef.current?.click()}
         className="mt-[1.44rem] rounded-[100px] border-0.5 border-[#2D336B] px-[1.81rem] py-[0.625rem] text-[#2D336B] hover:bg-[#2D336B] hover:text-white active:scale-95"
       >

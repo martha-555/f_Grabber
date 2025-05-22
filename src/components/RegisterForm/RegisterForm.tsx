@@ -38,7 +38,12 @@ const RegisterForm: React.FC = () => {
       {
         onSuccess: (response) => {
           console.log('Registration successful:', response) // Успішна реєстрація
-          setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false }) // Збереження профілю користувача в стані
+          setUserProfile({
+            userInfo: { ...response },
+            isLoggedIn: true,
+            isError: false,
+            isLoading: false,
+          }) // Збереження профілю користувача в стані
           reset() // Скидання форми при успішній реєстрації
           navigate(PATHS.PROFILE.profile)
         },
@@ -131,7 +136,7 @@ const RegisterForm: React.FC = () => {
         {errors.confirmPassword && <p className="error-text">{errors.confirmPassword.message}</p>}
       </section>
       <section className="auth-register-form-section">
-        <ul className="flex list-outside list-['-'] flex-col gap-5 self-start text-px12">
+        <ul className="text-px12 flex list-outside list-['-'] flex-col gap-5 self-start">
           <p>Пароль має містити:</p>
           <li className="ml-2 pl-2">мінімум 6 символів</li>
           <li className="ml-2 pl-2">хоча б одну велику літеру</li>

@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import { API_ENDPOINTS } from '../paths'
+import { ApiError } from '../types/types'
 
 type HttpMethod = 'GET' | 'POST' | 'PUT' | 'DELETE' | 'PATCH'
 
@@ -6,6 +8,7 @@ type Params<Data> = {
   path: string
   method?: HttpMethod
   data?: Data
+  contentType?: string
 }
 
 const backendURL = import.meta.env.VITE_API_URL
@@ -13,9 +16,6 @@ const backendURL = import.meta.env.VITE_API_URL
 const api = axios.create({
   baseURL: backendURL,
   withCredentials: true,
-  headers: {
-    'Content-Type': 'application/json',
-  },
 })
 
 const useBackendRequest = () => {
@@ -23,11 +23,15 @@ const useBackendRequest = () => {
     path,
     method = 'GET',
     data,
+    contentType = 'application/json',
   }: Params<Data>): Promise<Response> => {
     const config: AxiosRequestConfig<Data> = {
       url: path,
       method,
       data,
+      headers: {
+        'Content-Type': contentType,
+      },
     }
 
     try {
@@ -36,7 +40,14 @@ const useBackendRequest = () => {
       return response.data
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        throw new Error(`HTTP error! status: ${error.response?.status}, message: ${error.message}`)
+        if (error.response?.data.code == 'authentication_failed') {
+          api.request({ url: API_ENDPOINTS.AUTH.refreshToken, method: 'POST' })
+        }
+
+        const apiError: ApiError = new Error(error.message)
+        apiError.status = error.response?.status
+        apiError.isAxiosError = true
+        throw apiError
       }
 
       throw error

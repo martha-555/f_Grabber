@@ -16,3 +16,12 @@ export type TLoginCredentialsRequest = {
 export type TLoginResponse = {
   message: string
 }
+
+export type TForgotPasswordRequest = {
+  email: string
+}
+
+export type TChangePassword = {
+  old_password: string
+  new_password: string
+}

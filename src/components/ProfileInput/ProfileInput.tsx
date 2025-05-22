@@ -6,15 +6,28 @@ type Props = {
   register: UseFormRegister<any>
   name: string
   error?: FieldError
+  inputType: string
+  placeholder?: string
 }
 
-const ProfileInput = ({ data, labelText, name, register, error }: Props) => {
+const ProfileInput = ({
+  data,
+  labelText,
+  name,
+  register,
+  error,
+  inputType,
+  placeholder,
+}: Props) => {
   return (
     <div className="flex justify-between rounded-[100px] bg-[#F7F7F7] p-[0.625rem]">
       <label className="p-[0.625rem] pl-[1.25rem] text-[#4D4D4D]" htmlFor={data}>
+        <span className="ml-1 text-red-500">*</span>
         {labelText}
       </label>
       <input
+        placeholder={placeholder}
+        type={inputType}
         id={data}
         onClick={(e: React.MouseEvent<HTMLInputElement>) => {
           const target = e.target as HTMLInputElement

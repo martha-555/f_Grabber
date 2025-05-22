@@ -13,6 +13,11 @@ export const PATHS = {
   PROFILE: {
     profile: '/profile',
     edit: '/profile/edit',
+    changePassword: '/profile/change-password',
+  },
+  PASSWORD: {
+    forgot: '/forgot-password',
+    reset: '/reset-password/:uid/:token',
   },
   ORDERS: '/orders',
   ADMIN: '/admin',
@@ -30,8 +35,12 @@ export const API_ENDPOINTS = {
     login: 'user/login/',
     logout: 'user/logout/',
     register: 'user/register/',
-    forgotPassword: 'user/forgot-password/',
     refreshToken: 'user/refresh/',
+  },
+  PASSWORD: {
+    forgot: 'user/forgot-password/',
+    reset: 'user/reset-password/',
+    change: 'user/change-password/',
   },
   PROFILE: {
     get: 'user/profile/',
