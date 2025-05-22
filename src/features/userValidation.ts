@@ -88,5 +88,8 @@ export const addAdsSchema = z.object({
         ),
     )
     .max(5, 'Максимум 5 зображень'),
-  price: z.preprocess((val) => Number(val), z.number().nonnegative().min(1)),
+  price: z
+    .string()
+    .nonempty('Ціна є обовʼязковою')
+    .refine((val) => !isNaN(Number(val)) && Number(val) >= 1, 'Ціна має бути числом більше за 0'),
 })
