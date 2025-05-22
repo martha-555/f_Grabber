@@ -3,6 +3,7 @@ import { addAdsSchema } from '../features/userValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AdsImageUploader } from '../components'
 import { z } from 'zod'
+import adsCreate from '../api/adsCreate'
 
 export type TFormData = z.infer<typeof addAdsSchema>
 
@@ -35,9 +36,18 @@ const AddProduct = () => {
     resolver: zodResolver(addAdsSchema),
   })
 
-  const handleSubmitForm = (data: TFormData) => {
-    const priceAsNumber = Number(data.price)
-    console.log({ ...data, price: priceAsNumber })
+  const { mutateAsync: createAds } = adsCreate()
+
+  const handleSubmitForm = async (data: TFormData) => {
+    const newAds = {
+      title: data.title,
+      description: data.description,
+      price: data.price,
+      status: 'pending' as const,
+      // category: data.category,
+    }
+
+    createAds(newAds)
   }
 
   const watchCategory = watch('category')
