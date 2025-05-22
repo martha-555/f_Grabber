@@ -1,13 +1,12 @@
-import defaultAvatar from '../../assets/images/defaultAvatar.svg'
 import searchIcon from '../../assets/images/searchIcon.svg'
 import { Link, Outlet } from 'react-router-dom'
-import LogOutButton from '../../components/LogOutButton/LogOutButton'
+import { PATHS } from '../../paths.ts'
+import { Menu } from '../../components'
 import userProfileStore from '../../store/userProfileStore'
-import PrivateRoute from '../PrivateRoute/PrivateRoute'
-import { PATHS } from '../../paths'
+import { Button } from '../../components'
 
 const PageWrapper = () => {
-  const user = userProfileStore((state) => state.userInfo)
+  const user = userProfileStore()
 
   return (
     <>
@@ -32,16 +31,16 @@ const PageWrapper = () => {
           <button className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]">
             Створити оголошення
           </button>
-          <PrivateRoute>
-            <Link to={PATHS.PROFILE.profile}>
-              <img
-                src={(user.user_photo as string) || defaultAvatar}
-                alt="avatar"
-                className="block h-10 w-10 rounded-full"
-              />
+          {user.isLoggedIn ? (
+            <Menu />
+          ) : (
+            <Link to={PATHS.AUTH.login}>
+              <Button
+                text="Вхід"
+                className="rounded-[20px] border border-white px-6 py-[0.5rem] text-[16px] text-white transition hover:bg-white hover:text-[#2D336B]"
+              ></Button>
             </Link>
-          </PrivateRoute>
-          <LogOutButton />
+          )}
         </div>
       </header>
       <section className="content grow-1 w-full items-center">
