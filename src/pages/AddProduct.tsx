@@ -3,9 +3,8 @@ import { addAdsSchema } from '../features/userValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AdsImageUploader } from '../components'
 import { z } from 'zod'
-import adsCreate from '../api/adsCreate'
+import useAdsCreate from '../api/adsCreate'
 import toast, { Toaster } from 'react-hot-toast'
-import { ApiError } from '../types/types'
 
 export type TFormData = z.infer<typeof addAdsSchema>
 
@@ -39,7 +38,7 @@ const AddProduct = () => {
     resolver: zodResolver(addAdsSchema),
   })
 
-  const { mutateAsync: createAds } = adsCreate()
+  const { mutateAsync: createAds } = useAdsCreate()
 
   const handleSubmitForm = async (data: TFormData) => {
     const newAds = {
@@ -75,7 +74,7 @@ const AddProduct = () => {
             {...register('title')}
             type="text"
             placeholder="Приклад: iPhone 12, 128 Gb"
-            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-error outline-1' : ''}`}
+            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-1 outline-error' : ''}`}
           />
           {errors.title && <p className="error-text">{errors.title.message}</p>}
         </section>
@@ -90,7 +89,7 @@ const AddProduct = () => {
             {...register('description')}
             rows={3}
             placeholder="Приклад: Б/у, ідеальний стан, користувався обережно. Повна комплектація."
-            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.description ? 'outline-error outline-1' : ''}`}
+            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.description ? 'outline-1 outline-error' : ''}`}
           ></textarea>
           {errors.description && <p className="error-text">{errors.description.message}</p>}
         </section>
@@ -143,7 +142,7 @@ const AddProduct = () => {
             {...register('price')}
             placeholder="Наприклад: 12000"
             className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
-              errors.price ? 'outline-error outline-1' : ''
+              errors.price ? 'outline-1 outline-error' : ''
             }`}
           />
           {errors.price && <p className="error-text">{errors.price.message}</p>}

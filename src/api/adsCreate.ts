@@ -3,7 +3,7 @@ import useBackendRequest from '../hooks/useBackendRequest'
 import { API_ENDPOINTS } from '../paths'
 import { TAdsCreate } from '../types/adsTypes'
 
-const adsCreate = () => {
+const useAdsCreate = () => {
   const fetchLogin = useBackendRequest()
 
   return useMutation({
@@ -12,4 +12,4 @@ const adsCreate = () => {
   })
 }
 
-export default adsCreate
+export default useAdsCreate
