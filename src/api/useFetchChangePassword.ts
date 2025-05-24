@@ -1,16 +1,16 @@
 import { useMutation } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
-import { TChangePassword } from '../types/authTypes'
 import { API_ENDPOINTS } from '../paths'
 import toast from 'react-hot-toast'
 import { ApiError } from '../types/types'
+import { TChangePasswordRequest } from '../types/authTypes'
 
 const useFetchChangePassword = () => {
   const backendRequest = useBackendRequest()
 
   return useMutation({
-    mutationFn: (data: TChangePassword) =>
-      backendRequest<void, TChangePassword>({
+    mutationFn: (data: TChangePasswordRequest) =>
+      backendRequest<void, TChangePasswordRequest>({
         path: API_ENDPOINTS.PASSWORD.change,
         method: 'POST',
         data,

@@ -2,32 +2,33 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { passwordSchema } from '../features/userValidation'
 import { TChangePassword } from '../types/authTypes'
-import hideIcon from '../assets/images/hidePassword.svg'
 import showIcon from '../assets/images/showPassword.svg'
 import { useEffect, useState } from 'react'
 import useFetchChangePassword from '../api/useFetchChangePassword'
 import { Toaster } from 'react-hot-toast'
+import { PasswordInput, ProfileButton } from '../components'
 
 const ChangeUserPassword = () => {
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
   } = useForm<TChangePassword>({
     resolver: zodResolver(passwordSchema),
     mode: 'onChange',
   })
 
-  const { mutate: fetchSubmitData } = useFetchChangePassword()
+  const { mutate: fetchSubmitData, isSuccess } = useFetchChangePassword()
   const [visiblePassword, setVisiblePassword] = useState({
     old_password: false,
     new_password: false,
+    confirm_password: false,
   })
 
   const onSubmit = () => {
-    const data = getValues()
-    fetchSubmitData(data)
+    const { old_password, new_password } = getValues()
+    fetchSubmitData({ old_password, new_password })
   }
 
   useEffect(() => {
@@ -38,6 +39,7 @@ const ChangeUserPassword = () => {
         setVisiblePassword({
           old_password: false,
           new_password: false,
+          confirm_password: false,
         })
       }, 2000)
 
@@ -47,33 +49,33 @@ const ChangeUserPassword = () => {
 
   return (
     <>
-      <div className="mt-9">
-        <form className="m-auto flex w-[50%] flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <div className="ml-[7.5rem] mt-[4.937rem] w-[51.94%]">
+        <h1 className="text-px32 mb-[3.937rem] p-2.5 font-medium">Редагувати пароль</h1>
+        <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex flex-col">
-            <input
-              {...register('old_password', { required: true })}
-              placeholder="Поточний пароль"
-              className="border border-black"
-              type={visiblePassword.old_password ? 'text' : 'password'}
+            <PasswordInput
+              register={register}
+              name="old_password"
+              placeholder="Старий пароль"
+              error={errors?.old_password}
+              visiblePassword={visiblePassword.old_password}
             />
-            {errors && <span className="text-red-500">{errors.old_password?.message}</span>}
             <img
               onClick={() =>
                 setVisiblePassword((prev) => ({ ...prev, old_password: !prev.old_password }))
               }
-              className="absolute right-1 top-2"
-              src={visiblePassword.old_password ? showIcon : hideIcon}
-              alt=""
+              className="absolute right-8 top-5"
+              src={showIcon}
             />
           </div>
           <div className="relative flex flex-col">
-            <input
-              {...register('new_password', { required: true })}
+            <PasswordInput
+              register={register}
+              name="new_password"
               placeholder="Новий пароль"
-              className="border border-black"
-              type={visiblePassword.new_password ? 'text' : 'password'}
+              error={errors.new_password}
+              visiblePassword={visiblePassword.new_password}
             />
-            {errors && <span className="text-red-500">{errors.new_password?.message}</span>}
             <img
               onClick={() =>
                 setVisiblePassword((prev) => ({
@@ -81,11 +83,38 @@ const ChangeUserPassword = () => {
                   new_password: !prev.new_password,
                 }))
               }
-              className="absolute right-1 top-2"
-              src={visiblePassword.new_password ? showIcon : hideIcon}
+              className="absolute right-8 top-5"
+              src={showIcon}
             />
           </div>
-          <button>Змінити</button>
+          <div className="relative flex flex-col">
+            <PasswordInput
+              register={register}
+              name="confirm_password"
+              placeholder="Повторити новий пароль"
+              error={errors.confirm_password}
+              visiblePassword={visiblePassword.confirm_password}
+            />
+            <img
+              onClick={() =>
+                setVisiblePassword((prev) => ({
+                  ...prev,
+                  confirm_password: !prev.confirm_password,
+                }))
+              }
+              className="absolute right-8 top-5"
+              src={showIcon}
+            />
+          </div>
+          <div className="flex justify-end">
+            <div className="w-[33.957%]">
+              <ProfileButton
+                text="Зберегти зміни"
+                type="submit"
+                disabled={!isDirty || !isValid || isSuccess}
+              />
+            </div>
+          </div>
         </form>
         <Toaster
           position="bottom-center"

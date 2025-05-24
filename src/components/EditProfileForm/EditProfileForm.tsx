@@ -8,7 +8,8 @@ import submitUserData from '../../api/useSubmitUserData'
 import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import toast, { Toaster } from 'react-hot-toast'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
+import ProfileButton from '../ProfileButton/ProfileButton'
 
 type Props = {
   user: TUserProfile
@@ -26,9 +27,9 @@ const EditProfileForm = ({ user }: Props) => {
         ? user.user_photo
         : user?.user_photo || defaultProfileAvatar,
   }
-
-  const profileMutation = submitUserData()
-  const photoMutation = submitUserPhoto()
+  const showToast = useRef(false)
+  const { mutate: profileMutation, isSuccess: successData } = submitUserData()
+  const { mutate: photoMutation, isSuccess: successPhoto } = submitUserPhoto()
 
   const resetForm = () => {
     reset({
@@ -51,7 +52,8 @@ const EditProfileForm = ({ user }: Props) => {
     defaultValues: initialValues,
   })
 
-  const onSubmit = async () => {
+  const onSubmit = () => {
+    showToast.current = false
     const allValues = getValues()
     const { user_photo, ...data } = allValues
     const { user_photo: avatar, ...userData } = initialValues
@@ -60,11 +62,10 @@ const EditProfileForm = ({ user }: Props) => {
     const noChanges = !isDataChanged && !isPhotoChanged
 
     if (isDataChanged) {
-      await profileMutation.mutateAsync(data)
+      profileMutation(data)
     }
 
-    if (user_photo instanceof File && isPhotoChanged) await photoMutation.mutateAsync(user_photo)
-
+    if (user_photo instanceof File && isPhotoChanged) photoMutation(user_photo)
     if (noChanges) {
       toast.error('Змін не виявлено', {
         id: 'profile-editor-toasts',
@@ -73,11 +74,25 @@ const EditProfileForm = ({ user }: Props) => {
     }
   }
 
+  useEffect(() => {
+    if ((successData || successPhoto) && !showToast.current) {
+      toast.dismiss('profile-editor-toasts')
+      toast.success('Зміни збережено успішно!', {
+        id: 'profile-editor-toasts',
+        duration: 2000,
+      })
+      showToast.current = true
+    }
+  }, [successData, successPhoto])
+
   const isDirtyData = Object.keys(dirtyFields).some(
     (field) => field !== 'user_photo' || !errors.user_photo,
   )
   const canSubmit =
-    isDirtyData && Object.keys(errors).filter((key) => key !== 'user_photo').length === 0
+    isDirtyData &&
+    Object.keys(errors).filter((key) => key !== 'user_photo').length === 0 &&
+    !successData &&
+    !successPhoto
 
   useEffect(() => {
     if (errors.user_photo) {
@@ -155,20 +170,9 @@ const EditProfileForm = ({ user }: Props) => {
                 />
               </div>
             </div>
-            <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex w-[49.44%] gap-[12.75rem]">
-              <button
-                onClick={() => resetForm()}
-                className="flex-1 rounded-[20px] border border-[#2D336B] px-[3.69rem] py-[0.625rem] text-[#2D336B] active:scale-95"
-              >
-                Відмінити зміни
-              </button>
-              <button
-                className="flex-1 rounded-[20px] border border-[#2D336B] bg-[#2D336B] px-[3.69rem] py-[0.625rem] text-[#F8F8F8] active:scale-95 disabled:transform-none disabled:border-gray-300 disabled:bg-gray-300 disabled:active:scale-100"
-                type="submit"
-                disabled={!canSubmit}
-              >
-                Зберегти зміни
-              </button>
+            <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-around gap-[12.75rem]">
+              <ProfileButton onClick={() => resetForm()} text=" Відмінити зміни" />
+              <ProfileButton type="submit" text="Зберегти зміни" disabled={!canSubmit} />
             </div>
           </form>
         </div>

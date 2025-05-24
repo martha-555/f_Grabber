@@ -21,3 +21,7 @@ export { default as LogOutButton } from './LogOutButton/LogOutButton'
 export { default as ResetPasswordForm } from './ResetPasswordForm/ResetPasswordForm'
 
 export { default as Menu } from './Menu/Menu'
+
+export { default as PasswordInput } from './PasswordInput/PasswordInput'
+
+export { default as ProfileButton } from './ProfileButton/ProfileButton'

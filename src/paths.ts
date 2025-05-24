@@ -48,6 +48,7 @@ export const API_ENDPOINTS = {
     uploadProfilePhoto: 'user/upload-profile-image/',
     setNewPassword: 'user/reset-password/',
     deleteUser: 'user/delete/',
+    deleteUserPhoto: 'user/delete-image-profile/',
   },
   ORDERS: {
     list: 'orders/',

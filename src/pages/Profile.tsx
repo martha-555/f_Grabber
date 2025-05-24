@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import ProfileField from '../components/ProfileField/ProfileField'
 import userProfileStore from '../store/userProfileStore'
-import deleteIcon from '../assets/images/deleteIcon.svg'
+import { ProfileButton } from '../components'
 
 const Profile = () => {
   const userData = userProfileStore((state) => state)
@@ -19,11 +19,10 @@ const Profile = () => {
           <div className="flex justify-center gap-[3.06rem]">
             <div className="flex max-w-[46%] gap-5 rounded-[25px] py-[4.37rem] pl-[1.94rem] pr-[1.94rem] shadow-blur">
               <img
-                className="relative h-[173px] w-[173px] rounded-[20px] object-cover object-[50%_20%]"
+                className="h-[173px] w-[173px] rounded-[20px] object-cover object-[50%_20%]"
                 src={userInfo.user_photo ? (userInfo.user_photo as string) : defaultProfileAvatar}
                 alt=""
               />
-              <img className="absolute" src={deleteIcon} />
               <div className="column flex flex-col">
                 <p className="text-px24 p-[0.625rem] pr-0">{`${userInfo.first_name} ${userInfo.last_name}`}</p>
                 <p className="text-px16 p-[0.625rem] pr-0">Місцезнаходження: {userInfo.location}</p>
@@ -56,14 +55,10 @@ const Profile = () => {
           </div>
           <div className="m-auto flex max-w-[80%] justify-between">
             <Link to={PATHS.PROFILE.edit}>
-              <button className="text-px16 my-[6.75rem] rounded-[20px] bg-[#2D336B] px-[2.72rem] py-[0.625rem] text-[#F8F8F8]">
-                Редагувати профіль
-              </button>
+              <ProfileButton text="Редагувати профіль" />
             </Link>
             <Link to={PATHS.PROFILE.changePassword}>
-              <button className="text-px16 my-[6.75rem] rounded-[20px] bg-[#2D336B] px-[2.72rem] py-[0.625rem] text-[#F8F8F8]">
-                Редагувати пароль
-              </button>
+              <ProfileButton text="Редагувати пароль" />
             </Link>
           </div>
           <section className="pt-[2.78%]">

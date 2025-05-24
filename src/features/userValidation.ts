@@ -26,13 +26,34 @@ export const baseUserSchema = z.object({
 
 const passwordValidation = z
   .string()
-  .nonempty("Пароль є обов'язковим")
-  .min(6, 'Пароль має містити щонайменше 6 символів')
+  .nonempty("Це поле є обов'язковим")
+  .regex(
+    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{6,}$/,
+    `Пароль має містити:
+– мінімум 6 символів
+– хоча б одну велику літеру
+– хоча б одну цифру`,
+  )
 
-export const passwordSchema = z.object({
-  old_password: passwordValidation,
-  new_password: passwordValidation,
-})
+//   .regex(
+//     /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9 \n]).{8,}$/,
+//     `Пароль має містити:
+// – мінімум 8 символів
+// – хоча б одну велику літеру
+// – хоча б одну цифру
+// – спеціальний символ (!@#...)`,
+//   )
+
+export const passwordSchema = z
+  .object({
+    old_password: passwordValidation,
+    new_password: passwordValidation,
+    confirm_password: z.string().nonempty('Підтвердіть пароль'),
+  })
+  .refine((data) => data.confirm_password === data.new_password, {
+    path: ['confirm_password'],
+    message: 'Паролі мають збігатися',
+  })
 
 export const registerSchema = baseUserSchema
   .extend({

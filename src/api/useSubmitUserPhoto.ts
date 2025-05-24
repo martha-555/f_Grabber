@@ -23,10 +23,6 @@ const useSubmitUserPhoto = () => {
       queryClient.invalidateQueries({
         queryKey: ['profile'],
       })
-      toast.success('Зміни збережено успішно!', {
-        id: 'profile-editor-toasts',
-        duration: 2000,
-      })
     },
   })
 }
