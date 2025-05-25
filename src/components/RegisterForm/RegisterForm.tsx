@@ -120,7 +120,11 @@ const RegisterForm: React.FC = () => {
             placeholder="Пароль"
           />
         </label>
-        {errors.password && <p className="error-text">{errors.password.message}</p>}
+        {errors?.password?.message?.split(`\n`).map((item, index) => (
+          <p className="error-text" key={index}>
+            {item}
+          </p>
+        ))}
       </section>
       {/* Поле для підтвердження паролю */}
       <section className="auth-register-form-section">
@@ -136,7 +140,7 @@ const RegisterForm: React.FC = () => {
         {errors.confirmPassword && <p className="error-text">{errors.confirmPassword.message}</p>}
       </section>
       <section className="auth-register-form-section">
-        <ul className="text-px12 flex list-outside list-['-'] flex-col gap-5 self-start">
+        <ul className="flex list-outside list-['-'] flex-col gap-5 self-start text-px12">
           <p>Пароль має містити:</p>
           <li className="ml-2 pl-2">мінімум 6 символів</li>
           <li className="ml-2 pl-2">хоча б одну велику літеру</li>

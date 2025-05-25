@@ -50,7 +50,7 @@ const ChangeUserPassword = () => {
   return (
     <>
       <div className="ml-[7.5rem] mt-[4.937rem] w-[51.94%]">
-        <h1 className="text-px32 mb-[3.937rem] p-2.5 font-medium">Редагувати пароль</h1>
+        <h1 className="mb-[3.937rem] p-2.5 text-px32 font-medium">Редагувати пароль</h1>
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex flex-col">
             <PasswordInput

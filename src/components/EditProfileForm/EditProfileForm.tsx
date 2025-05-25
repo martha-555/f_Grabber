@@ -2,13 +2,13 @@ import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
 import { TUserProfile } from '../../types/types'
-import UploadAvatar from '../UploadAvatar/UploadAvatar'
-import ProfileInput from '../ProfileInput/ProfileInput'
+import UploadAvatar from './UploadAvatar'
+import ProfileInput from './ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
 import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import toast, { Toaster } from 'react-hot-toast'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ProfileButton from '../ProfileButton/ProfileButton'
 
 type Props = {
@@ -16,6 +16,7 @@ type Props = {
 }
 
 const EditProfileForm = ({ user }: Props) => {
+  const [isSubmit, setIsSubmit] = useState(false)
   const initialValues = {
     first_name: user?.first_name,
     last_name: user?.last_name,
@@ -66,12 +67,15 @@ const EditProfileForm = ({ user }: Props) => {
     }
 
     if (user_photo instanceof File && isPhotoChanged) photoMutation(user_photo)
+
     if (noChanges) {
       toast.error('Змін не виявлено', {
         id: 'profile-editor-toasts',
         duration: 2000,
       })
     }
+
+    setIsSubmit(true)
   }
 
   useEffect(() => {
@@ -91,8 +95,7 @@ const EditProfileForm = ({ user }: Props) => {
   const canSubmit =
     isDirtyData &&
     Object.keys(errors).filter((key) => key !== 'user_photo').length === 0 &&
-    !successData &&
-    !successPhoto
+    !isSubmit
 
   useEffect(() => {
     if (errors.user_photo) {
@@ -106,8 +109,12 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="text-px32 ml-[9.37rem] p-[0.625rem] font-medium">Редагувати профіль</div>
-          <form className="mx-auto mt-[5.37rem] max-w-[74.86%]" onSubmit={handleSubmit(onSubmit)}>
+          <div className="ml-[9.37rem] p-[0.625rem] text-px32 font-medium">Редагувати профіль</div>
+          <form
+            className="mx-auto mt-[5.37rem] max-w-[74.86%]"
+            onChange={() => setIsSubmit(false)}
+            onSubmit={handleSubmit(onSubmit)}
+          >
             <div className="flex gap-[3.19rem]">
               <div className="rounded-[20px] px-[2.06rem] pt-5 shadow-blur">
                 <Controller
@@ -124,7 +131,7 @@ const EditProfileForm = ({ user }: Props) => {
                 />
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="text-px24 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
+                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-px24 font-medium">
                   Персональна інформація
                 </div>
                 <ProfileInput

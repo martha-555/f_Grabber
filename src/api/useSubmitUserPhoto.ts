@@ -1,7 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
 import { API_ENDPOINTS } from '../paths'
-import toast from 'react-hot-toast'
 
 const useSubmitUserPhoto = () => {
   const fetchUserData = useBackendRequest()

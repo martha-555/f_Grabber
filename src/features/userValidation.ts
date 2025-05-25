@@ -35,18 +35,9 @@ const passwordValidation = z
 – хоча б одну цифру`,
   )
 
-//   .regex(
-//     /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9 \n]).{8,}$/,
-//     `Пароль має містити:
-// – мінімум 8 символів
-// – хоча б одну велику літеру
-// – хоча б одну цифру
-// – спеціальний символ (!@#...)`,
-//   )
-
 export const passwordSchema = z
   .object({
-    old_password: passwordValidation,
+    old_password: z.string().nonempty('Введіть старий пароль'),
     new_password: passwordValidation,
     confirm_password: z.string().nonempty('Підтвердіть пароль'),
   })

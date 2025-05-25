@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import editIcon from '../../assets/images/editIcon.svg'
-import PhotoButton from '../PhotoButton/PhotoButton'
+import PhotoButton from './PhotoButton'
 
 type UploadAvatarProps = {
   uploadedPhoto?: string | File
@@ -72,16 +72,10 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
         )}
         <img className="absolute right-[-2rem] top-[7.6rem]" src={editIcon} alt="" />
         {error && <div className="text-red-500">{error}</div>}
-        <div className="flex flex-col">
-          <PhotoButton
-            text="Завантажити фото"
-            onClick={(e) => {
-              e.stopPropagation()
-              inputRef.current?.click()
-            }}
-          />
-          <PhotoButton onClick={(e) => e.stopPropagation()} text="Видалити фото" />
-        </div>
+      </div>
+      <div className="flex flex-col">
+        <PhotoButton text="Завантажити фото" onClick={() => inputRef.current?.click()} />
+        <PhotoButton text="Видалити фото" />
       </div>
     </div>
   )
