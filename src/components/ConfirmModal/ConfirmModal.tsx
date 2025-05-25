@@ -5,6 +5,7 @@ type Props = {
   onClick: () => void
   confirmMessage: string
 }
+
 const ConfirmModal = ({ onClose, onClick, confirmMessage }: Props) => {
   return (
     <Modal onClose={onClose}>
@@ -24,4 +25,5 @@ const ConfirmModal = ({ onClose, onClick, confirmMessage }: Props) => {
     </Modal>
   )
 }
+
 export default ConfirmModal

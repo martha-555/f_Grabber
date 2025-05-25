@@ -3,6 +3,7 @@ type Props = {
   id: string
   className?: string
 }
+
 const CustomToaster = ({ id, className }: Props) => {
   return (
     <Toaster

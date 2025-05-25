@@ -6,6 +6,7 @@ import toast from 'react-hot-toast'
 const useFetchDeleteUserPhoto = () => {
   const request = useBackendRequest()
   const queryClient = useQueryClient()
+
   return useMutation({
     mutationFn: () => request({ path: API_ENDPOINTS.PROFILE.deleteUserPhoto, method: 'DELETE' }),
     onSuccess: async () => {
