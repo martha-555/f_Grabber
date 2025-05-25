@@ -1,9 +1,10 @@
 import { FC } from 'react'
 
 interface BtnProps {
-  text: string
+  text?: string
   onClick?: () => void
   type?: 'button' | 'submit' | 'reset'
+  children?: React.ReactNode
   className?: string
   disabled?: boolean
 }
@@ -12,12 +13,18 @@ const Button: FC<BtnProps> = ({
   text,
   onClick,
   type = 'button',
+  children,
   className = '',
   disabled = false,
 }) => {
   return (
-    <button onClick={onClick} type={type} className={`button ${className}`} disabled={disabled}>
-      {text}
+    <button
+      onClick={onClick}
+      type={type}
+      className={`rounded-3xl px-4 py-2 transition duration-300 hover:cursor-pointer ${className}`}
+      disabled={disabled}
+    >
+      {children || text}
     </button>
   )
 }
