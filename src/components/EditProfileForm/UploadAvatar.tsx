@@ -38,6 +38,10 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
     }
   }, [uploadedPhoto])
 
+  useEffect(() => {
+    if (!userPhoto) setPreview('')
+  }, [userPhoto])
+
   return (
     <div className="avatar-upload">
       <input
@@ -75,7 +79,6 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
       </div>
       <div className="flex flex-col">
         <PhotoButton text="Завантажити фото" onClick={() => inputRef.current?.click()} />
-        <PhotoButton text="Видалити фото" />
       </div>
     </div>
   )

@@ -27,3 +27,9 @@ export { default as PasswordInput } from './PasswordInput/PasswordInput'
 export { default as ProfileButton } from './ProfileButton/ProfileButton'
 
 export { default as PhotoButton } from './EditProfileForm/PhotoButton'
+
+export { default as DeleteUserPhoto } from './EditProfileForm/DeleteUserPhoto'
+
+export { default as ConfirmModal } from './ConfirmModal/ConfirmModal'
+
+export { default as CustomToaster } from './CustomToaster/CustomToaster'

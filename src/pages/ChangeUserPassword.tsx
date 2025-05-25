@@ -5,8 +5,7 @@ import { TChangePassword } from '../types/authTypes'
 import showIcon from '../assets/images/showPassword.svg'
 import { useEffect, useState } from 'react'
 import useFetchChangePassword from '../api/useFetchChangePassword'
-import { Toaster } from 'react-hot-toast'
-import { PasswordInput, ProfileButton } from '../components'
+import { CustomToaster, PasswordInput, ProfileButton } from '../components'
 
 const ChangeUserPassword = () => {
   const {
@@ -50,7 +49,7 @@ const ChangeUserPassword = () => {
   return (
     <>
       <div className="ml-[7.5rem] mt-[4.937rem] w-[51.94%]">
-        <h1 className="mb-[3.937rem] p-2.5 text-px32 font-medium">Редагувати пароль</h1>
+        <h1 className="text-px32 mb-[3.937rem] p-2.5 font-medium">Редагувати пароль</h1>
         <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
           <div className="relative flex flex-col">
             <PasswordInput
@@ -116,14 +115,7 @@ const ChangeUserPassword = () => {
             </div>
           </div>
         </form>
-        <Toaster
-          position="bottom-center"
-          toastOptions={{
-            id: 'change_password',
-            className:
-              '!bg-[#FFFFFF] !text-[1.5rem]  text-[#000000] rounded-[100px] flex flex-row-reverse !max-w-none !w-fit !whitespace-nowrap px-[1.25rem] py-[0.625rem]',
-          }}
-        />
+        <CustomToaster id="change_password" />
       </div>
     </>
   )

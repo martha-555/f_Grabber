@@ -7,9 +7,11 @@ import ProfileInput from './ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
 import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
-import toast, { Toaster } from 'react-hot-toast'
-import { useEffect, useRef, useState } from 'react'
+import toast from 'react-hot-toast'
+import { useEffect, useState } from 'react'
 import ProfileButton from '../ProfileButton/ProfileButton'
+import DeleteUserPhoto from './DeleteUserPhoto'
+import CustomToaster from '../CustomToaster/CustomToaster'
 
 type Props = {
   user: TUserProfile
@@ -28,9 +30,9 @@ const EditProfileForm = ({ user }: Props) => {
         ? user.user_photo
         : user?.user_photo || defaultProfileAvatar,
   }
-  const showToast = useRef(false)
-  const { mutate: profileMutation, isSuccess: successData } = submitUserData()
-  const { mutate: photoMutation, isSuccess: successPhoto } = submitUserPhoto()
+
+  const { mutate: profileMutation } = submitUserData()
+  const { mutate: photoMutation } = submitUserPhoto()
 
   const resetForm = () => {
     reset({
@@ -53,20 +55,13 @@ const EditProfileForm = ({ user }: Props) => {
     defaultValues: initialValues,
   })
 
-  const onSubmit = () => {
-    showToast.current = false
+  const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
     const { user_photo: avatar, ...userData } = initialValues
     const isDataChanged = JSON.stringify(data) !== JSON.stringify(userData)
     const isPhotoChanged = !(avatar as string).includes((user_photo as File).name)
     const noChanges = !isDataChanged && !isPhotoChanged
-
-    if (isDataChanged) {
-      profileMutation(data)
-    }
-
-    if (user_photo instanceof File && isPhotoChanged) photoMutation(user_photo)
 
     if (noChanges) {
       toast.error('Змін не виявлено', {
@@ -75,19 +70,18 @@ const EditProfileForm = ({ user }: Props) => {
       })
     }
 
+    try {
+      const mutations = []
+      if (isDataChanged) mutations.push(profileMutation(data))
+      if (user_photo instanceof File && isPhotoChanged) mutations.push(photoMutation(user_photo))
+
+      await Promise.all(mutations)
+      toast.success('Зміни збережено успішно!', { id: 'profile-editor-toasts' })
+    } catch (error) {
+      toast.error('Помилка при збереженні', { id: 'profile-editor-toasts' })
+    }
     setIsSubmit(true)
   }
-
-  useEffect(() => {
-    if ((successData || successPhoto) && !showToast.current) {
-      toast.dismiss('profile-editor-toasts')
-      toast.success('Зміни збережено успішно!', {
-        id: 'profile-editor-toasts',
-        duration: 2000,
-      })
-      showToast.current = true
-    }
-  }, [successData, successPhoto])
 
   const isDirtyData = Object.keys(dirtyFields).some(
     (field) => field !== 'user_photo' || !errors.user_photo,
@@ -109,7 +103,7 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="ml-[9.37rem] p-[0.625rem] text-px32 font-medium">Редагувати профіль</div>
+          <div className="text-px32 ml-[9.37rem] p-[0.625rem] font-medium">Редагувати профіль</div>
           <form
             className="mx-auto mt-[5.37rem] max-w-[74.86%]"
             onChange={() => setIsSubmit(false)}
@@ -129,9 +123,10 @@ const EditProfileForm = ({ user }: Props) => {
                     />
                   )}
                 />
+                {user.user_photo && <DeleteUserPhoto />}
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-px24 font-medium">
+                <div className="text-px24 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
                   Персональна інформація
                 </div>
                 <ProfileInput
@@ -184,14 +179,7 @@ const EditProfileForm = ({ user }: Props) => {
           </form>
         </div>
       )}
-      <Toaster
-        position="bottom-center"
-        toastOptions={{
-          id: 'profile-editor-toasts',
-          className:
-            '!bg-[#FFFFFF] !text-[1.5rem]  text-[#000000] rounded-[100px] flex flex-row-reverse !max-w-none !w-fit !whitespace-nowrap px-[1.25rem] py-[0.625rem]',
-        }}
-      />
+      <CustomToaster id="profile-editor-toasts" />
     </>
   )
 }
