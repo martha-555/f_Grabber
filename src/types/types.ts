@@ -16,3 +16,9 @@ export interface ApiError extends Error {
   isAxiosError?: boolean
   message: string
 }
+
+export interface ApiError extends Error {
+  status?: number
+  isAxiosError?: boolean
+  message: string
+}

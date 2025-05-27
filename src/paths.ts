@@ -25,7 +25,7 @@ export const PATHS = {
 
 export const API_ENDPOINTS = {
   ADS: {
-    create: 'ads/',
+    create: 'ads/create/',
     moderation: 'ads/moderation/',
     addImage: 'ads/{ad_id}/add-image/',
     approve: 'ads/{ad_id}/approve/',

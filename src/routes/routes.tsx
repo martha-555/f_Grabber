@@ -1,5 +1,4 @@
-import { PageWrapper } from '../hoc'
-import PrivateRoute from '../hoc/PrivateRoute/PrivateRoute'
+import { PageWrapper, PrivateRoute } from '../hoc'
 import {
   AddProduct,
   Admin,
@@ -13,8 +12,8 @@ import {
   Profile,
   Register,
   ResetPassword,
+  EditProfile,
 } from '../pages'
-import EditProfile from '../pages/EditProfile'
 import { PATHS } from '../paths'
 import ChangeUserPassword from '../pages/ChangeUserPassword'
 

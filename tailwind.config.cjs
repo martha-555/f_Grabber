@@ -14,6 +14,9 @@ module.exports = {
         px20: 'clamp(16px, 1.5vw, 20px)',
         px24: 'clamp(18px, 2vw, 24px)',
         px32: 'clamp(20px, 3vw, 32px)',
+        title: '32px',
+        base: '16px',
+        link: '12px',
       },
       colors: {
         primary: '#B9E2FF',
@@ -23,11 +26,6 @@ module.exports = {
         bgBtn: '#2D336B',
         bgBtnHover: '#F8F8F8',
         error: '#FF0000',
-      },
-      fontSize: {
-        title: '32px',
-        base: '16px',
-        link: '12px',
       },
       minWidth: {
         'btn-small': '100px',

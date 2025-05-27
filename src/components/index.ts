@@ -21,3 +21,5 @@ export { default as LogOutButton } from './LogOutButton/LogOutButton'
 export { default as ResetPasswordForm } from './ResetPasswordForm/ResetPasswordForm'
 
 export { default as Menu } from './Menu/Menu'
+
+export { default as AdsImageUploader } from './AdsImageUploader/AdsImageUploader'
