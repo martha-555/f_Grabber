@@ -13,7 +13,6 @@ const useFetchDeleteUserPhoto = () => {
       await queryClient.invalidateQueries({ queryKey: ['profile'] })
       toast.success('Фото успішно видалено', {
         id: 'delete-user-photo',
-        duration: 2000,
       })
     },
   })

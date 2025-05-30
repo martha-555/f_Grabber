@@ -18,19 +18,16 @@ const useFetchChangePassword = () => {
     onSuccess: () => {
       toast.success('Пароль успішно змінено', {
         id: 'change_password',
-        duration: 2000,
       })
     },
     onError: (error: ApiError) => {
       if (error?.status == 400) {
         toast.error('Схоже, ви ввели неправильний поточний пароль', {
           id: 'change_password',
-          duration: 2000,
         })
       } else {
         toast.error('Невідома помилка', {
           id: 'change_password',
-          duration: 2000,
         })
       }
     },
