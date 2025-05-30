@@ -5,7 +5,7 @@ import { TChangePassword } from '../types/authTypes'
 import showIcon from '../assets/images/showPassword.svg'
 import { useEffect, useState } from 'react'
 import useFetchChangePassword from '../api/useFetchChangePassword'
-import { CustomToaster, PasswordInput, ProfileButton } from '../components'
+import { Button, CustomToaster, PasswordInput } from '../components'
 
 const ChangeUserPassword = () => {
   const {
@@ -107,11 +107,13 @@ const ChangeUserPassword = () => {
           </div>
           <div className="flex justify-end">
             <div className="w-[33.957%]">
-              <ProfileButton
-                text="Зберегти зміни"
+              <Button
                 type="submit"
                 disabled={!isDirty || !isValid || isSuccess}
-              />
+                className="custom-button w-profile-button"
+              >
+                Зберегти зміни
+              </Button>
             </div>
           </div>
         </form>

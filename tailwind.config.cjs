@@ -31,6 +31,7 @@ module.exports = {
         'btn-small': '100px',
         'btn-medium': '250px',
         'btn-large': '350px',
+        'profile-button': '15.875rem',
       },
       spacing: {
         90: '22.5rem',

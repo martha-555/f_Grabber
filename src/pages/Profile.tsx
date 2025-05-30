@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import ProfileField from '../components/ProfileField/ProfileField'
 import userProfileStore from '../store/userProfileStore'
-import { ProfileButton } from '../components'
+import { Button } from '../components'
 
 const Profile = () => {
   const userData = userProfileStore((state) => state)
@@ -55,10 +55,10 @@ const Profile = () => {
           </div>
           <div className="m-auto flex max-w-[94%] justify-between">
             <Link to={PATHS.PROFILE.edit}>
-              <ProfileButton text="Редагувати профіль" />
+              <Button className="custom-button w-profile-button">Редагувати профіль</Button>
             </Link>
             <Link to={PATHS.PROFILE.changePassword}>
-              <ProfileButton text="Редагувати пароль" />
+              <Button className="custom-button w-profile-button">Редагувати пароль</Button>
             </Link>
           </div>
           <section className="pt-[2.78%]">

@@ -9,9 +9,9 @@ import submitUserPhoto from '../../api/useSubmitUserPhoto'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
-import ProfileButton from '../ProfileButton/ProfileButton'
 import DeleteUserPhoto from './DeleteUserPhoto'
 import CustomToaster from '../CustomToaster/CustomToaster'
+import Button from '../Button/Button'
 
 type Props = {
   user: TUserProfile
@@ -174,8 +174,16 @@ const EditProfileForm = ({ user }: Props) => {
               </div>
             </div>
             <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-around gap-[12.75rem]">
-              <ProfileButton onClick={() => resetForm()} text=" Відмінити зміни" />
-              <ProfileButton type="submit" text="Зберегти зміни" disabled={!canSubmit} />
+              <Button className="custom-button w-profile-button" onClick={() => resetForm()}>
+                Відмінити зміни
+              </Button>
+              <Button
+                className="custom-button w-profile-button"
+                disabled={!canSubmit}
+                type="submit"
+              >
+                Зберегти зміни
+              </Button>
             </div>
           </form>
         </div>

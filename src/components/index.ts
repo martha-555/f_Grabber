@@ -24,8 +24,6 @@ export { default as Menu } from './Menu/Menu'
 
 export { default as PasswordInput } from './PasswordInput/PasswordInput'
 
-export { default as ProfileButton } from './ProfileButton/ProfileButton'
-
 export { default as PhotoButton } from './EditProfileForm/PhotoButton'
 
 export { default as DeleteUserPhoto } from './EditProfileForm/DeleteUserPhoto'
