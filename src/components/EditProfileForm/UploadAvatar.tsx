@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import editIcon from '../../assets/images/editIcon.svg'
+import PhotoButton from './PhotoButton'
 
 type UploadAvatarProps = {
   uploadedPhoto?: string | File
@@ -37,6 +38,10 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
     }
   }, [uploadedPhoto])
 
+  useEffect(() => {
+    if (!userPhoto) setPreview('')
+  }, [userPhoto])
+
   return (
     <div className="avatar-upload">
       <input
@@ -47,7 +52,7 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
         className="hidden"
       />
       <div
-        className="relative mx-auto h-[173px] w-[173px] active:scale-95"
+        className="relative mx-auto h-[175px] w-[175px] active:scale-95"
         onClick={() => inputRef.current?.click()}
       >
         {preview && !error ? (
@@ -69,17 +74,12 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
             </div>
           )
         )}
-        <img className="absolute right-[-2rem] top-[8rem]" src={editIcon} alt="" />
+        <img className="absolute right-[-2rem] top-[7.6rem]" src={editIcon} alt="" />
+        {error && <div className="text-red-500">{error}</div>}
       </div>
-
-      {error && <div className="text-red-500">{error}</div>}
-      <button
-        type="button"
-        onClick={() => inputRef.current?.click()}
-        className="mt-[1.44rem] rounded-[100px] border-0.5 border-[#2D336B] px-[1.81rem] py-[0.625rem] text-[#2D336B] hover:bg-[#2D336B] hover:text-white active:scale-95"
-      >
-        Завантажити фото
-      </button>
+      <div className="flex flex-col">
+        <PhotoButton text="Завантажити фото" onClick={() => inputRef.current?.click()} />
+      </div>
     </div>
   )
 }

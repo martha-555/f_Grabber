@@ -120,7 +120,11 @@ const RegisterForm: React.FC = () => {
             placeholder="Пароль"
           />
         </label>
-        {errors.password && <p className="error-text">{errors.password.message}</p>}
+        {errors?.password?.message?.split(`\n`).map((item, index) => (
+          <p className="error-text" key={index}>
+            {item}
+          </p>
+        ))}
       </section>
       {/* Поле для підтвердження паролю */}
       <section className="auth-register-form-section">

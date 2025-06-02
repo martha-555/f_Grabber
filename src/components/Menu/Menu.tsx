@@ -16,7 +16,7 @@ const Menu = () => {
     <div className="relative inline-block">
       <Button onClick={() => setIsOpen(!isOpen)} className="border-none bg-transparent p-0">
         <img
-          src={typeof user_photo === 'string' ? user_photo : defaultAvatar}
+          src={user_photo ? (user_photo as string) : defaultAvatar}
           alt="avatar"
           className="h-10 w-10 rounded-full border border-white object-cover"
         />

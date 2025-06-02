@@ -61,4 +61,7 @@
       @apply -rotate-45;
     }
   }
+  .custom-button {
+    @apply !my-[6.75rem] bg-[#2D336B] !px-[3.687rem] !py-[0.625rem] text-[#F8F8F8] active:scale-95 disabled:transform-none disabled:border-gray-300 disabled:bg-gray-300 disabled:active:scale-100;
+  }
 }

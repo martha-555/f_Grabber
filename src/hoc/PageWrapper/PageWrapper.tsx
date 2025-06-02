@@ -15,7 +15,6 @@ const PageWrapper = () => {
           <h1 className="whitespace-nowrap text-px20 font-medium">
             <Link to={PATHS.HOME}>Grabber</Link>
           </h1>
-
           <div className="relative flex-1">
             <input
               type="text"
