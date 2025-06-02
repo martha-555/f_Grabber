@@ -33,10 +33,9 @@
 
   .auth-register-form-section {
     @apply relative flex flex-col items-center gap-2;
-
-    .error-text {
-      @apply text-sm text-error;
-    }
+  }
+  .error-text {
+    @apply text-sm text-error;
   }
 
   .button {

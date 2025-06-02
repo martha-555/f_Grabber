@@ -13,9 +13,8 @@ const PageWrapper = () => {
       <header className="w-full bg-[#2D336B] px-[6.12rem] py-[2.06rem] text-[#FFFFFF]">
         <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
           <h1 className="whitespace-nowrap text-px20 font-medium">
-            <Link to="/">Grabber</Link>
+            <Link to={PATHS.HOME}>Grabber</Link>
           </h1>
-
           <div className="relative flex-1">
             <input
               type="text"
@@ -28,9 +27,9 @@ const PageWrapper = () => {
               className="absolute left-4 top-1/2 block h-5 w-5 -translate-y-1/2 transform"
             />
           </div>
-          <button className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]">
+          <Link to={PATHS.PRODUCTS.add} className="button bg-white text-[#000000]">
             Створити оголошення
-          </button>
+          </Link>
           {user.isLoggedIn ? (
             <Menu />
           ) : (

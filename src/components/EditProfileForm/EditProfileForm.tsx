@@ -126,7 +126,7 @@ const EditProfileForm = ({ user }: Props) => {
                 {user.user_photo && <DeleteUserPhoto />}
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="text-px24 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
+                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-px24 font-medium">
                   Персональна інформація
                 </div>
                 <ProfileInput
