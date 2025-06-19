@@ -7,16 +7,19 @@ module.exports = {
     extend: {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
+        kyiv: ['"Kyiv*Type Titling"', 'sans-serif'],
       },
       fontSize: {
-        px12: 'clamp(10px, 1vw, 12px)',
-        px16: 'clamp(14px, 1.2vw, 16px)',
-        px20: 'clamp(16px, 1.5vw, 20px)',
-        px24: 'clamp(18px, 2vw, 24px)',
-        px32: 'clamp(20px, 3vw, 32px)',
-        title: '32px',
-        base: '16px',
-        link: '12px',
+        h1: ['57px', { lineHeight: '140%', fontWeight: '600' }],
+        h2: ['48px', { lineHeight: '140%', fontWeight: '500' }],
+        h3: ['32px', { lineHeight: '130%', fontWeight: '400' }],
+        h4: ['24px', { lineHeight: '130%', fontWeight: '400' }],
+        s1: ['24px', { lineHeight: '140%', fontWeight: '600' }],
+        b1: ['32px', { lineHeight: '150%', fontWeight: '400' }],
+        b2: ['24px', { lineHeight: '150%', fontWeight: '400' }],
+        b3: ['18px', { lineHeight: '140%', fontWeight: '400' }],
+        b4: ['16px', { lineHeight: '130%', fontWeight: '400' }],
+        d1: ['14px', { lineHeight: '130%', fontWeight: '600' }],
       },
       colors: {
         primary: '#B9E2FF',
