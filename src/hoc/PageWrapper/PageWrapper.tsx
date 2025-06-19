@@ -12,14 +12,14 @@ const PageWrapper = () => {
     <>
       <header className="w-full bg-[#2D336B] px-[6.12rem] py-[2.06rem] text-[#FFFFFF]">
         <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
-          <h1 className="whitespace-nowrap text-px20 font-medium">
+          <h1 className="whitespace-nowrap text-b3 font-medium">
             <Link to={PATHS.HOME}>Grabber</Link>
           </h1>
           <div className="relative flex-1">
             <input
               type="text"
               placeholder="Пошук товарів"
-              className="h-[40px] w-full rounded-[20px] border-0.5 border-[#FFFFFF] bg-[#2D336B] pl-10 pr-4 text-px16 font-normal placeholder:text-px16 placeholder:font-normal"
+              className="h-[40px] w-full rounded-[20px] border-0.5 border-[#FFFFFF] bg-[#2D336B] pl-10 pr-4 text-b4 font-normal placeholder:text-b4 placeholder:font-normal"
             />
             <img
               src={searchIcon}
