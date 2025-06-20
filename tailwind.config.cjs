@@ -70,7 +70,7 @@ module.exports = {
         blur: '0px 4px 26.2px 0px rgba(0, 0, 0, 0.12)',
       },
       backgroundImage: {
-        'warning-icon': "url('./src/assets/images/warningIcon.svg')",
+        'warning-icon': "url('./src/assets/icons/exclamation-icon.svg')",
       },
     },
   },
