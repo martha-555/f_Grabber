@@ -14,12 +14,12 @@ const ConfirmModal = ({ onClose, onClick, confirmMessage }: Props) => {
         <Button
           text="Так"
           onClick={onClick}
-          className="min-w-btn-small bg-bgBtn px-4 py-2 text-white hover:bg-red-700"
+          className="min-w-btn-small bg-primary-900 px-4 py-2 text-white hover:bg-red-700"
         />
         <Button
           text="Ні"
           onClick={onClose}
-          className="min-w-btn-small border border-bgBtn px-4 py-2 text-textPrimary hover:bg-bgBtn hover:text-white"
+          className="text-grey-950 min-w-btn-small border border-primary-900 px-4 py-2 hover:bg-primary-900 hover:text-primary-30"
         />
       </div>
     </Modal>

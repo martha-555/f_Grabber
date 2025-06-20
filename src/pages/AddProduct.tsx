@@ -74,7 +74,7 @@ const AddProduct = () => {
             {...register('title')}
             type="text"
             placeholder="Приклад: iPhone 12, 128 Gb"
-            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-1 outline-error' : ''}`}
+            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-error-default outline-1' : ''}`}
           />
           {errors.title && <p className="error-text">{errors.title.message}</p>}
         </section>
@@ -89,7 +89,7 @@ const AddProduct = () => {
             {...register('description')}
             rows={3}
             placeholder="Приклад: Б/у, ідеальний стан, користувався обережно. Повна комплектація."
-            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.description ? 'outline-1 outline-error' : ''}`}
+            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.description ? 'outline-error-default outline-1' : ''}`}
           ></textarea>
           {errors.description && <p className="error-text">{errors.description.message}</p>}
         </section>
@@ -102,10 +102,10 @@ const AddProduct = () => {
             {Object.entries(categories).map(([key, value]) => {
               return (
                 <label
-                  className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-[#2D336B] px-4 py-2 text-b4 duration-300 ${
+                  className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-primary-900 px-4 py-2 text-b4 duration-300 ${
                     watchCategory === key
-                      ? 'bg-[#2D336B] text-white'
-                      : 'text-[#2D336B] hover:bg-[#2D336B] hover:text-white'
+                      ? 'bg-primary-900 text-primary-30'
+                      : 'text-primary-900 hover:bg-primary-900 hover:text-primary-30'
                   }`}
                   key={key + value}
                 >
@@ -142,7 +142,7 @@ const AddProduct = () => {
             {...register('price')}
             placeholder="Наприклад: 12000"
             className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
-              errors.price ? 'outline-1 outline-error' : ''
+              errors.price ? 'outline-error-default outline-1' : ''
             }`}
           />
           {errors.price && <p className="error-text">{errors.price.message}</p>}

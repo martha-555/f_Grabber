@@ -36,7 +36,7 @@ const PageWrapper = () => {
             <Link to={PATHS.AUTH.login}>
               <Button
                 text="Вхід"
-                className="rounded-[20px] border border-white px-6 py-[0.5rem] text-[16px] text-white transition hover:bg-white hover:text-[#2D336B]"
+                className="rounded-[20px] border border-primary-30 px-6 py-[0.5rem] text-[16px] text-primary-30 transition hover:bg-primary-30 hover:text-primary-900"
               ></Button>
             </Link>
           )}

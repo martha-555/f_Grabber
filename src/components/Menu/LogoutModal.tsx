@@ -29,12 +29,12 @@ const LogoutModal: FC<Props> = ({ onClose }) => {
         <Button
           text="Ні"
           onClick={onClose}
-          className="min-w-btn-small border border-bgBtn px-4 py-2 text-bgBtn hover:bg-bgBtn hover:text-white"
+          className="min-w-btn-small border border-primary-900 px-4 py-2 text-primary-900 hover:bg-primary-900 hover:text-primary-30"
         />
         <Button
           text="Так"
           onClick={() => logout.mutate()}
-          className="min-w-btn-small bg-error px-4 py-2 text-white hover:bg-red-700"
+          className="bg-error-default min-w-btn-small px-4 py-2 text-white hover:bg-red-700"
         />
       </div>
     </Modal>
