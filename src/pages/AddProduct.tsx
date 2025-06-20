@@ -62,50 +62,50 @@ const AddProduct = () => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 pt-24">
-      <h1 className="mb-24 text-px32 font-medium">Створити оголошення</h1>
+      <h1 className="mb-24 text-h3 font-medium">Створити оголошення</h1>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         {/* Секція для заголовка оголошення */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Заголовок оголошення</h2>
-          <p className="font-regular mb-5 text-px16">
+          <h2 className="mb-8 text-h4 font-medium">Заголовок оголошення</h2>
+          <p className="font-regular mb-5 text-b4">
             Введіть коротку назву товару (до 100 символів)
           </p>
           <input
             {...register('title')}
             type="text"
             placeholder="Приклад: iPhone 12, 128 Gb"
-            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-1 outline-error' : ''}`}
+            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-1 outline-error-default' : ''}`}
           />
           {errors.title && <p className="error-text">{errors.title.message}</p>}
         </section>
 
         {/* Секція для опису товару */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Опис</h2>
-          <p className="font-regular mb-5 text-px16">
+          <h2 className="mb-8 text-h4 font-medium">Опис</h2>
+          <p className="font-regular mb-5 text-b4">
             Детально опишіть товар, стан, особливості тощо
           </p>
           <textarea
             {...register('description')}
             rows={3}
             placeholder="Приклад: Б/у, ідеальний стан, користувався обережно. Повна комплектація."
-            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.description ? 'outline-1 outline-error' : ''}`}
+            className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.description ? 'outline-1 outline-error-default' : ''}`}
           ></textarea>
           {errors.description && <p className="error-text">{errors.description.message}</p>}
         </section>
 
         {/* Секція для вибору категорії */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Категорія</h2>
+          <h2 className="mb-8 text-h4 font-medium">Категорія</h2>
 
           <div className="flex flex-wrap gap-5">
             {Object.entries(categories).map(([key, value]) => {
               return (
                 <label
-                  className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-[#2D336B] px-4 py-2 text-px16 duration-300 ${
+                  className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-primary-900 px-4 py-2 text-b4 duration-300 ${
                     watchCategory === key
-                      ? 'bg-[#2D336B] text-white'
-                      : 'text-[#2D336B] hover:bg-[#2D336B] hover:text-white'
+                      ? 'bg-primary-900 text-primary-30'
+                      : 'text-primary-900 hover:bg-primary-900 hover:text-primary-30'
                   }`}
                   key={key + value}
                 >
@@ -125,8 +125,8 @@ const AddProduct = () => {
 
         {/* Секція для завантаження зображень */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Додайте зображення</h2>
-          <p className="font-regular mb-5 text-px16">
+          <h2 className="mb-8 text-h4 font-medium">Додайте зображення</h2>
+          <p className="font-regular mb-5 text-b4">
             Перетягніть файли або натисніть для завантаження
           </p>
 
@@ -135,14 +135,14 @@ const AddProduct = () => {
 
         {/* Секція для введення ціни */}
         <section className="mb-10">
-          <h2 className="mb-8 text-px24 font-medium">Ціна</h2>
-          <p className="font-regular mb-5 text-px16">Введіть ціну без ком/крапок</p>
+          <h2 className="mb-8 text-h4 font-medium">Ціна</h2>
+          <p className="font-regular mb-5 text-b4">Введіть ціну без ком/крапок</p>
           <input
             type="number"
             {...register('price')}
             placeholder="Наприклад: 12000"
             className={`w-full rounded-3xl bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${
-              errors.price ? 'outline-1 outline-error' : ''
+              errors.price ? 'outline-1 outline-error-default' : ''
             }`}
           />
           {errors.price && <p className="error-text">{errors.price.message}</p>}

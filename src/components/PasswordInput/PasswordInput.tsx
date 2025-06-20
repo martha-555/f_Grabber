@@ -1,5 +1,5 @@
 import { FieldError, UseFormRegister } from 'react-hook-form'
-import errorIcon from '../../assets/images/errorIcon.svg'
+import errorIcon from '../../assets/icons/exclamation-icon.svg'
 
 type Props = {
   register: UseFormRegister<any>

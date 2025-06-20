@@ -61,7 +61,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
             type="email"
             {...register('email')}
             id="register-email"
-            className={`input-text ${errors.email ? 'border-error' : ''}`}
+            className={`input-text ${errors.email ? 'border-error-default' : ''}`}
             placeholder="Електронна пошта"
           />
         </label>
@@ -72,7 +72,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
             type="password"
             {...register('password')}
             id="register-password"
-            className={`input-text ${errors.password ? 'border-error' : ''}`}
+            className={`input-text ${errors.password ? 'border-error-default' : ''}`}
             placeholder="Пароль"
           />
         </label>
