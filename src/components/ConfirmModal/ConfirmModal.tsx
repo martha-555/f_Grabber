@@ -19,7 +19,7 @@ const ConfirmModal = ({ onClose, onClick, confirmMessage }: Props) => {
         <Button
           text="Ні"
           onClick={onClose}
-          className="text-grey-950 min-w-btn-small border border-primary-900 px-4 py-2 hover:bg-primary-900 hover:text-primary-30"
+          className="min-w-btn-small border border-primary-900 px-4 py-2 text-grey-950 hover:bg-primary-900 hover:text-primary-30"
         />
       </div>
     </Modal>
