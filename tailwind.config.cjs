@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       fontFamily: {
         montserrat: ['Montserrat', 'sans-serif'],
-        kyiv: ['"Kyiv*Type Titling"', 'sans-serif'],
+        kyiv: ['"KyivTypeTitling"', 'sans-serif'],
       },
       fontSize: {
         h1: ['57px', { lineHeight: '140%', fontWeight: '600' }],
