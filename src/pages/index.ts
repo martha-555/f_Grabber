@@ -21,3 +21,5 @@ export { default as Orders } from './Orders'
 export { default as Profile } from './Profile'
 
 export { default as Admin } from './Admin'
+
+export { default as EditProfile } from './EditProfile'
