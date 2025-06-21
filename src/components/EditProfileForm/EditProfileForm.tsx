@@ -103,7 +103,7 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="text-b1 ml-[9.37rem] p-[0.625rem] font-medium">Редагувати профіль</div>
+          <div className="ml-[9.37rem] p-[0.625rem] text-b1 font-medium">Редагувати профіль</div>
           <form
             className="mx-auto mt-[5.37rem] max-w-[74.86%]"
             onChange={() => setIsSubmit(false)}
@@ -126,7 +126,7 @@ const EditProfileForm = ({ user }: Props) => {
                 {user.user_photo && <DeleteUserPhoto />}
               </div>
               <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="text-s1 mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] font-medium">
+                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-s1 font-medium">
                   Персональна інформація
                 </div>
                 <ProfileInput
