@@ -3,6 +3,7 @@ type Props = {
   text: string
   className?: string
 }
+
 const AboutLink = ({ link = '#', text, className }: Props) => {
   return (
     <p>
