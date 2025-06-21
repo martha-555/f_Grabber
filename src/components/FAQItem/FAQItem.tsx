@@ -3,11 +3,13 @@ import { TFAQItem } from '../../types/FAQItemType'
 
 import './FAQItem.css'
 
-interface FAQItemProps extends TFAQItem {}
+interface FAQItemProps extends TFAQItem {
+  key: string
+}
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer, id }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, id, key }) => {
   return (
-    <div className="accordion w-full border border-b-grey-200 py-8 last:border-none">
+    <div className="accordion w-full border border-b-grey-200 py-8 last:border-none" key={key}>
       <details name="faq" className="accordion__details group items-center">
         <summary className="flex cursor-pointer list-none items-center justify-between text-grey-200 marker:hidden">
           <span role="term" aria-details={id} className="mb-2 text-b2 text-grey-950">
