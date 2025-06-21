@@ -8,8 +8,8 @@ const Footer = () => {
         <Section className="justify-between">
           <h1 className="text-h2 font-medium">Grabber</h1>
           <div>
-            <AboutLink className="text-b3" link="tel:+48 71 757 53 26" text="+48 71 757 53 26" />
-            <AboutLink text="+48 795 955 519 - emergency" link="tel:+48 795 955 519" />
+            <AboutLink className="text-b3" link="tel:+380 67 56 12 530" text="+380 67 56 12 530" />
+            <AboutLink text="info@grabber.ua" link="mailto:info@grabber.ua" />
           </div>
         </Section>
         <Section>
@@ -21,7 +21,6 @@ const Footer = () => {
             ПН - ПТ <br />
             8:00 - 20:00
           </p>
-          <AboutLink text="info@grabber.ua" link="mailto:info@grabber.ua" />
         </Section>
         <Section>
           <p className="text-s1">ДОПОМОГА</p>
@@ -29,7 +28,7 @@ const Footer = () => {
           <AboutLink text="Terms & Conditions" />
           <AboutLink text="Privacy Policy" />
         </Section>
-        <Section className="justify-end">
+        <Section className="pt-[12px]">
           <AboutLink text="Про нас" />
           <AboutLink text="Категорії" />
           <AboutLink text="Контакти" />
