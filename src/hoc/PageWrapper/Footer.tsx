@@ -1,3 +1,4 @@
+import AboutLink from './AboutLink'
 import Section from './Section'
 
 const Footer = () => {
@@ -7,8 +8,8 @@ const Footer = () => {
         <Section className="justify-between">
           <h1 className="text-h2 font-medium">Grabber</h1>
           <div>
-            <p className="text-b3">+48 71 757 53 26</p>
-            <p className="text-b3">+48 795 955 519 - emergency</p>
+            <AboutLink className="text-b3" link="tel:+48 71 757 53 26" text="+48 71 757 53 26" />
+            <AboutLink text="+48 795 955 519 - emergency" link="tel:+48 795 955 519" />
           </div>
         </Section>
         <Section>
@@ -20,19 +21,19 @@ const Footer = () => {
             ПН - ПТ <br />
             8:00 - 20:00
           </p>
-          <p>info@grabber.ua</p>
+          <AboutLink text="info@grabber.ua" link="mailto:info@grabber.ua" />
         </Section>
         <Section>
           <p className="text-s1">ДОПОМОГА</p>
-          <p>Клієнтська підтримка</p>
-          <p>Terms & Conditions</p>
-          <p>Privacy Policy</p>
+          <AboutLink text="Клієнтська підтримка" />
+          <AboutLink text="Terms & Conditions" />
+          <AboutLink text="Privacy Policy" />
         </Section>
         <Section className="justify-end">
-          <p>Про нас</p>
-          <p>Категорії</p>
-          <p>Контакти</p>
-          <p>FAQ</p>
+          <AboutLink text="Про нас" />
+          <AboutLink text="Категорії" />
+          <AboutLink text="Контакти" />
+          <AboutLink text="FAQ" />
         </Section>
       </div>
     </div>
