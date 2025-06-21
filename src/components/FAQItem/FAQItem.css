@@ -9,17 +9,3 @@
 .accordion__details[open] + .accordion__content {
   grid-template-rows: 1fr;
 }
-
-summary {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-summary::-webkit-details-marker {
-  display: none;
-}
-summary::marker {
-  display: none;
-}

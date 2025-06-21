@@ -8,8 +8,8 @@ interface FAQItemProps extends TFAQItem {}
 const FAQItem: React.FC<FAQItemProps> = ({ question, answer, id }) => {
   return (
     <div className="accordion w-full border border-b-grey-200 py-8 last:border-none">
-      <details name="faq" className="accordion__details group">
-        <summary className="text-grey-200">
+      <details name="faq" className="accordion__details group items-center">
+        <summary className="flex cursor-pointer list-none items-center justify-between text-grey-200 marker:hidden">
           <span role="term" aria-details={id} className="mb-2 text-b2 text-grey-950">
             {question}
           </span>
