@@ -44,14 +44,14 @@ const ForgotPasswordForm = () => {
     <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-[400px]">
       <div className="flex flex-col p-5">
         <div className="mb-20 flex flex-col gap-4">
-          <h1 className="text-center text-title">Відновлення паролю</h1>
+          <h1 className="text-center text-h3">Відновлення паролю</h1>
           <p>
             Введіть email, з яким ви реєструвалися. Ми надішлемо вам інструкції з відновлення
             паролю.
           </p>
         </div>
         <div className="mb-8 flex flex-col gap-4">
-          <label htmlFor="email" className="text-link">
+          <label htmlFor="email" className="text-d1">
             Куди вам надіслати код?
           </label>
           <input

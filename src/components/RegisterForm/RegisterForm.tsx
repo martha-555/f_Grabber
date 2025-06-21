@@ -140,7 +140,7 @@ const RegisterForm: React.FC = () => {
         {errors.confirmPassword && <p className="error-text">{errors.confirmPassword.message}</p>}
       </section>
       <section className="auth-register-form-section">
-        <ul className="flex list-outside list-['-'] flex-col gap-5 self-start text-px12">
+        <ul className="flex list-outside list-['-'] flex-col gap-5 self-start text-d1">
           <p>Пароль має містити:</p>
           <li className="ml-2 pl-2">мінімум 6 символів</li>
           <li className="ml-2 pl-2">хоча б одну велику літеру</li>
