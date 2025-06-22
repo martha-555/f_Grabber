@@ -6,7 +6,7 @@ const PageWrapper = () => {
   return (
     <>
       <Header />
-      <section className="content grow-1 h-full w-full items-center">
+      <section className="content h-fit w-full flex-grow items-center">
         <Outlet />
       </section>
       <Footer />
