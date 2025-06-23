@@ -31,6 +31,7 @@ export const API_ENDPOINTS = {
     addImage: 'ads/{ad_id}/add-image/',
     approve: 'ads/{ad_id}/approve/',
     reject: 'ads/{ad_id}/reject/',
+    categoriesList: 'ads/categories/',
   },
   AUTH: {
     login: 'user/login/',
@@ -53,9 +54,5 @@ export const API_ENDPOINTS = {
   },
   ORDERS: {
     list: 'orders/',
-  },
-  CATEGORIES: {
-    list: 'categories/',
-    details: 'categories/{id}/',
   },
 }

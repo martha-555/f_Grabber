@@ -8,7 +8,7 @@ const useFetchCategories = () => {
 
   return useQuery({
     queryKey: ['profile'],
-    queryFn: () => fetchCategories<TCategory[]>({ path: API_ENDPOINTS.CATEGORIES.list }),
+    queryFn: () => fetchCategories<TCategory[]>({ path: API_ENDPOINTS.ADS.categoriesList }),
     retry: 1,
   })
 }
