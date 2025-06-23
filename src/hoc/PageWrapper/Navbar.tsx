@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <>
       <h1 className="whitespace-nowrap text-[20px] font-medium">
-        <Link to="/">Grabber</Link>
+        <Link to={PATHS.HOME}>Grabber</Link>
       </h1>
 
       <div className="relative flex-1">
