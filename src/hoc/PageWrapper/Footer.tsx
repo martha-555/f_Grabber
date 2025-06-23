@@ -8,8 +8,14 @@ const Footer = () => {
         <Section className="justify-between">
           <h1 className="text-h2 font-medium">Grabber</h1>
           <div>
-            <AboutLink className="text-b3" link="tel:+380 67 56 12 530" text="+380 67 56 12 530" />
-            <AboutLink text="info@grabber.ua" link="mailto:info@grabber.ua" />
+            <p>
+              <a className="text-b3" href="tel:+380 67 56 12 530">
+                +380 67 56 12 530
+              </a>
+            </p>
+            <p>
+              <a href="mailto:info@grabber.ua">info@grabber.ua</a>
+            </p>
           </div>
         </Section>
         <Section>

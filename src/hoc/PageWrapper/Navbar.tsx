@@ -17,7 +17,7 @@ const Navbar = () => {
         <input
           type="text"
           placeholder="Пошук товарів"
-          className="bg-primary-900 text-b4 h-[40px] w-full rounded-[20px] border-0.5 border-[#FFFFFF] pl-10 pr-4 font-normal placeholder:pl-[1rem] placeholder:text-[1.125rem] placeholder:font-normal"
+          className="h-[40px] w-full rounded-[20px] border-0.5 border-[#FFFFFF] bg-primary-900 pl-10 pr-4 text-b4 font-normal placeholder:pl-[1rem] placeholder:text-[1.125rem] placeholder:font-normal"
         />
         <img
           src={searchIcon}
@@ -26,7 +26,7 @@ const Navbar = () => {
         />
       </div>
       <Link to={PATHS.PRODUCTS.add}>
-        <button className="text-primary-900 hover:bg-secondary-blue-50 focus:border-primary-900 focus:bg-secondary-blue-50 active:bg-secondary-blue-200 h-10 whitespace-nowrap rounded-full bg-white px-6 focus:border active:shadow-[inset_0_0_4px_2px_#ABC2F6]">
+        <button className="h-10 whitespace-nowrap rounded-full bg-white px-6 text-primary-900 hover:bg-secondary-blue-50 focus:border focus:border-primary-900 focus:bg-secondary-blue-50 active:bg-secondary-blue-200 active:shadow-[inset_0_0_4px_2px_#ABC2F6]">
           Створити оголошення
         </button>
       </Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
         <Link to={PATHS.AUTH.login}>
           <Button
             text="Вхід"
-            className="text-b4 hover:text-primary-900 rounded-[20px] border border-white px-6 py-[0.5rem] text-white transition hover:bg-white"
+            className="rounded-[20px] border border-white px-6 py-[0.5rem] text-b4 text-white transition hover:bg-white hover:text-primary-900"
           ></Button>
         </Link>
       )}

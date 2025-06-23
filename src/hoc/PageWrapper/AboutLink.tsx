@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 type Props = {
   link?: string
   text: string
@@ -7,9 +9,9 @@ type Props = {
 const AboutLink = ({ link = '#', text, className }: Props) => {
   return (
     <p>
-      <a className={className} href={link}>
+      <Link className={className} to={link}>
         {text}
-      </a>
+      </Link>
     </p>
   )
 }
