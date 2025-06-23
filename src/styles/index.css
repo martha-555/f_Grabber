@@ -82,6 +82,6 @@
   }
   /* Стилі для інпутів на сторінці додавання товару */
   .input-add-product-section {
-    @apply mb-2 w-full rounded-[20px] bg-transparent px-4 py-2 outline outline-1 outline-grey-500 placeholder:text-grey-400 focus:outline-1;
+    @apply mb-2 w-full rounded-[20px] bg-transparent px-4 py-2 text-grey-950 outline outline-1 outline-grey-500 placeholder:text-grey-400 focus:outline-2;
   }
 }

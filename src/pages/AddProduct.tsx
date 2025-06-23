@@ -101,13 +101,11 @@ const AddProduct = () => {
             placeholder="Приклад: Мед"
             className={`input-add-product-section ${errors.title || watchTitle.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
           />
-          <div className="flex justify-between">
-            <p className="text-d1 text-grey-400">Мінімум 3 символи</p>
-            <p
-              className={`text-d1 ${watchTitle.length >= 101 ? 'text-error-default' : 'text-grey-400'}`}
-            >
-              {watchTitle.length}/100
-            </p>
+          <div
+            className={`flex justify-between text-d1 ${errors.title ? 'text-error-default' : 'text-grey-400'}`}
+          >
+            <p>Мінімум 3 символи</p>
+            <p>{watchTitle.length}/100</p>
           </div>
           {(errors.title || watchTitle.length >= 101) && (
             <p className="error-text">{errors.title?.message}</p>
@@ -126,13 +124,11 @@ const AddProduct = () => {
             placeholder="Приклад: глиняна тарілка з ручним розписом, висотою 18 мм та діаметром 21 см"
             className={`input-add-product-section ${errors.description ? 'outline-1 outline-error-default' : ''}`}
           ></textarea>
-          <div className="flex justify-between">
-            <p className="text-d1 text-grey-400">Мінімум 40 символів</p>
-            <p
-              className={`text-d1 ${watchDescription.length >= 1001 ? 'text-error-default' : 'text-grey-400'}`}
-            >
-              {watchDescription.length}/1000
-            </p>
+          <div
+            className={`flex justify-between text-d1 ${errors.title ? 'text-error-default' : 'text-grey-400'}`}
+          >
+            <p>Мінімум 40 символів</p>
+            <p>{watchDescription.length}/1000</p>
           </div>
           {errors.description && <p className="error-text">{errors.description.message}</p>}
         </section>
@@ -179,13 +175,11 @@ const AddProduct = () => {
             placeholder="Приклад: Полтава"
             className={`input-add-product-section ${errors.location || watchLocation.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
           />
-          <div className="flex justify-between">
-            <p className="text-d1 text-grey-400">Мінімум 3 символи</p>
-            <p
-              className={`text-d1 ${watchLocation.length >= 101 ? 'text-error-default' : 'text-grey-400'}`}
-            >
-              {watchLocation.length}/100
-            </p>
+          <div
+            className={`flex justify-between text-d1 ${errors.title ? 'text-error-default' : 'text-grey-400'}`}
+          >
+            <p>Мінімум 3 символи</p>
+            <p>{watchLocation.length}/100</p>
           </div>
           {(errors.location || watchLocation.length >= 101) && (
             <p className="error-text">{errors.location?.message}</p>
