@@ -59,24 +59,34 @@ const AddProduct = () => {
   }
 
   const watchCategory = watch('category')
+  const watchTitle = watch('title')
 
   return (
     <div className="mx-auto max-w-7xl px-4 pt-24">
-      <h1 className="mb-24 text-h3 font-medium">Створити оголошення</h1>
+      <h1 className="mb-12 text-h3 text-grey-950">Створити оголошення</h1>
       <form onSubmit={handleSubmit(handleSubmitForm)}>
         {/* Секція для заголовка оголошення */}
         <section className="mb-10">
-          <h2 className="mb-8 text-h4 font-medium">Заголовок оголошення</h2>
-          <p className="font-regular mb-5 text-b4">
-            Введіть коротку назву товару (до 100 символів)
-          </p>
+          <h2 className="mb-6 text-s1 text-grey-950">Заголовок оголошення *</h2>
+          <p className="text-grey-800 mb-2 text-b3">Введіть коротку назву товару</p>
           <input
             {...register('title')}
             type="text"
-            placeholder="Приклад: iPhone 12, 128 Gb"
-            className={`w-full rounded-full bg-[#D9D9D9] px-5 py-2 outline-none placeholder:text-[#4D4D4D] ${errors.title ? 'outline-1 outline-error-default' : ''}`}
+            maxLength={100}
+            placeholder="Приклад: Мед"
+            className={`mb-2 w-full rounded-full bg-transparent px-4 py-2 outline outline-1 outline-grey-500 placeholder:text-grey-400 focus:outline-1 ${errors.title || watchTitle.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
           />
-          {errors.title && <p className="error-text">{errors.title.message}</p>}
+          <div className="flex justify-between">
+            <p className="text-d1 text-grey-400">Мінімум 3 символи</p>
+            <p
+              className={`text-d1 ${watchTitle.length >= 101 ? 'text-error-default' : 'text-grey-400'}`}
+            >
+              {watchTitle.length}/100
+            </p>
+          </div>
+          {(errors.title || watchTitle.length >= 101) && (
+            <p className="error-text">{errors.title?.message}</p>
+          )}
         </section>
 
         {/* Секція для опису товару */}
@@ -152,6 +162,7 @@ const AddProduct = () => {
           Опублікувати
         </button>
       </form>
+
       <Toaster
         position="bottom-center"
         toastOptions={{
