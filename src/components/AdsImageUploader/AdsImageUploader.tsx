@@ -56,7 +56,7 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
     <div className="rounded-lg border border-dashed p-4 text-center">
       {/* Прев'ю зображень (максимум 5) */}
       <div className="mb-4 flex flex-wrap justify-start gap-2">
-        {[...Array(5)].map((_, index) => {
+        {[...Array(4)].map((_, index) => {
           const image = images[index]
 
           return (
