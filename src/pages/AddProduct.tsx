@@ -162,6 +162,7 @@ const AddProduct = () => {
               )
             })}
           </div>
+          {errors.category && <p className="error-text">{errors.category.message}</p>}
         </section>
 
         {/* Секція для місця створення товару */}
