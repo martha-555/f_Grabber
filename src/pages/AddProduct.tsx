@@ -76,9 +76,12 @@ const AddProduct = () => {
   const watchLocation = watch('location')
 
   return (
-    <div className="mx-auto max-w-7xl px-4 pt-24">
+    <div className="mx-auto max-w-container px-4 pt-24">
       <h1 className="mb-12 text-h3 text-grey-950">Створити оголошення</h1>
-      <form onSubmit={handleSubmit(handleSubmitForm)}>
+      <form
+        onSubmit={handleSubmit(handleSubmitForm)}
+        className="max-w-[66%] max-[1100px]:max-w-[80%] max-[900px]:max-w-[100%]"
+      >
         {/* Секція для заголовка оголошення */}
         <section className="mb-12">
           <h2 className="title-add-product-section">Заголовок оголошення *</h2>
