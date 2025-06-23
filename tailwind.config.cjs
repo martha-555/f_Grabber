@@ -62,6 +62,9 @@ module.exports = {
         'btn-large': '350px',
         'profile-button': '15.875rem',
       },
+      maxWidth: {
+        container: '1200px',
+      },
       spacing: {
         90: '22.5rem',
       },
