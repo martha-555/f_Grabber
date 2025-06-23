@@ -5,6 +5,7 @@ import { AdsImageUploader } from '../components'
 import { z } from 'zod'
 import useAdsCreate from '../api/adsCreate'
 import toast, { Toaster } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
 
 export type TFormData = z.infer<typeof addAdsSchema>
 
@@ -44,6 +45,8 @@ const AddProduct = () => {
 
   const { mutateAsync: createAds } = useAdsCreate()
 
+  const navigate = useNavigate()
+
   const handleSubmitForm = async (data: TFormData) => {
     const newAds = {
       title: data.title,
@@ -68,6 +71,11 @@ const AddProduct = () => {
     } catch (error) {
       toast.error(`Невідома помилка ${error}`, { id: 'add_ads', duration: 2000 })
     }
+  }
+
+  const handleCloseForm = () => {
+    reset()
+    navigate(-1)
   }
 
   const watchCategory = watch('category')
@@ -246,9 +254,18 @@ const AddProduct = () => {
           {errors.phone && <p className="error-text">{errors.phone?.message}</p>}
         </section>
 
-        <button type="submit" className="button ml-auto px-16 py-2">
-          Опублікувати
-        </button>
+        <div className="flex justify-end gap-5">
+          <button
+            type="button"
+            className="text-d1 text-grey-500 underline"
+            onClick={handleCloseForm}
+          >
+            Скасувати
+          </button>
+          <button type="submit" className="button px-16 py-2">
+            Опублікувати
+          </button>
+        </div>
       </form>
 
       <Toaster
