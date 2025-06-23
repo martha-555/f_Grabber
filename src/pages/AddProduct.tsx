@@ -94,13 +94,15 @@ const AddProduct = () => {
         <section>
           <h2 className="title-add-product-section">Заголовок оголошення *</h2>
           <p className="description-add-product-section">Введіть коротку назву товару</p>
-          <input
-            {...register('title')}
-            type="text"
-            maxLength={100}
-            placeholder="Приклад: Мед"
-            className={`input-add-product-section ${errors.title || watchTitle.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
-          />
+          <label className={`w-full ${errors.title ? 'warning-icon-for-input' : ''}`}>
+            <input
+              {...register('title')}
+              type="text"
+              maxLength={100}
+              placeholder="Приклад: Мед"
+              className={`input-add-product-section ${errors.title || watchTitle.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
+            />
+          </label>
           <div
             className={`flex justify-between text-d1 ${errors.title ? 'text-error-default' : 'text-grey-400'}`}
           >
@@ -168,13 +170,16 @@ const AddProduct = () => {
             Місце створення товару/місце надання сервісу *
           </h2>
           <p className="description-add-product-section">Введіть назву населеного пункту</p>
-          <input
-            {...register('location')}
-            type="text"
-            maxLength={100}
-            placeholder="Приклад: Полтава"
-            className={`input-add-product-section ${errors.location || watchLocation.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
-          />
+          <label className={`w-full ${errors.location ? 'warning-icon-for-input' : ''}`}>
+            {' '}
+            <input
+              {...register('location')}
+              type="text"
+              maxLength={100}
+              placeholder="Приклад: Полтава"
+              className={`input-add-product-section ${errors.location || watchLocation.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
+            />
+          </label>
           <div
             className={`flex justify-between text-d1 ${errors.title ? 'text-error-default' : 'text-grey-400'}`}
           >
@@ -202,14 +207,16 @@ const AddProduct = () => {
           <p className="description-add-product-section">
             Введіть цифру без крапок, ком та відступів
           </p>
-          <input
-            type="number"
-            {...register('price')}
-            placeholder="Приклад: 22450"
-            className={`input-add-product-section ${
-              errors.price ? 'outline-1 outline-error-default' : ''
-            }`}
-          />
+          <label className={`w-full ${errors.price ? 'warning-icon-for-input' : ''}`}>
+            <input
+              type="number"
+              {...register('price')}
+              placeholder="Приклад: 22450"
+              className={`input-add-product-section ${
+                errors.price ? 'outline-1 outline-error-default' : ''
+              }`}
+            />
+          </label>
           {errors.price && <p className="error-text">{errors.price.message}</p>}
         </section>
 
@@ -218,33 +225,39 @@ const AddProduct = () => {
           <h2 className="title-add-product-section">Контактні данні *</h2>
           {/* Ім'я */}
           <p className="description-add-product-section">Ім’я особи, яка продає товар</p>
-          <input
-            {...register('contact_name')}
-            type="text"
-            maxLength={100}
-            placeholder="Вікторія"
-            className={`input-add-product-section w-1/2 ${errors.contact_name ? 'outline-1 outline-error-default' : ''}`}
-          />
+          <label className={`w-full ${errors.contact_name ? 'warning-icon-for-input' : ''}`}>
+            <input
+              {...register('contact_name')}
+              type="text"
+              maxLength={100}
+              placeholder="Вікторія"
+              className={`input-add-product-section w-1/2 ${errors.contact_name ? 'outline-1 outline-error-default' : ''}`}
+            />
+          </label>
           {errors.contact_name && <p className="error-text">{errors.contact_name?.message}</p>}
 
           {/* Email */}
           <p className="description-add-product-section">Пошта</p>
-          <input
-            {...register('email')}
-            type="email"
-            placeholder="e-mail"
-            className={`input-add-product-section w-1/2 ${errors.email ? 'outline-1 outline-error-default' : ''}`}
-          />
+          <label className={`w-full ${errors.email ? 'warning-icon-for-input' : ''}`}>
+            <input
+              {...register('email')}
+              type="email"
+              placeholder="e-mail"
+              className={`input-add-product-section w-1/2 ${errors.email ? 'outline-1 outline-error-default' : ''}`}
+            />
+          </label>
           {errors.email && <p className="error-text">{errors.email?.message}</p>}
 
           {/* Телефон */}
           <p className="description-add-product-section">Телефон</p>
-          <input
-            {...register('phone')}
-            type="text"
-            placeholder="+380..."
-            className={`input-add-product-section w-1/2 ${errors.phone ? 'outline-1 outline-error-default' : ''}`}
-          />
+          <label className={`w-full ${errors.phone ? 'warning-icon-for-input' : ''}`}>
+            <input
+              {...register('phone')}
+              type="text"
+              placeholder="+380..."
+              className={`input-add-product-section w-1/2 ${errors.phone ? 'outline-1 outline-error-default' : ''}`}
+            />
+          </label>
           {errors.phone && <p className="error-text">{errors.phone?.message}</p>}
         </section>
 
