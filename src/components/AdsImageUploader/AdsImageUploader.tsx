@@ -62,7 +62,11 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
           return (
             <div
               key={index}
-              className="relative flex aspect-video w-[24%] items-center justify-center overflow-hidden rounded-lg border border-grey-400 bg-transparent"
+              className="group relative flex aspect-[183/127] w-[24%] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent transition-colors duration-300 hover:bg-grey-200"
+              onClick={(e) => {
+                e.stopPropagation()
+                handleClick()
+              }}
             >
               {image ? (
                 <>
@@ -75,7 +79,10 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
                   {/* Кнопка видалення зображення */}
                   <button
                     type="button"
-                    onClick={() => handleRemoveImage(index)}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      handleRemoveImage(index)
+                    }}
                     className="absolute right-1 top-1 rounded-full bg-red-600 px-2 text-white"
                   >
                     ×
@@ -86,11 +93,7 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
                 <div
                   onDrop={handleDrop}
                   onDragOver={(e) => e.preventDefault()}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    handleClick()
-                  }}
-                  className="group cursor-pointer rounded-lg p-4 text-center"
+                  className="rounded-lg p-4 text-center"
                 >
                   <span className="hidden text-d1 text-grey-500 underline group-hover:inline">
                     Додати зображення

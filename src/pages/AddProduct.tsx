@@ -80,10 +80,10 @@ const AddProduct = () => {
       <h1 className="mb-12 text-h3 text-grey-950">Створити оголошення</h1>
       <form
         onSubmit={handleSubmit(handleSubmitForm)}
-        className="max-w-[66%] max-[1100px]:max-w-[80%] max-[900px]:max-w-[100%]"
+        className="flex max-w-[66%] flex-col gap-12 max-[1100px]:max-w-[80%] max-[900px]:max-w-[100%]"
       >
         {/* Секція для заголовка оголошення */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">Заголовок оголошення *</h2>
           <p className="description-add-product-section">Введіть коротку назву товару</p>
           <input
@@ -107,7 +107,7 @@ const AddProduct = () => {
         </section>
 
         {/* Секція для опису товару */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">Опис *</h2>
           <p className="description-add-product-section">
             Детально опишіть товар, його особливості
@@ -130,7 +130,7 @@ const AddProduct = () => {
         </section>
 
         {/* Секція для вибору категорії */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">Категорія *</h2>
 
           <div className="flex flex-wrap gap-5">
@@ -159,7 +159,7 @@ const AddProduct = () => {
         </section>
 
         {/* Секція для місця створення товару */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">
             Місце створення товару/місце надання сервісу *
           </h2>
@@ -185,7 +185,7 @@ const AddProduct = () => {
         </section>
 
         {/* Секція для завантаження зображень */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">Зображення *</h2>
           <p className="description-add-product-section">
             Перетягніть файли або натисніть для завантаження
@@ -195,7 +195,7 @@ const AddProduct = () => {
         </section>
 
         {/* Секція для введення ціни */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">Ціна (грн) *</h2>
           <p className="description-add-product-section">
             Введіть цифру без крапок, ком та відступів
@@ -212,7 +212,7 @@ const AddProduct = () => {
         </section>
 
         {/* Секція для введення контактних даних */}
-        <section className="mb-12">
+        <section>
           <h2 className="title-add-product-section">Контактні данні *</h2>
           {/* Ім'я */}
           <p className="description-add-product-section">Ім’я особи, яка продає товар</p>
@@ -246,7 +246,7 @@ const AddProduct = () => {
           {errors.phone && <p className="error-text">{errors.phone?.message}</p>}
         </section>
 
-        <button type="submit" className="button px-16 py-2">
+        <button type="submit" className="button ml-auto px-16 py-2">
           Опублікувати
         </button>
       </form>
