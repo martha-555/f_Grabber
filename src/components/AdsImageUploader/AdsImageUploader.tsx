@@ -1,7 +1,6 @@
 import React, { useRef } from 'react'
 import { UseFormSetValue, UseFormWatch } from 'react-hook-form'
 import { TFormData } from '../../pages/AddProduct'
-import imgPlaceholder from '../../assets/icons/photo-icon.svg'
 
 // Описуємо пропси для компонента
 interface AdsImageUploaderProps {
