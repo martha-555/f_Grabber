@@ -3,7 +3,7 @@ export type TAdsCreate = {
   description: string
   price: string
   status?: 'draft' | 'pending'
-  category: string
+  category_name: string
   location: string
   contact_name: string
   email: string

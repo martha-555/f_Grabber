@@ -12,7 +12,7 @@ export type TFormData = z.infer<typeof addAdsSchema>
 const defaultValues: TFormData = {
   title: '',
   description: '',
-  category: '',
+  category_name: '',
   images: [],
   price: '0',
   contact_name: '',
@@ -20,6 +20,8 @@ const defaultValues: TFormData = {
   phone: '',
   location: '',
 }
+
+// TOdo: replace with dynamic categories from backend
 
 const categories = {
   electronics: 'Електроніка',
@@ -49,22 +51,24 @@ const AddProduct = () => {
   const navigate = useNavigate()
 
   const handleSubmitForm = async (data: TFormData) => {
-    const newAds = {
-      title: data.title,
-      description: data.description,
-      price: data.price,
-      status: 'draft' as const,
-      category: data.category,
-      images: data.images.map((image) => {
-        if (typeof image === 'string') return image
+    const newAds = new FormData()
 
-        return URL.createObjectURL(image)
-      }),
-      contact_name: data.contact_name,
-      email: data.email,
-      phone: data.phone,
-      location: data.location,
-    }
+    newAds.append('title', data.title)
+    newAds.append('description', data.description)
+    newAds.append('price', data.price)
+    newAds.append('status', 'draft')
+    newAds.append('category_name', data.category_name)
+    newAds.append('contact_name', data.contact_name)
+    newAds.append('email', data.email)
+    newAds.append('phone', data.phone)
+    newAds.append('location', data.location)
+
+    // Додаємо зображення (може бути File або string)
+    data.images.forEach((img) => {
+      if (img instanceof File) {
+        newAds.append('images', img) // бекенд має бути готовий до images[]
+      }
+    })
 
     try {
       await createAds(newAds)
@@ -80,7 +84,7 @@ const AddProduct = () => {
     navigate(-1)
   }
 
-  const watchCategory = watch('category')
+  const watchCategory = watch('category_name')
   const watchTitle = watch('title')
   const watchDescription = watch('description')
   const watchLocation = watch('location')
@@ -164,7 +168,7 @@ const AddProduct = () => {
               return (
                 <label
                   className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-primary-900 px-4 py-2 text-b4 duration-300 ${
-                    watchCategory === key
+                    watchCategory === value
                       ? 'bg-primary-900 text-primary-30'
                       : 'text-primary-900 hover:bg-primary-900 hover:text-primary-30'
                   }`}
@@ -173,8 +177,8 @@ const AddProduct = () => {
                   {value}
                   <input
                     type="radio"
-                    {...register('category')}
-                    value={key}
+                    {...register('category_name')}
+                    value={value}
                     id={key}
                     className="appearance-none"
                   />
@@ -182,7 +186,7 @@ const AddProduct = () => {
               )
             })}
           </div>
-          {errors.category && <p className="error-text">{errors.category.message}</p>}
+          {errors.category_name && <p className="error-text">{errors.category_name.message}</p>}
         </section>
 
         {/* Секція для місця створення товару */}

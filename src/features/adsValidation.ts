@@ -11,7 +11,7 @@ export const addAdsSchema = z.object({
     .nonempty('Опис є обовʼязковим')
     .max(1000, 'Опис має містити не більше 1000 символів')
     .min(2, 'Опис має містити не менше 2 символів'),
-  category: z.string().nonempty('Категорія є обовʼязковою'),
+  category_name: z.string().nonempty('Категорія є обовʼязковою'),
   images: z
     .array(
       z
