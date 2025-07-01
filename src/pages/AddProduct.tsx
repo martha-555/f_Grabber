@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { addAdsSchema } from '../features/adsValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { AdsImageUploader } from '../components'
+import { AdsImageUploader, Button } from '../components'
 import { z } from 'zod'
 import useAdsCreate from '../api/adsCreate'
 import toast, { Toaster } from 'react-hot-toast'
@@ -37,13 +37,14 @@ const AddProduct = () => {
     watch,
     setValue,
     reset,
+
     formState: { errors },
   } = useForm<TFormData>({
     defaultValues,
     resolver: zodResolver(addAdsSchema),
   })
 
-  const { mutateAsync: createAds } = useAdsCreate()
+  const { mutateAsync: createAds, isPending } = useAdsCreate()
 
   const navigate = useNavigate()
 
@@ -56,6 +57,7 @@ const AddProduct = () => {
       category: data.category,
       images: data.images.map((image) => {
         if (typeof image === 'string') return image
+
         return URL.createObjectURL(image)
       }),
       contact_name: data.contact_name,
@@ -82,6 +84,24 @@ const AddProduct = () => {
   const watchTitle = watch('title')
   const watchDescription = watch('description')
   const watchLocation = watch('location')
+  const watchImages = watch('images')
+  const watchPrice = watch('price')
+  const watchContactName = watch('contact_name')
+  const watchEmail = watch('email')
+  const watchPhone = watch('phone')
+
+  const isFormValid = Boolean(
+    watchImages.length > 0 &&
+      watchCategory &&
+      watchTitle &&
+      watchDescription &&
+      watchLocation &&
+      Number(watchPrice) &&
+      watchContactName &&
+      watchEmail &&
+      watchPhone &&
+      !Object.keys(errors).length,
+  )
 
   return (
     <div className="mx-auto max-w-container px-4 pt-24">
@@ -270,9 +290,23 @@ const AddProduct = () => {
           >
             Скасувати
           </button>
-          <button type="submit" className="button px-16 py-2">
-            Опублікувати
-          </button>
+
+          <Button
+            className={`relative grid place-items-center ${!isFormValid ? 'bg-secondary-blue-600' : ''} ${isPending ? 'opacity-100' : ''}`}
+            disabled={!isFormValid || isPending}
+            type="submit"
+            isHover={isFormValid}
+          >
+            <span
+              className={` ${isPending ? 'invisible opacity-0' : 'visible opacity-100'} col-start-1 row-start-1`}
+            >
+              Опублікувати
+            </span>
+            {/* Спіннер */}
+            <div
+              className={`col-start-1 row-start-1 h-4 w-4 animate-spin rounded-full border-4 border-gray-300 border-t-primary-900 ${isPending ? 'block' : 'hidden'} `}
+            ></div>
+          </Button>
         </div>
       </form>
 
