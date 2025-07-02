@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { UseFormSetValue, UseFormWatch } from 'react-hook-form'
 import { TFormData } from '../../pages/AddProduct'
+import IconPlaseholder from '../../assets/icons/photo-icon.svg?react'
 
 // Описуємо пропси для компонента
 interface AdsImageUploaderProps {
@@ -98,7 +99,7 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
                     Додати зображення
                   </span>
                   {/* Іконка для плейсхолдера */}
-                  <span className="_icon-photo mx-auto text-[40px] text-grey-400 group-hover:hidden"></span>
+                  <IconPlaseholder className="mx-auto text-[40px] text-grey-400 group-hover:hidden" />
                 </div>
               )}
             </div>
