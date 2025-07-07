@@ -1,12 +1,11 @@
-import { FAQSection } from '../components'
-import { RecommendedSection } from '../components'
-import { CategoriesSection } from '../components'
+import { CategoriesSection, RecommendedSection, NewsCard, FAQSection } from '../components'
 
 const Main = () => {
   return (
     <div>
       <CategoriesSection />
       <RecommendedSection />
+      <NewsCard />
       <FAQSection />
     </div>
   )

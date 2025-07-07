@@ -30,9 +30,15 @@ export { default as CustomToaster } from './CustomToaster/CustomToaster'
 
 export { default as AdsImageUploader } from './AdsImageUploader/AdsImageUploader'
 
-export { default as RecommendedSection } from './RecommendedSection/RecommendedSection'
+export { default as Input } from './Input/Input'
 
-export { default as RecommendedCard } from './RecommendedCard/RecommendedCard'
+export { default as NewsCard } from './NewsCard/NewsCard'
+
+export { default as SuccessModal } from './NewsCard/SuccessModal'
+
+export { default as RecommendedSection } from './Recommended/RecommendedSection/RecommendedSection'
+
+export { default as RecommendedCard } from './Recommended/RecommendedCard/RecommendedCard'
 
 export { default as FAQSection } from './FAQSection/FAQSection'
 

@@ -18,7 +18,12 @@ const Button: FC<BtnProps> = ({
   disabled = false,
 }) => {
   return (
-    <button onClick={onClick} type={type} className={`button ${className}`} disabled={disabled}>
+    <button
+      onClick={onClick}
+      type={type}
+      className={`button transition duration-300 hover:cursor-pointer ${className}`}
+      disabled={disabled}
+    >
       {children || text}
     </button>
   )
