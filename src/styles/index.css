@@ -66,6 +66,6 @@
     }
   }
   .custom-button {
-    @apply !my-[6.75rem] bg-[#2D336B] !px-[3.687rem] !py-[0.625rem] text-[#F8F8F8] active:scale-95 disabled:transform-none disabled:border-gray-300 disabled:bg-gray-300 disabled:active:scale-100;
+    @apply active:bg-secondary-blue-600 mb-8 mt-6 rounded-[30px] bg-primary-900 px-[33.5px] py-[9px] text-b4 text-primary-30 hover:bg-secondary-blue-700;
   }
 }

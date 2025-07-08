@@ -8,8 +8,6 @@ export { default as UploadAvatar } from './EditProfileForm/UploadAvatar'
 
 export { default as ProfileInput } from './EditProfileForm/ProfileInput'
 
-export { default as ProfileField } from './ProfileField/ProfileField'
-
 export { default as Modal } from './Modal/Modal'
 
 export { default as Button } from './Button/Button'
@@ -23,8 +21,6 @@ export { default as ResetPasswordForm } from './ResetPasswordForm/ResetPasswordF
 export { default as Menu } from './Menu/Menu'
 
 export { default as PasswordInput } from './PasswordInput/PasswordInput'
-
-export { default as PhotoButton } from './EditProfileForm/PhotoButton'
 
 export { default as DeleteUserPhoto } from './EditProfileForm/DeleteUserPhoto'
 

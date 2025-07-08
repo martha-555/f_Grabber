@@ -90,7 +90,7 @@ export const editProfileSchema = baseUserSchema.extend({
     .union([z.string().url(), z.instanceof(File)])
     .optional()
     .refine(
-      (file) => !file || typeof file === 'string' || file.size < 5_000_000,
+      (file) => !file || typeof file === 'string' || file.size < 5_242_880,
       'Файл має бути менше 5MB',
     )
     .refine(

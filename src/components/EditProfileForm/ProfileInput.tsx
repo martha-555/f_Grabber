@@ -20,9 +20,8 @@ const ProfileInput = ({
   placeholder,
 }: Props) => {
   return (
-    <div className="flex justify-between rounded-[100px] bg-[#F7F7F7] p-[0.625rem]">
-      <label className="p-[0.625rem] pl-[1.25rem] text-[#4D4D4D]" htmlFor={data}>
-        <span className="ml-1 text-red-500">*</span>
+    <div className="flex flex-col justify-between rounded-[20px]">
+      <label className="text-grey-800 pb-2 pt-8 text-b3" htmlFor={data}>
         {labelText}
       </label>
       <input
@@ -33,11 +32,11 @@ const ProfileInput = ({
           const target = e.target as HTMLInputElement
           target.select()
         }}
-        className="flex-1 border-none bg-[#F7F7F7] p-[0.625rem] pr-[1.25rem] text-end outline-none"
+        className="placeholder:text-grey-400 rounded-[20px] border border-grey-500 px-4 pb-[10px] pt-2 text-grey-950 placeholder:text-b4 focus:border-2"
         defaultValue={data}
         {...register(name, { required: true })}
       />
-      {error && <span className="text-red-500">{error.message}</span>}
+      {error && <span className="text-error-default">{error.message}</span>}
     </div>
   )
 }

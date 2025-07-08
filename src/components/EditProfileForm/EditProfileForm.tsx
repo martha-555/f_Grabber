@@ -6,7 +6,6 @@ import UploadAvatar from './UploadAvatar'
 import ProfileInput from './ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
 import submitUserPhoto from '../../api/useSubmitUserPhoto'
-import defaultProfileAvatar from '../../assets/images/defaultProfileAvatar.svg'
 import toast from 'react-hot-toast'
 import { useEffect, useState } from 'react'
 import DeleteUserPhoto from './DeleteUserPhoto'
@@ -28,7 +27,7 @@ const EditProfileForm = ({ user }: Props) => {
     user_photo:
       typeof user?.user_photo === 'string' || user?.user_photo instanceof File
         ? user.user_photo
-        : user?.user_photo || defaultProfileAvatar,
+        : user?.user_photo,
   }
 
   const { mutate: profileMutation } = submitUserData()
@@ -103,14 +102,14 @@ const EditProfileForm = ({ user }: Props) => {
     <>
       {user && (
         <div className="mt-[6.44rem]">
-          <div className="ml-[9.37rem] p-[0.625rem] text-b1 font-medium">Редагувати профіль</div>
+          <div className="ml-[120px] p-[0.625rem] text-h3 text-grey-950">Редагування профілю</div>
           <form
             className="mx-auto mt-[5.37rem] max-w-[74.86%]"
             onChange={() => setIsSubmit(false)}
             onSubmit={handleSubmit(onSubmit)}
           >
-            <div className="flex gap-[3.19rem]">
-              <div className="rounded-[20px] px-[2.06rem] pt-5 shadow-blur">
+            <div className="flex gap-[20px]">
+              <div className="h-fit rounded-[20px] px-8 pt-8 shadow-blur">
                 <Controller
                   name="user_photo"
                   control={control}
@@ -125,13 +124,11 @@ const EditProfileForm = ({ user }: Props) => {
                 />
                 {user.user_photo && <DeleteUserPhoto />}
               </div>
-              <div className="flex flex-1 flex-col gap-[2.5rem] rounded-[20px] p-5 shadow-blur">
-                <div className="mb-[2.5rem] ml-[1.25rem] mt-[1.25rem] p-[0.625rem] text-s1 font-medium">
-                  Персональна інформація
-                </div>
+              <div className="flex flex-1 flex-col rounded-[20px] p-8 shadow-blur">
                 <ProfileInput
                   data={user.first_name}
                   labelText="Ім'я"
+                  placeholder="Наприклад: Катерина"
                   name="first_name"
                   register={register}
                   error={errors.first_name}
@@ -140,6 +137,7 @@ const EditProfileForm = ({ user }: Props) => {
                 <ProfileInput
                   data={user.last_name}
                   labelText="Прізвище"
+                  placeholder="Наприклад: Шевченко"
                   name="last_name"
                   register={register}
                   error={errors.last_name}
@@ -148,6 +146,7 @@ const EditProfileForm = ({ user }: Props) => {
                 <ProfileInput
                   data={user.email}
                   labelText="Email"
+                  placeholder="Наприклад: kateryna.sh@gmail.com"
                   name="email"
                   register={register}
                   error={errors.email}
@@ -160,27 +159,43 @@ const EditProfileForm = ({ user }: Props) => {
                   register={register}
                   error={errors.phone_number}
                   inputType="tel"
-                  placeholder="+380"
+                  placeholder="Наприклад: +380670000000"
                 />
+                <div className="flex flex-col">
+                  <label className="text-grey-800 pb-2 pt-8 text-b3" htmlFor="description">
+                    Опис
+                  </label>
+                  <textarea
+                    className="placeholder:text-grey-400 min-h-[104px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 focus:border-2"
+                    placeholder="Опишіть свій досвід як майстра або розкажіть про особливості наданої послуги"
+                    name="description"
+                    id="description"
+                  />
+                </div>
                 <ProfileInput
+                  data=""
+                  labelText="Додайте посилання на соцмережу"
+                  name="name"
+                  register={register}
+                  error={errors.first_name}
+                  inputType="text"
+                  placeholder="Наприклад: @kateryna.clay"
+                />
+                {/* <ProfileInput
                   data={user.location || ''}
                   labelText="Місцезнаходження"
                   name="location"
                   register={register}
                   error={errors.location}
                   inputType="text"
-                />
+                /> */}
               </div>
             </div>
-            <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-around gap-[12.75rem]">
-              <Button className="custom-button w-profile-button" onClick={() => resetForm()}>
+            <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-between gap-[12.75rem]">
+              <Button className="custom-button w-[285px]" onClick={() => resetForm()}>
                 Відмінити зміни
               </Button>
-              <Button
-                className="custom-button w-profile-button"
-                disabled={!canSubmit}
-                type="submit"
-              >
+              <Button className="custom-button w-[285px]" disabled={!canSubmit} type="submit">
                 Зберегти зміни
               </Button>
             </div>
