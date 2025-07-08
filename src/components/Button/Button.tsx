@@ -18,12 +18,7 @@ const Button: FC<BtnProps> = ({
   disabled = false,
 }) => {
   return (
-    <button
-      onClick={onClick}
-      type={type}
-      className={`rounded-3xl px-4 py-2 transition duration-300 hover:cursor-pointer ${className}`}
-      disabled={disabled}
-    >
+    <button onClick={onClick} type={type} className={`button ${className}`} disabled={disabled}>
       {children || text}
     </button>
   )
