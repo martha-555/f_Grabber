@@ -5,13 +5,11 @@ import IconMinus from '../../assets/icons/minus-icon.svg?react'
 
 import './FAQItem.css'
 
-interface FAQItemProps extends TFAQItem {
-  key: string
-}
+interface FAQItemProps extends TFAQItem {}
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer, id, key }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, id }) => {
   return (
-    <div className="accordion w-full border border-b-grey-200 py-8 last:border-none" key={key}>
+    <div className="accordion w-full border border-b-grey-200 py-8 last:border-none">
       <details name="faq" className="accordion__details group items-center">
         <summary className="flex cursor-pointer list-none items-center justify-between text-grey-200 marker:hidden">
           <span role="term" aria-details={id} className="mb-2 text-b2 text-grey-950">
