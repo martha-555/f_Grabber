@@ -31,6 +31,7 @@ export const API_ENDPOINTS = {
     addImage: 'ads/{ad_id}/add-image/',
     approve: 'ads/{ad_id}/approve/',
     reject: 'ads/{ad_id}/reject/',
+    faq: 'ads/faq/',
     categoriesList: 'ads/categories/',
   },
   AUTH: {
