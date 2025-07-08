@@ -299,7 +299,6 @@ const AddProduct = () => {
             className={`relative grid place-items-center ${!isFormValid ? 'bg-secondary-blue-600' : ''} ${isPending ? 'opacity-100' : ''}`}
             disabled={!isFormValid || isPending}
             type="submit"
-            isHover={isFormValid}
           >
             <span
               className={` ${isPending ? 'invisible opacity-0' : 'visible opacity-100'} col-start-1 row-start-1`}

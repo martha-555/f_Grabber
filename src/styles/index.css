@@ -49,11 +49,9 @@
   /* Стилі для кнопки */
   .button {
     @apply rounded-[40px] bg-primary-900 px-8 py-4 text-primary-30 transition duration-300;
-  }
-
-  /* Стилі для кнопки з ефектом наведення */
-  .button-hover {
-    @apply hover:cursor-pointer hover:bg-secondary-blue-700 hover:text-primary-30;
+    &:not(:disabled):hover {
+      @apply cursor-pointer bg-secondary-blue-700 text-primary-30;
+    }
   }
 
   .close-button {
@@ -80,7 +78,7 @@
   }
   /* Стилі для опису секції на сторінці додавання товару */
   .description-add-product-section {
-    @apply mb-2 text-b3 text-grey-800;
+    @apply text-grey-800 mb-2 text-b3;
   }
   /* Стилі для інпутів на сторінці додавання товару */
   .input-add-product-section {
