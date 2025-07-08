@@ -4,6 +4,7 @@ export const PATHS = {
     list: '/products',
     details: '/products/:id',
     add: '/add-product',
+    category: '/products/category/',
   },
   CART: '/cart',
   AUTH: {
@@ -31,6 +32,7 @@ export const API_ENDPOINTS = {
     approve: 'ads/{ad_id}/approve/',
     reject: 'ads/{ad_id}/reject/',
     faq: 'ads/faq/',
+    categoriesList: 'ads/categories/',
   },
   AUTH: {
     login: 'user/login/',

@@ -37,3 +37,9 @@ export { default as AdsImageUploader } from './AdsImageUploader/AdsImageUploader
 export { default as FAQSection } from './FAQSection/FAQSection'
 
 export { default as FAQItem } from './FAQItem/FAQItem'
+
+export { default as CategoriesSection } from './CategoriesSection/CategoriesSection'
+
+export { default as CategoryCard } from './CategoryCard/CategoryCard'
+
+export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'

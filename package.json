@@ -25,6 +25,7 @@
     "axios": "^1.8.4",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-react": "^7.37.4",
+    "nanoid": "^5.1.5",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "react": "^18.3.1",

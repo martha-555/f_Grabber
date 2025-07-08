@@ -7,7 +7,7 @@ const useFetchFAQItems = () => {
   const fetchFAQItems = useBackendRequest()
 
   return useQuery({
-    queryKey: ['profile'],
+    queryKey: ['faq-items'],
     queryFn: () => fetchFAQItems<TFAQItem[]>({ path: API_ENDPOINTS.ADS.faq, method: 'GET' }),
     retry: 1,
   })

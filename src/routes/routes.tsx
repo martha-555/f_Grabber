@@ -31,6 +31,10 @@ export const routes = [
         element: <Products />,
       },
       {
+        path: `${PATHS.PRODUCTS.category}:category`,
+        element: <Products />,
+      },
+      {
         path: PATHS.PRODUCTS.details,
         element: <ProductDetails />,
       },
