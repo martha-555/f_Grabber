@@ -7,7 +7,7 @@ const useFetchCategories = () => {
   const fetchCategories = useBackendRequest()
 
   return useQuery({
-    queryKey: ['profile'],
+    queryKey: ['categories'],
     queryFn: () => fetchCategories<TCategory[]>({ path: API_ENDPOINTS.ADS.categoriesList }),
     retry: 1,
   })
