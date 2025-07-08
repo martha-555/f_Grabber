@@ -43,7 +43,7 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = ({}) => {
             categories.map((category) => (
               // Кожна категорія є посиланням на сторінку категорії
               <Link
-                to={`${PATHS.PRODUCTS.category}${category.id}`}
+                to={`${PATHS.PRODUCTS.category}${category.name}`}
                 className="no-underline"
                 key={category.id}
               >

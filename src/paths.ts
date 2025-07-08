@@ -4,7 +4,7 @@ export const PATHS = {
     list: '/products',
     details: '/products/:id',
     add: '/add-product',
-    category: '/products?category=',
+    category: '/products/category/',
   },
   CART: '/cart',
   AUTH: {
