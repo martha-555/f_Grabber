@@ -12,12 +12,12 @@ const Profile = () => {
   return (
     <>
       {!userData.isLoading && (
-        <div className="text-grey-800 text-b-2 mx-auto">
+        <div className="text-b-2 mx-auto text-grey-800">
           <div className="mt-24 flex justify-between">
             <h1 className="tex-grey-950 mb-12 ml-[8.33%] text-h3 font-medium">Мій профіль</h1>
             <Link to={PATHS.PROFILE.edit}>
               <button className="mr-[120px] h-[48px] w-[48px] rounded-full bg-grey-50 hover:bg-grey-100 active:bg-grey-200">
-                <EditPencil className="hover:text-secondary-blue-400 active:text-secondary-blue-800 m-auto text-secondary-blue-200" />
+                <EditPencil className="active:text-secondary-blue-800 m-auto text-secondary-blue-200 hover:text-secondary-blue-400" />
               </button>
             </Link>
           </div>

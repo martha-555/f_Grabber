@@ -162,11 +162,11 @@ const EditProfileForm = ({ user }: Props) => {
                   placeholder="Наприклад: +380670000000"
                 />
                 <div className="flex flex-col">
-                  <label className="text-grey-800 pb-2 pt-8 text-b3" htmlFor="description">
+                  <label className="pb-2 pt-8 text-b3 text-grey-800" htmlFor="description">
                     Опис
                   </label>
                   <textarea
-                    className="placeholder:text-grey-400 min-h-[104px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 focus:border-2"
+                    className="min-h-[104px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
                     placeholder="Опишіть свій досвід як майстра або розкажіть про особливості наданої послуги"
                     name="description"
                     id="description"
