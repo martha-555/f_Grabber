@@ -51,7 +51,7 @@ const AddProduct = () => {
     newAds.append('description', data.description)
     newAds.append('price', data.price)
     newAds.append('status', 'draft')
-    newAds.append('category_name', data.category_name)
+    newAds.append('category', data.category_name)
     newAds.append('contact_name', data.contact_name)
     newAds.append('email', data.email)
     newAds.append('phone', data.phone)
