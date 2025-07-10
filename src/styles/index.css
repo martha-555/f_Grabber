@@ -78,7 +78,7 @@
   }
   /* Стилі для опису секції на сторінці додавання товару */
   .description-add-product-section {
-    @apply text-grey-800 mb-2 text-b3;
+    @apply mb-2 text-b3 text-grey-800;
   }
   /* Стилі для інпутів на сторінці додавання товару */
   .input-add-product-section {

@@ -22,8 +22,6 @@ const defaultValues: TFormData = {
   location: '',
 }
 
-// TOdo: replace with dynamic categories from backend
-
 const AddProduct = () => {
   const {
     register,
