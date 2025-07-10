@@ -39,3 +39,5 @@ export { default as CategoriesSection } from './CategoriesSection/CategoriesSect
 export { default as CategoryCard } from './CategoryCard/CategoryCard'
 
 export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'
+
+export { default as UserInfoItem } from './UserInfoItem/UserInfoItem'

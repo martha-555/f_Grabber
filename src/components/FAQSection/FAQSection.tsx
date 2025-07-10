@@ -1,6 +1,7 @@
 import React from 'react'
 import FAQItem from '../FAQItem/FAQItem'
 import useFetchFAQItems from '../../api/useFetchFAQItems'
+import QuestionPrompt from './QuestionPrompt'
 
 interface FAQSectionProps {}
 
@@ -13,6 +14,7 @@ const FAQSection: React.FC<FAQSectionProps> = ({}) => {
       <div className="w-[70%]">
         {FAQItems && FAQItems.map((item) => <FAQItem {...item} key={item.question} />)}
       </div>
+      <QuestionPrompt />
     </section>
   )
 }

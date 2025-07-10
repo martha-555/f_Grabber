@@ -70,7 +70,7 @@
     }
   }
   .custom-button {
-    @apply mb-8 mt-6 rounded-[30px] bg-primary-900 px-[33.5px] py-[9px] text-b4 text-primary-30 hover:bg-secondary-blue-700 active:bg-secondary-blue-600;
+    @apply mb-8 mt-6 rounded-[30px] bg-primary-900 px-[33.5px] py-[9px] text-b4 text-primary-30 hover:bg-secondary-blue-700 active:bg-secondary-blue-600 disabled:bg-secondary-blue-200;
   }
   /* Стилі для заголовку секції на сторінці додавання товару */
   .title-add-product-section {

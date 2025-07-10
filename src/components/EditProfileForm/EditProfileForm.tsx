@@ -11,6 +11,8 @@ import { useEffect, useState } from 'react'
 import DeleteUserPhoto from './DeleteUserPhoto'
 import CustomToaster from '../CustomToaster/CustomToaster'
 import Button from '../Button/Button'
+import { useNavigate } from 'react-router-dom'
+import { PATHS } from '../../paths'
 
 type Props = {
   user: TUserProfile
@@ -32,6 +34,7 @@ const EditProfileForm = ({ user }: Props) => {
 
   const { mutate: profileMutation } = submitUserData()
   const { mutate: photoMutation } = submitUserPhoto()
+  const navigate = useNavigate()
 
   const resetForm = () => {
     reset({
@@ -75,6 +78,10 @@ const EditProfileForm = ({ user }: Props) => {
 
       await Promise.all(mutations)
       toast.success('Зміни збережено успішно!', { id: 'profile-editor-toasts' })
+
+      setTimeout(() => {
+        navigate(PATHS.PROFILE.profile)
+      }, 1500)
     } catch (error) {
       toast.error('Помилка при збереженні', { id: 'profile-editor-toasts' })
     }
@@ -154,7 +161,7 @@ const EditProfileForm = ({ user }: Props) => {
                 />
                 <ProfileInput
                   data={user.phone_number}
-                  labelText="Номер телефону"
+                  labelText="Контактний номер"
                   name="phone_number"
                   register={register}
                   error={errors.phone_number}
@@ -163,7 +170,7 @@ const EditProfileForm = ({ user }: Props) => {
                 />
                 <div className="flex flex-col">
                   <label className="pb-2 pt-8 text-b3 text-grey-800" htmlFor="description">
-                    Опис
+                    Про себе
                   </label>
                   <textarea
                     className="min-h-[104px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
@@ -173,6 +180,14 @@ const EditProfileForm = ({ user }: Props) => {
                   />
                 </div>
                 <ProfileInput
+                  data={user.location || ''}
+                  labelText="Місце виготовлення виробу/надання послуг"
+                  name="location"
+                  register={register}
+                  error={errors.location}
+                  inputType="text"
+                />
+                <ProfileInput
                   data=""
                   labelText="Додайте посилання на соцмережу"
                   name="name"
@@ -181,19 +196,17 @@ const EditProfileForm = ({ user }: Props) => {
                   inputType="text"
                   placeholder="Наприклад: @kateryna.clay"
                 />
-                {/* <ProfileInput
-                  data={user.location || ''}
-                  labelText="Місцезнаходження"
-                  name="location"
-                  register={register}
-                  error={errors.location}
-                  inputType="text"
-                /> */}
               </div>
             </div>
-            <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-between gap-[12.75rem]">
-              <Button className="custom-button w-[285px]" onClick={() => resetForm()}>
-                Відмінити зміни
+            <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-end gap-[24px]">
+              <Button
+                className="custom-button w-[285px] bg-grey-50 text-primary-900"
+                onClick={() => {
+                  resetForm()
+                  navigate(PATHS.PROFILE.profile)
+                }}
+              >
+                Скасувати зміни
               </Button>
               <Button className="custom-button w-[285px]" disabled={!canSubmit} type="submit">
                 Зберегти зміни

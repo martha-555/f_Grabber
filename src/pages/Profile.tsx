@@ -3,7 +3,8 @@ import DefaultAvatar from '../assets/images/defaultAvatar.svg?react'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
 import userProfileStore from '../store/userProfileStore'
-import { Button } from '../components'
+import { UserInfoItem } from '../components'
+import InstIcon from '../assets/images/instagramIcon.svg?react'
 
 const Profile = () => {
   const userData = userProfileStore((state) => state)
@@ -12,7 +13,7 @@ const Profile = () => {
   return (
     <>
       {!userData.isLoading && (
-        <div className="text-b-2 mx-auto text-grey-800">
+        <div className="text-b-2 mx-auto mb-40 text-grey-800">
           <div className="mt-24 flex justify-between">
             <h1 className="tex-grey-950 mb-12 ml-[8.33%] text-h3 font-medium">Мій профіль</h1>
             <Link to={PATHS.PROFILE.edit}>
@@ -34,44 +35,35 @@ const Profile = () => {
                 </div>
               )}
             </div>
-            <div>
-              <p>{`${userInfo.first_name} ${userInfo.last_name}`}</p>
-              <br />
-              <p>{userInfo.email}</p>
-              <br />
-              {userInfo.phone_number && <p> {userInfo.phone_number}</p> && <br />}
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus autem,
-                perspiciatis recusandae iusto magnam unde tempore sequi, dolor adipisci quas eveniet
-                consequatur facilis nostrum nam ratione quasi suscipit praesentium similique. Lorem
-                ipsum dolor sit amet consectetur, adipisicing elit. Praesentium nesciunt at optio
-                aut aliquid ea consequatur voluptatum sit ad sequi dolorum nam tempore assumenda,
-                quo quidem! Ea, quidem nihil! Accusantium! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Autem aliquam nesciunt earum maxime labore iure et quas voluptate
-                voluptatibus? Totam unde adipisci obcaecati repudiandae, alias vitae nam impedit ab
-                aperiam. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quaerat,
-                doloremque? Totam architecto tenetur molestias labore cupiditate facere nostrum
-                reiciendis tempora incidunt doloremque facilis nihil quaerat est, similique vel
-                ipsam. Quod? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias
-                iusto obcaecati aut laborum distinctio? Recusandae veniam temporibus at possimus
-                eveniet molestias, quibusdam laboriosam ullam ipsum autem omnis, accusantium facilis
-                reiciendis.
-              </p>
-              <br />
-              {userInfo.location && <p>{userInfo.location}</p> && <br />}
-              <section>
-                <p>Соціальні мережі:</p>
-              </section>
+            <div className="mr-[120px]">
+              <UserInfoItem
+                text="Ім'я та прізвище"
+                data={`${userInfo.first_name} ${userInfo.last_name}`}
+              />
+              <UserInfoItem text="E-mail" data={userInfo.email} />
+              <UserInfoItem
+                text="Про себе"
+                data="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, beatae accusamus rerum assumenda corporis voluptatem tempora pariatur. Nihil nobis obcaecati odit quidem mollitia, ratione error sunt debitis, blanditiis optio delectus."
+              />
+              {userInfo.location && (
+                <UserInfoItem
+                  text="Місце виготовлення виробу/надання послуги"
+                  data={userInfo.location}
+                />
+              )}
+              <UserInfoItem
+                text=" Соціальні мережі:"
+                icon=<a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/`}>
+                  <InstIcon />
+                </a>
+              />
             </div>
           </div>
-          <div className="m-auto flex max-w-[94%] justify-between">
+          {/* <div className="m-auto flex max-w-[94%] justify-between">
             <Link to={PATHS.PROFILE.changePassword}>
               <Button className="custom-button">Редагувати пароль</Button>
             </Link>
-          </div>
-          <section className="pt-[2.78%]">
-            <div className="mb-[4.25rem] p-[0.625rem] font-medium">Мої оголошення</div>
-          </section>
+          </div> */}
         </div>
       )}
     </>
