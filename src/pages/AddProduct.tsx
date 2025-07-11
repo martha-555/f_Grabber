@@ -92,7 +92,7 @@ const AddProduct = () => {
       watchTitle &&
       watchDescription &&
       watchLocation &&
-      Number(watchPrice) &&
+      (Number(watchPrice) > 0 || watchPrice !== '') &&
       watchContactName &&
       watchEmail &&
       watchPhone &&
