@@ -6,6 +6,7 @@ import { z } from 'zod'
 import useAdsCreate from '../api/adsCreate'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import useFetchCategories from '../api/useFetchCategories'
 
 export type TFormData = z.infer<typeof addAdsSchema>
 
@@ -19,17 +20,6 @@ const defaultValues: TFormData = {
   email: '',
   phone: '',
   location: '',
-}
-
-// TOdo: replace with dynamic categories from backend
-
-const categories = {
-  electronics: 'Електроніка',
-  clothing: 'Одяг',
-  transport: 'Транспорт',
-  'real-estate': 'Нерухомість',
-  children: 'Дитяче',
-  other: 'Інше',
 }
 
 const AddProduct = () => {
@@ -48,6 +38,8 @@ const AddProduct = () => {
 
   const { mutateAsync: createAds, isPending } = useAdsCreate()
 
+  const { data: categories } = useFetchCategories()
+
   const navigate = useNavigate()
 
   const handleSubmitForm = async (data: TFormData) => {
@@ -57,7 +49,7 @@ const AddProduct = () => {
     newAds.append('description', data.description)
     newAds.append('price', data.price)
     newAds.append('status', 'draft')
-    newAds.append('category_name', data.category_name)
+    newAds.append('category', data.category_name)
     newAds.append('contact_name', data.contact_name)
     newAds.append('email', data.email)
     newAds.append('phone', data.phone)
@@ -100,7 +92,7 @@ const AddProduct = () => {
       watchTitle &&
       watchDescription &&
       watchLocation &&
-      Number(watchPrice) &&
+      (Number(watchPrice) > 0 || watchPrice !== '') &&
       watchContactName &&
       watchEmail &&
       watchPhone &&
@@ -164,27 +156,28 @@ const AddProduct = () => {
           <h2 className="title-add-product-section">Категорія *</h2>
 
           <div className="flex flex-wrap gap-5">
-            {Object.entries(categories).map(([key, value]) => {
-              return (
-                <label
-                  className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-primary-900 px-4 py-2 text-b4 duration-300 ${
-                    watchCategory === value
-                      ? 'bg-primary-900 text-primary-30'
-                      : 'text-primary-900 hover:bg-primary-900 hover:text-primary-30'
-                  }`}
-                  key={key + value}
-                >
-                  {value}
-                  <input
-                    type="radio"
-                    {...register('category_name')}
-                    value={value}
-                    id={key}
-                    className="appearance-none"
-                  />
-                </label>
-              )
-            })}
+            {categories &&
+              categories.map((category, index) => {
+                return (
+                  <label
+                    className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-primary-900 px-4 py-2 text-b4 duration-300 ${
+                      watchCategory === category.name
+                        ? 'bg-primary-900 text-primary-30'
+                        : 'text-primary-900 hover:bg-primary-900 hover:text-primary-30'
+                    }`}
+                    key={index + category.name}
+                  >
+                    {category.name}
+                    <input
+                      type="radio"
+                      {...register('category_name')}
+                      value={category.name}
+                      id={category.name}
+                      className="appearance-none"
+                    />
+                  </label>
+                )
+              })}
           </div>
           {errors.category_name && <p className="error-text">{errors.category_name.message}</p>}
         </section>
