@@ -3,6 +3,7 @@ import { Button, Menu } from '../../components'
 import { PATHS } from '../../paths'
 import userProfileStore from '../../store/userProfileStore'
 import searchIcon from '../../assets/images/searchIcon.svg'
+import BasketIcon from '../../assets/images/basketIcon.svg?react'
 
 const Navbar = () => {
   const user = userProfileStore()
@@ -29,6 +30,9 @@ const Navbar = () => {
         <button className="h-10 whitespace-nowrap rounded-full bg-white px-6 text-primary-900 hover:bg-secondary-blue-50 focus:border focus:border-primary-900 focus:bg-secondary-blue-50 active:bg-secondary-blue-200 active:shadow-[inset_0_0_4px_2px_#ABC2F6]">
           Створити оголошення
         </button>
+      </Link>
+      <Link to="#">
+        <BasketIcon />
       </Link>
       {user.isLoggedIn ? (
         <Menu />

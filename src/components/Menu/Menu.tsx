@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import userProfileStore from '../../store/userProfileStore'
-import defaultAvatar from '../../assets/images/defaultAvatar.svg'
+import DefaultAvatar from '../../assets/images/defaultAvatar.svg?react'
 import Button from '../Button/Button'
 import LogoutModal from './LogoutModal'
 import { PATHS } from '../../paths'
@@ -15,13 +15,16 @@ const Menu = () => {
   return (
     <div className="relative inline-block">
       <Button onClick={() => setIsOpen(!isOpen)} className="border-none bg-transparent p-0">
-        <img
-          src={user_photo ? (user_photo as string) : defaultAvatar}
-          alt="avatar"
-          className="h-10 w-10 rounded-full border border-white object-cover"
-        />
+        {user_photo ? (
+          <img
+            src={user_photo as string}
+            alt="avatar"
+            className="h-10 w-10 rounded-full border border-white object-cover"
+          />
+        ) : (
+          <DefaultAvatar className="text-primary-30" />
+        )}
       </Button>
-
       {isOpen && (
         <div
           className="absolute right-0 z-50 mt-2 w-48 overflow-hidden rounded-lg border bg-white text-black shadow-xl"
