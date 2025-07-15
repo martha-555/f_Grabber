@@ -8,8 +8,6 @@ export { default as UploadAvatar } from './EditProfileForm/UploadAvatar'
 
 export { default as ProfileInput } from './EditProfileForm/ProfileInput'
 
-export { default as ProfileField } from './ProfileField/ProfileField'
-
 export { default as Modal } from './Modal/Modal'
 
 export { default as Button } from './Button/Button'
@@ -24,8 +22,6 @@ export { default as Menu } from './Menu/Menu'
 
 export { default as PasswordInput } from './PasswordInput/PasswordInput'
 
-export { default as PhotoButton } from './EditProfileForm/PhotoButton'
-
 export { default as DeleteUserPhoto } from './EditProfileForm/DeleteUserPhoto'
 
 export { default as ConfirmModal } from './ConfirmModal/ConfirmModal'
@@ -37,3 +33,15 @@ export { default as AdsImageUploader } from './AdsImageUploader/AdsImageUploader
 export { default as RecommendedSection } from './RecommendedSection/RecommendedSection'
 
 export { default as RecommendedCard } from './RecommendedCard/RecommendedCard'
+
+export { default as FAQSection } from './FAQSection/FAQSection'
+
+export { default as FAQItem } from './FAQItem/FAQItem'
+
+export { default as CategoriesSection } from './CategoriesSection/CategoriesSection'
+
+export { default as CategoryCard } from './CategoryCard/CategoryCard'
+
+export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'
+
+export { default as UserInfoItem } from './UserInfoItem/UserInfoItem'
