@@ -1,13 +1,8 @@
-export type TAdImage = {
-  id: string
-  image: string
-}
-
 export type TAd = {
   id: string
   title: string
   description: string
-  images: TAdImage[]
+  images: string[]
   price: string
   location: string
 }
