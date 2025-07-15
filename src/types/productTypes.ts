@@ -1,4 +1,4 @@
-export type TAd = {
+export type AdType = {
   id: string
   title: string
   description: string

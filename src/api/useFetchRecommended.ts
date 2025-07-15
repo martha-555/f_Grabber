@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
-import { TAd } from '../types/productTypes'
+import { AdType } from '../types/productTypes'
 import { API_ENDPOINTS } from '../paths'
 
 const useFetchRecommended = () => {
@@ -9,7 +9,7 @@ const useFetchRecommended = () => {
   return useQuery({
     queryKey: ['recommended-ads'],
     queryFn: () =>
-      fetchAds<TAd[]>({
+      fetchAds<AdType[]>({
         path: API_ENDPOINTS.ADS.recommendations,
         method: 'GET',
       }),

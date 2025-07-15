@@ -32,7 +32,7 @@ export const API_ENDPOINTS = {
     approve: 'ads/{ad_id}/approve/',
     reject: 'ads/{ad_id}/reject/',
     faq: 'ads/faq/',
-    categoriesList: 'ads/categories/',
+    categoriesList: '/listings/categories/',
     recommendations: '/listings/recommendations/',
   },
   AUTH: {
