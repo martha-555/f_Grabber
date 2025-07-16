@@ -30,6 +30,10 @@ export { default as CustomToaster } from './CustomToaster/CustomToaster'
 
 export { default as AdsImageUploader } from './AdsImageUploader/AdsImageUploader'
 
+export { default as RecommendedSection } from './RecommendedSection/RecommendedSection'
+
+export { default as RecommendedCard } from './RecommendedCard/RecommendedCard'
+
 export { default as FAQSection } from './FAQSection/FAQSection'
 
 export { default as FAQItem } from './FAQItem/FAQItem'

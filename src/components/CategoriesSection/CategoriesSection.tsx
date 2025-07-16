@@ -13,7 +13,7 @@ const CategoriesSection: React.FC<CategoriesSectionProps> = ({}) => {
   return (
     <>
       {/* Основний контейнер секції категорій */}
-      <section className="mx-auto max-w-container">
+      <section className="mx-auto max-w-container pb-[64px]">
         {/* Заголовок секції */}
         <h1 className="my-16 text-wrap text-center font-kyiv text-h1">Категорії</h1>
 

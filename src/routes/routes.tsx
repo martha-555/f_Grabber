@@ -5,7 +5,6 @@ import {
   Cart,
   ForgotPassword,
   Login,
-  Main,
   Orders,
   ProductDetails,
   Products,
@@ -13,6 +12,7 @@ import {
   Register,
   ResetPassword,
   EditProfile,
+  Main,
 } from '../pages'
 import { PATHS } from '../paths'
 import ChangeUserPassword from '../pages/ChangeUserPassword'

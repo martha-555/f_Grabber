@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @font-face {
   font-family: 'KyivTypeTitling';
   src: url('../assets/fonts/KyivTypeTitling-Bold.woff2') format('woff2');
@@ -7,6 +8,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
 
 @layer base {
   html {
@@ -21,6 +27,10 @@
     &::placeholder {
       @apply text-grey-950;
     }
+  }
+
+  .card-recommended {
+    @apply border border-transparent bg-primary-30 transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
   }
 
   /* Стилі для іконки "!" в інпутах */
@@ -42,6 +52,7 @@
     @apply relative flex flex-col items-center gap-2;
   }
   /* Стилі для тексту, який з'являється під час виникнення помилки */
+
   .error-text {
     @apply text-d1 text-error-default;
   }
@@ -62,13 +73,16 @@
       @apply absolute h-0.5 w-4 bg-grey-950;
       content: '';
     }
+
     &::after {
       @apply rotate-45;
     }
+
     &::before {
       @apply -rotate-45;
     }
   }
+
   .custom-button {
     @apply mb-8 mt-6 rounded-[30px] bg-primary-900 px-[33.5px] py-[9px] text-b4 text-primary-30 hover:bg-secondary-blue-700 active:bg-secondary-blue-600 disabled:bg-secondary-blue-200;
   }
