@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import { AdType } from '../../types/productTypes'
-import ArrowIcon from '../../assets/icons/arrow-icon.svg?react'
-import LocationIcon from '../../assets/icons/location-icon.svg?react'
-import defaultAvatar from '../../assets/images/defaultAvatar.svg'
+import { AdType } from '../../../types/productTypes.ts'
+import ArrowIcon from '../../../assets/icons/arrow-icon.svg?react'
+import LocationIcon from '../../../assets/icons/location-icon.svg?react'
+import defaultAvatar from '../../../assets/images/defaultAvatar.svg'
 
 type Props = {
   ad: AdType

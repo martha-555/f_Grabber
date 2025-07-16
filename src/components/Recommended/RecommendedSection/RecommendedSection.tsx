@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import SwiperCore from 'swiper'
-import ArrowLeftIcon from '../../assets/icons/arrow-left.svg?react'
-import ArrowRight from '../../assets/icons/arrow-right.svg?react'
-import { RecommendedCard } from '../../components'
-import useFetchRecommended from '../../api/useFetchRecommended'
+import ArrowLeftIcon from '../../../assets/icons/arrow-left.svg?react'
+import ArrowRight from '../../../assets/icons/arrow-right.svg?react'
+import { RecommendedCard } from '../../index.ts'
+import useFetchRecommended from '../../../api/useFetchRecommended.ts'
 import 'swiper/css'
 import 'swiper/css/navigation'
 
@@ -24,7 +24,7 @@ const RecommendedSection = () => {
   if (isError) return <p>Сталася помилка при завантаженні</p>
 
   return (
-    <section className="relative mx-auto h-[565px] max-w-[1200px]">
+    <section className="relative mx-auto mb-[100px] h-[565px] max-w-[1200px]">
       <h2 className="pb-8 text-center text-h3">Вам може сподобатися</h2>
 
       <div className="relative">

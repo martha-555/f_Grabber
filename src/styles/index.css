@@ -65,6 +65,10 @@
     }
   }
 
+  .button-second {
+    @apply rounded-[30px] border border-transparent bg-primary-30 px-8 py-2 text-grey-950 transition duration-300 hover:bg-grey-100 focus:shadow-[0_0_0_2px_theme('colors.grey.100')] focus:outline-none active:bg-grey-200 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:text-grey-500;
+  }
+
   .close-button {
     @apply absolute right-6 top-4 flex flex-col transition-transform duration-300 ease-in-out;
 
