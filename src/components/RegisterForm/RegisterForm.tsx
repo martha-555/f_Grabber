@@ -65,7 +65,7 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register('first_name')}
             id="register-name"
-            className="input-text"
+            className={`input-text ${errors.first_name ? 'border-error-default' : ''}`}
             placeholder="Ім'я"
           />
         </label>
@@ -78,7 +78,7 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register('last_name')}
             id="register-surname"
-            className="input-text"
+            className={`input-text ${errors.last_name ? 'border-error-default' : ''}`}
             placeholder="Прізвище"
           />
         </label>
@@ -91,7 +91,7 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register('phone_number')}
             id="register-phone"
-            className="input-text"
+            className={`input-text ${errors.phone_number ? 'border-error-default' : ''}`}
             placeholder="Номер телефону"
           />
         </label>
@@ -104,7 +104,7 @@ const RegisterForm: React.FC = () => {
             type="email"
             {...register('email')}
             id="register-email"
-            className="input-text"
+            className={`input-text ${errors.email ? 'border-error-default' : ''}`}
             placeholder="Електронна пошта"
           />
         </label>
@@ -117,7 +117,7 @@ const RegisterForm: React.FC = () => {
             type="password"
             {...register('password')}
             id="register-password"
-            className="input-text"
+            className={`input-text ${errors.password ? 'border-error-default' : ''}`}
             placeholder="Пароль"
           />
         </label>
@@ -128,21 +128,21 @@ const RegisterForm: React.FC = () => {
         ))}
       </section>
       {/* Поле для підтвердження паролю */}
-      <section className="auth-register-form-section">
+      <section className="auth-register-form-section mb-4">
         <label className={`w-full ${errors.confirmPassword ? 'warning-icon-for-input' : ''}`}>
           <input
             type="password"
             {...register('confirmPassword')}
             id="register-confirm-password"
-            className="input-text"
+            className={`input-text ${errors.confirmPassword ? 'border-error-default' : ''}`}
             placeholder="Підтвердження паролю"
           />
         </label>
         {errors.confirmPassword && <p className="error-text">{errors.confirmPassword.message}</p>}
       </section>
       <section className="auth-register-form-section">
-        <ul className="flex list-outside list-['-'] flex-col gap-5 self-start text-d1">
-          <p>Пароль має містити:</p>
+        <ul className="text-grey-600 flex list-inside list-disc flex-col gap-0 self-start text-d1">
+          <p className="mb-4">Пароль має містити:</p>
           <li className="ml-2 pl-2">мінімум 6 символів</li>
           <li className="ml-2 pl-2">хоча б одну велику літеру</li>
           <li className="ml-2 pl-2">хоча б одну цифру</li>
@@ -150,13 +150,21 @@ const RegisterForm: React.FC = () => {
       </section>
 
       {/* Кнопка для відправки форми */}
-      <Button type="submit" disabled={status === 'pending'} text="Зареєструватися" />
+      <Button
+        className="py-2"
+        type="submit"
+        disabled={status === 'pending'}
+        text="Зареєструватися"
+      />
 
       {/* Посилання для переходу на сторінку входу */}
-      <section className="auth-register-form-section">
-        <Link to={PATHS.AUTH.login} className="text-xs">
-          Вже є акаунт? Увійти
-        </Link>
+      <section className="auth-register-form-section mb-32">
+        <p className="text-b4 text-grey-800">
+          Вже є акаунт?
+          <Link to={PATHS.AUTH.login} className="ml-2 text-grey-500 underline">
+            Увійти
+          </Link>
+        </p>
       </section>
     </form>
   )
