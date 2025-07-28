@@ -55,7 +55,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
-      <h1 className="mb-7 text-center text-3xl font-medium">Увійти</h1>
+      <h1 className="mb-7 text-center text-3xl font-medium">Увійти в акаунт</h1>
       <section className="auth-register-form-section">
         <label className={`w-full ${errors.email ? 'warning-icon-for-input' : ''}`}>
           <input
@@ -87,15 +87,23 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         )}
       </section>
       <section className="auth-register-form-section">
-        <Link to={PATHS.PASSWORD.forgot} className="ml-5 self-start text-xs">
+        <Link to={PATHS.PASSWORD.forgot} className="mb-6 ml-5 mt-3 self-start underline">
           Забули пароль?
-        </Link>
-        <Link to={PATHS.AUTH.register} className="ml-5 self-start text-xs">
-          Немає аккаунту? Зареєструватися
         </Link>
       </section>
       {/* Кнопка для відправки форми */}
-      <Button disabled={status === 'pending'} type="submit" text="Увійти" />
+      <Button
+        disabled={status === 'pending'}
+        type="submit"
+        text="Увійти в акаунт"
+        className="py-2"
+      />
+      <p className="flex justify-center text-b4 text-grey-800">
+        Немає аккаунту?{' '}
+        <Link to={PATHS.AUTH.register} className="ml-2 text-grey-500 underline">
+          Зареєструватися
+        </Link>
+      </p>
     </form>
   )
 }

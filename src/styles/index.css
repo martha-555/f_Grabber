@@ -22,10 +22,10 @@
 
 @layer components {
   .input-text {
-    @apply w-full rounded-3xl border border-grey-950 px-2 py-3 focus:outline-none;
+    @apply w-full rounded-3xl border border-grey-500 px-4 py-2 text-grey-950 focus:outline-none;
 
     &::placeholder {
-      @apply text-grey-950;
+      @apply text-b4 text-grey-400;
     }
   }
 
@@ -40,16 +40,12 @@
 
   /* Стилі для форми реєстрації користувача */
   .auth-register-form {
-    @apply flex w-full flex-col gap-5 md:w-1/2;
-
-    button[type='submit'] {
-      @apply mt-16;
-    }
+    @apply flex w-full max-w-96 flex-col gap-4 md:w-1/2;
   }
 
   /* Стилі для секції форми реєстрації користувача */
   .auth-register-form-section {
-    @apply relative flex flex-col items-center gap-2;
+    @apply relative flex flex-col items-center gap-2 text-grey-500;
   }
   /* Стилі для тексту, який з'являється під час виникнення помилки */
 
