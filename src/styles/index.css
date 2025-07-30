@@ -118,4 +118,10 @@
     opacity: 0;
     visibility: hidden;
   }
+  .editButton {
+    @apply h-[48px] w-[48px] rounded-full bg-grey-50 hover:bg-grey-100 active:bg-grey-200;
+  }
+  .editIcon {
+    @apply active:text-secondary-blue-800 m-auto text-secondary-blue-200 hover:text-secondary-blue-400;
+  }
 }

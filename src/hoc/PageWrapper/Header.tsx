@@ -2,8 +2,8 @@ import Navbar from './Navbar'
 
 const Header = () => {
   return (
-    <header className="w-full bg-primary-900 px-[7.5rem] py-[1.875rem] text-[#FFFFFF]">
-      <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
+    <header className="w-max min-w-full bg-primary-900 px-[120px] py-6 text-[#FFFFFF]">
+      <div className="mx-auto flex w-full items-center gap-9">
         <Navbar />
       </div>
     </header>

@@ -3,7 +3,7 @@ import Section from './Section'
 
 const Footer = () => {
   return (
-    <div className="bg-primary-900">
+    <div className="w-fit min-w-full bg-primary-900">
       <div className="flex justify-between p-[7.5rem] text-[#FFFFFF]">
         <Section className="justify-between">
           <h1 className="text-h2 font-medium">Grabber</h1>

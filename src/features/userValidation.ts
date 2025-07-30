@@ -1,7 +1,7 @@
 // userSchemas.ts
 import { z } from 'zod'
 
-export const baseUserSchema = z.object({
+const userSchema = z.object({
   first_name: z
     .string()
     .nonempty("Ім'я є обов'язковим")
@@ -18,20 +18,16 @@ export const baseUserSchema = z.object({
     .string()
     .nonempty("Номер телефону є обов'язковим")
     .regex(/^\+380\d{9}$/, 'Номер телефону має бути у форматі +380XXXXXXXXX'),
+})
+
+export const baseUserSchema = userSchema.extend({
   email: z.string().nonempty("Електронна пошта є обов'язковою").email('Некоректний e-mail'),
 })
 
 const passwordValidation = z
   .string()
   .nonempty("Це поле є обов'язковим")
-  .regex(
-    /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9 \n]).{8,}$/,
-    `Пароль має містити:
-– мінімум 8 символів
-– хоча б одну велику літеру
-– хоча б одну цифру
-– спеціальний символ (!@#...)`,
-  )
+  .regex(/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^a-zA-Z0-9 \n]).{8,}$/, `Невірний пароль`)
 
 export const passwordSchema = z
   .object({
@@ -41,7 +37,7 @@ export const passwordSchema = z
   })
   .refine((data) => data.confirm_password === data.new_password, {
     path: ['confirm_password'],
-    message: 'Паролі мають збігатися',
+    message: 'Паролі не збігаються',
   })
 
 export const registerSchema = baseUserSchema
@@ -64,6 +60,13 @@ export const LoginSchema = z.object({
   password: z.string().min(6, 'Пароль має містити щонайменше 6 символів'),
 })
 
+export const editEmailSchema = LoginSchema.extend({
+  new_email: z.string().email('Невірний формат електронної пошти'),
+}).refine((data) => data.email !== data.new_email, {
+  message: 'Новий email не повинен збігатися зі старим',
+  path: ['new_email'],
+})
+
 export const resetPasswordSchema = z
   .object({
     password: z
@@ -82,7 +85,7 @@ export const resetPasswordSchema = z
     }
   })
 
-export const editProfileSchema = baseUserSchema.extend({
+export const editProfileSchema = userSchema.extend({
   user_photo: z
     .union([z.string().url(), z.instanceof(File)])
     .optional()
@@ -99,6 +102,10 @@ export const editProfileSchema = baseUserSchema.extend({
     .string()
     .nonempty('Введіть локацію')
     .regex(/^[^\d!@#$%^&*()_+=<>?/\\]+$/, 'Локація не має містити цифр чи спецсимволів'),
+  social_links: z
+    .array(z.object({ platform: z.string(), url: z.string().url('Некоректне посилання') }))
+    .optional(),
+  description: z.string().optional(),
 })
 
 export const addAdsSchema = z.object({

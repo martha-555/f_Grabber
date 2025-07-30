@@ -25,6 +25,7 @@ module.exports = {
         primary: {
           900: '#2D336B',
           30: '#FAFAFA',
+          100: '#F6ECDE',
         },
         secondary: {
           blue: {
@@ -35,6 +36,7 @@ module.exports = {
             500: '#6D80E7',
             600: '#515BDA',
             700: '#4249C0',
+            800: '#383F9B',
           },
         },
         warning: {

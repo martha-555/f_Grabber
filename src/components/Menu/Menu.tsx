@@ -27,7 +27,7 @@ const Menu = () => {
       </Button>
       {isOpen && (
         <div
-          className="absolute right-0 z-50 mt-2 w-48 overflow-hidden rounded-lg border bg-white text-black shadow-xl"
+          className="absolute right-0 z-50 mt-2 w-48 overflow-hidden rounded-[20px] border bg-primary-30 text-black text-grey-800 shadow-[4px_4px_16px_0px_#00000026] shadow-xl"
           onClick={(e) => e.stopPropagation()}
         >
           <button
@@ -35,16 +35,23 @@ const Menu = () => {
               setIsOpen(false)
               navigate(PATHS.PROFILE.profile)
             }}
-            className="w-full px-4 py-2 text-left transition-colors duration-300 hover:bg-grey-200"
+            className="w-full px-4 py-2 transition-colors duration-300 hover:bg-grey-200"
           >
             Профіль
           </button>
+          <button className="w-full px-4 py-2 transition-colors duration-300 hover:bg-grey-200">
+            Мої оголошення
+          </button>
+          <button className="w-full px-4 py-2 transition-colors duration-300 hover:bg-grey-200">
+            Вподобані
+          </button>
+          <div className="mx-4 h-px bg-grey-800"></div>
           <button
             onClick={() => {
               setIsOpen(false)
               setShowModal(true)
             }}
-            className="w-full px-4 py-2 text-left transition-colors duration-300 hover:bg-grey-200"
+            className="w-full px-4 py-2 transition-colors duration-300 hover:bg-grey-200"
           >
             Вихід
           </button>

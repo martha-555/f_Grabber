@@ -1,7 +1,7 @@
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
-import { TUserProfile } from '../../types/types'
+import { TUserEditForm, TUserProfile } from '../../types/types'
 import UploadAvatar from './UploadAvatar'
 import ProfileInput from './ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
@@ -11,8 +11,9 @@ import { useEffect, useState } from 'react'
 import DeleteUserPhoto from './DeleteUserPhoto'
 import CustomToaster from '../CustomToaster/CustomToaster'
 import Button from '../Button/Button'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import EditIcon from '../../assets/images/editPencil.svg?react'
 
 type Props = {
   user: TUserProfile
@@ -23,7 +24,6 @@ const EditProfileForm = ({ user }: Props) => {
   const initialValues = {
     first_name: user?.first_name,
     last_name: user?.last_name,
-    email: user?.email,
     phone_number: user?.phone_number,
     location: user?.location || '',
     user_photo:
@@ -51,7 +51,7 @@ const EditProfileForm = ({ user }: Props) => {
     reset,
     resetField,
     formState: { dirtyFields, errors },
-  } = useForm<TUserProfile>({
+  } = useForm<TUserEditForm>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
     defaultValues: initialValues,
@@ -150,15 +150,38 @@ const EditProfileForm = ({ user }: Props) => {
                   error={errors.last_name}
                   inputType="text"
                 />
-                <ProfileInput
-                  data={user.email}
-                  labelText="Email"
-                  placeholder="Наприклад: kateryna.sh@gmail.com"
-                  name="email"
-                  register={register}
-                  error={errors.email}
-                  inputType="email"
-                />
+                <div className="flex">
+                  <ProfileInput
+                    data={user.email}
+                    labelText="Email"
+                    name="email"
+                    inputType="email"
+                    disabled={true}
+                  />
+                  <div className="ml-4 flex items-end">
+                    <Link to={PATHS.PROFILE.change_email}>
+                      <button className="editButton">
+                        <EditIcon className="editIcon" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex">
+                  <ProfileInput
+                    data="**********"
+                    labelText="Password"
+                    name="password"
+                    inputType="password"
+                    disabled={true}
+                  />
+                  <div className="ml-4 flex items-end">
+                    <Link to={PATHS.PROFILE.change_password}>
+                      <button className="editButton">
+                        <EditIcon className="editIcon" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
                 <ProfileInput
                   data={user.phone_number}
                   labelText="Контактний номер"
@@ -173,7 +196,8 @@ const EditProfileForm = ({ user }: Props) => {
                     Про себе
                   </label>
                   <textarea
-                    className="min-h-[104px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
+                    {...register('description')}
+                    className="min-h-[104px] w-[799px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
                     placeholder="Опишіть свій досвід як майстра або розкажіть про особливості наданої послуги"
                     name="description"
                     id="description"
@@ -186,13 +210,14 @@ const EditProfileForm = ({ user }: Props) => {
                   register={register}
                   error={errors.location}
                   inputType="text"
+                  placeholder="Наприклад: Полтава"
                 />
                 <ProfileInput
-                  data=""
+                  data={user?.social_links?.[0].url || ''}
                   labelText="Додайте посилання на соцмережу"
-                  name="name"
+                  name="social_links"
                   register={register}
-                  error={errors.first_name}
+                  error={errors?.social_links?.[0]?.url}
                   inputType="text"
                   placeholder="Наприклад: @kateryna.clay"
                 />

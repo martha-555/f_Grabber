@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { TUserProfile } from '../types/types'
+import { TUserEditForm } from '../types/types'
 import { API_ENDPOINTS } from '../paths'
 import useBackendRequest from '../hooks/useBackendRequest'
 
@@ -8,8 +8,8 @@ const useSubmitUserData = () => {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (data: TUserProfile) =>
-      fetchUserData<void, TUserProfile>({
+    mutationFn: (data: TUserEditForm) =>
+      fetchUserData<void, TUserEditForm>({
         data,
         method: 'PATCH',
         path: API_ENDPOINTS.PROFILE.patch,

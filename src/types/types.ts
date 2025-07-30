@@ -11,7 +11,11 @@ export type TUserProfile = {
   show_phone?: boolean
   role?: string
   user_photo?: File | string
+  description?: string
+  social_links?: { platform: string; url: string }[]
 }
+
+export type TUserEditForm = Omit<TUserProfile, 'email'>
 
 export interface ApiError extends Error {
   status?: number
