@@ -2,7 +2,7 @@ export const PATHS = {
   HOME: '/',
   PRODUCTS: {
     list: '/products',
-    details: '/products/:id',
+    details: '/products/',
     add: '/add-product',
     category: '/products/category/',
   },
@@ -34,6 +34,7 @@ export const API_ENDPOINTS = {
     faq: 'listings/faq/',
     categoriesList: '/listings/categories/',
     recommendations: '/listings/recommendations/',
+    rating: 'listings/products/{id}/reviews',
   },
   AUTH: {
     login: 'user/login/',

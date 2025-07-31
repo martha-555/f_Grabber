@@ -1,5 +1,11 @@
+import { Comments } from '../components'
+
 const ProductDetails = () => {
-  return <></>
+  return (
+    <div>
+      <Comments />
+    </div>
+  )
 }
 
 export default ProductDetails

@@ -51,3 +51,9 @@ export { default as CategoryCard } from './CategoryCard/CategoryCard'
 export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'
 
 export { default as UserInfoItem } from './UserInfoItem/UserInfoItem'
+
+export { default as Comments } from './Comments/Comments'
+
+export { default as Comment } from './Comment/Comment'
+
+export { default as StarRating } from './StarRating/StarRating'
