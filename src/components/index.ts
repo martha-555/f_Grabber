@@ -51,3 +51,5 @@ export { default as CategoryCard } from './CategoryCard/CategoryCard'
 export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'
 
 export { default as UserInfoItem } from './UserInfoItem/UserInfoItem'
+
+export { default as FavoriteIcon } from './FavoriteIcon/FavoriteIcon'
