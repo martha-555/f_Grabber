@@ -63,11 +63,8 @@ const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSe
           }}
         >
           {recommendedAds?.map((ad) => (
-            <SwiperSlide key={ad.id} className="h-full">
-              <RecommendedCard
-                ad={ad}
-                cardClassName={variant === 'home' ? 'homeCard' : 'adPageCard'}
-              />
+            <SwiperSlide key={ad.id}>
+              <RecommendedCard key={ad.id} ad={ad} />
             </SwiperSlide>
           ))}
         </Swiper>
