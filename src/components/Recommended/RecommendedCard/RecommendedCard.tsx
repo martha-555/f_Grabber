@@ -3,24 +3,30 @@ import { AdType } from '../../../types/productTypes.ts'
 import ArrowIcon from '../../../assets/icons/arrow-icon.svg?react'
 import LocationIcon from '../../../assets/icons/location-icon.svg?react'
 import defaultAvatar from '../../../assets/images/defaultAvatar.svg'
+import { FavoriteIcon } from '../../../components'
 
 type Props = {
   ad: AdType
-  className?: string
+  cardClassName?: string
 }
 
-const RecommendedCard = ({ ad, className }: Props) => {
+const RecommendedCard = ({ ad, cardClassName = '' }: Props) => {
   return (
-    <section className={className}>
+    <section className={cardClassName}>
       <div
         tabIndex={0}
-        className="card-recommended mx-auto flex h-[491px] flex-col rounded-[20px] p-6 shadow-transp-50"
+        className="card-recommended mx-auto flex h-full flex-col justify-between rounded-[20px] p-6 shadow-transp-50"
       >
-        <img
-          src={ad.images[0] || defaultAvatar}
-          alt={ad.title}
-          className="h-[250px] w-full rounded-[15px] object-cover"
-        />
+        <div className="relative">
+          <img
+            src={ad.images[0] || defaultAvatar}
+            alt={ad.title}
+            className="h-[250px] w-full rounded-[15px] object-cover"
+          />
+          <div className="absolute right-2 top-2 z-10">
+            <FavoriteIcon product_id={ad.id} />
+          </div>
+        </div>
 
         <div className="flex items-center justify-between pt-8">
           <h3 className="text-s1 text-grey-950">{ad.title}</h3>
