@@ -11,7 +11,6 @@ const useFetchUserProfile = () => {
     queryFn: () =>
       fetchUserData<TUserProfile>({
         path: API_ENDPOINTS.PROFILE.get,
-        method: 'GET',
       }),
     retry: 1,
   })
