@@ -1,7 +1,7 @@
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
-import { TUserEditForm, TUserProfile } from '../../types/types'
+import { TEditUserForm, TUserProfile } from '../../types/types'
 import UploadAvatar from './UploadAvatar'
 import ProfileInput from './ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
@@ -30,40 +30,48 @@ const EditProfileForm = ({ user }: Props) => {
       typeof user?.user_photo === 'string' || user?.user_photo instanceof File
         ? user.user_photo
         : user?.user_photo,
+    description: user.description,
+    social_links: user?.social_links?.[0].url,
   }
 
   const { mutate: profileMutation } = submitUserData()
   const { mutate: photoMutation } = submitUserPhoto()
   const navigate = useNavigate()
 
-  const resetForm = () => {
-    reset({
-      ...initialValues,
-      user_photo: user?.user_photo,
-    })
-  }
-
   const {
     register,
     handleSubmit,
     control,
     getValues,
-    reset,
     resetField,
     formState: { dirtyFields, errors },
-  } = useForm<TUserEditForm>({
+  } = useForm<TEditUserForm>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
-    defaultValues: initialValues,
   })
 
   const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
+    console.log(data.social_links)
+    const submitData = {
+      ...data,
+      social_links: data.social_links
+        ? [
+            {
+              platform: 'instagram',
+              url: data.social_links,
+            },
+          ]
+        : [],
+    }
+    console.log({ submitData })
     const { user_photo: avatar, ...userData } = initialValues
-    const isDataChanged = JSON.stringify(data) !== JSON.stringify(userData)
-    const isPhotoChanged = !(avatar as string).includes((user_photo as File).name)
+    const isDataChanged = JSON.stringify(submitData) !== JSON.stringify(userData)
+    const isPhotoChanged = !(avatar as string).includes((user_photo as File)?.name)
     const noChanges = !isDataChanged && !isPhotoChanged
+
+    console.log({ allValues })
 
     if (noChanges) {
       toast.error('Змін не виявлено', {
@@ -73,15 +81,11 @@ const EditProfileForm = ({ user }: Props) => {
 
     try {
       const mutations = []
-      if (isDataChanged) mutations.push(profileMutation(data))
+      if (isDataChanged) mutations.push(profileMutation(submitData))
       if (user_photo instanceof File && isPhotoChanged) mutations.push(photoMutation(user_photo))
 
       await Promise.all(mutations)
-      toast.success('Зміни збережено успішно!', { id: 'profile-editor-toasts' })
-
-      setTimeout(() => {
-        navigate(PATHS.PROFILE.profile)
-      }, 1500)
+      navigate(PATHS.PROFILE.profile)
     } catch (error) {
       toast.error('Помилка при збереженні', { id: 'profile-editor-toasts' })
     }
@@ -201,6 +205,7 @@ const EditProfileForm = ({ user }: Props) => {
                     placeholder="Опишіть свій досвід як майстра або розкажіть про особливості наданої послуги"
                     name="description"
                     id="description"
+                    defaultValue={user.description}
                   />
                 </div>
                 <ProfileInput
@@ -217,22 +222,18 @@ const EditProfileForm = ({ user }: Props) => {
                   labelText="Додайте посилання на соцмережу"
                   name="social_links"
                   register={register}
-                  error={errors?.social_links?.[0]?.url}
+                  error={errors?.social_links}
                   inputType="text"
                   placeholder="Наприклад: @kateryna.clay"
                 />
               </div>
             </div>
             <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-end gap-[24px]">
-              <Button
-                className="custom-button w-[285px] bg-grey-50 text-primary-900"
-                onClick={() => {
-                  resetForm()
-                  navigate(PATHS.PROFILE.profile)
-                }}
-              >
-                Скасувати зміни
-              </Button>
+              <Link to={PATHS.PROFILE.profile}>
+                <Button className="custom-button w-[285px] bg-grey-50 text-primary-900">
+                  Скасувати зміни
+                </Button>
+              </Link>
               <Button className="custom-button w-[285px]" disabled={!canSubmit} type="submit">
                 Зберегти зміни
               </Button>

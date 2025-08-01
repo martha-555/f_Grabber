@@ -15,7 +15,13 @@ export type TUserProfile = {
   social_links?: { platform: string; url: string }[]
 }
 
-export type TUserEditForm = Omit<TUserProfile, 'email'>
+export type TEditUserEmail = Pick<TUserProfile, 'email'>
+
+export type TSubmitUserData = Omit<TUserProfile, 'email'>
+
+export type TEditUserForm = Omit<TUserProfile, 'email' | 'social_links'> & {
+  social_links?: string
+}
 
 export interface ApiError extends Error {
   status?: number

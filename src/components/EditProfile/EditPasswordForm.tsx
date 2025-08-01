@@ -7,6 +7,8 @@ import useFetchChangePassword from '../../api/useFetchChangePassword'
 import { TChangePassword } from '../../types/authTypes'
 import { passwordSchema } from '../../features/userValidation'
 import Button from '../Button/Button'
+import { Link } from 'react-router-dom'
+import { PATHS } from '../../paths'
 
 const EditPasswordForm = () => {
   const {
@@ -120,7 +122,9 @@ const EditPasswordForm = () => {
         />
       </div>
       <div className="flex justify-end">
-        <p className="m-auto ml-2 flex-1 text-grey-500 underline">Відмінити зміни</p>
+        <Link className="m-auto ml-0" to={PATHS.PROFILE.profile}>
+          <p className="ml-2 flex-1 text-grey-500 underline">Відмінити зміни</p>
+        </Link>
         <Button
           type="submit"
           disabled={!isDirty || !isValid || isSuccess}
