@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Button, Menu } from '../../components'
 import { PATHS } from '../../paths'
 import userProfileStore from '../../store/userProfileStore'
@@ -12,6 +12,7 @@ const Navbar = () => {
   const user = userProfileStore()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const ref = useRef<HTMLDivElement | null>(null)
+  const { category } = useParams()
 
   useEffect(() => {
     function handleClick(event: MouseEvent) {
@@ -32,19 +33,16 @@ const Navbar = () => {
       </h1>
 
       <div className="relative flex-1">
-        <div className="flex rounded-[20px] border border-transp-50 px-8 text-b3 text-transp-50 hover:border-primary-30 hover:text-primary-30">
+        <div className="group flex rounded-[20px] border border-transp-50 px-8 text-b3 text-transp-50 hover:border-primary-30 hover:text-primary-30">
           <input
             type="text"
             placeholder="Пошук товарів"
             className="ml-4 h-[40px] w-full rounded-[20px] bg-primary-900 placeholder:pl-[1rem] placeholder:text-b3 placeholder:font-normal focus:border-r-0 focus:outline-none"
           />
-          <SearchIcon className="absolute left-4 top-1/2 block h-5 h-[24px] w-5 w-[24px] -translate-y-1/2 transform text-transp-50 hover:text-primary-30" />
-          <button className="whitespace-nowrap pr-4">| Категорії</button>
-          <div className="m-auto" ref={ref}>
-            <BurgerMenu
-              onClick={() => setIsOpen(!isOpen)}
-              className="m-auto w-[24px] text-transp-50 hover:text-primary-30"
-            />
+          <SearchIcon className="absolute left-4 top-1/2 block h-5 h-[24px] w-5 w-[24px] -translate-y-1/2 transform text-transp-50" />
+          <div ref={ref} onClick={() => setIsOpen(!isOpen)} className="flex">
+            <button className="whitespace-nowrap pr-4">| {category || 'Категорії'}</button>
+            <BurgerMenu className="m-auto w-[24px] cursor-pointer text-transp-50 group-hover:text-primary-30" />
           </div>
           {isOpen && <CategoriesMenu />}
         </div>

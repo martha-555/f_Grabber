@@ -14,17 +14,13 @@ const EditEmailForm = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(editEmailSchema),
     mode: 'onChange',
   })
 
-  const onSubmit = () => {
-    const data = getValues()
-    console.log({ data })
-  }
+  const onSubmit = () => {}
 
   useEffect(() => {
     if (showPassword) {

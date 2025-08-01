@@ -41,6 +41,7 @@ const Profile = () => {
                 data={`${userInfo.first_name} ${userInfo.last_name}`}
               />
               <UserInfoItem text="E-mail" data={userInfo.email} />
+              <UserInfoItem text="Телефон" data={userInfo.phone_number} />
               <UserInfoItem text="Про себе" data={userInfo.description} />
               {userInfo.location && (
                 <UserInfoItem
@@ -51,7 +52,11 @@ const Profile = () => {
               <UserInfoItem
                 text=" Соціальні мережі:"
                 data={userInfo?.social_links?.[0].url}
-                icon=<a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/`}>
+                icon=<a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={userInfo?.social_links?.[0].url}
+                >
                   <InstIcon />
                 </a>
               />

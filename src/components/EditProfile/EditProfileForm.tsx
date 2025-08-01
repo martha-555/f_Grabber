@@ -53,7 +53,6 @@ const EditProfileForm = ({ user }: Props) => {
   const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
-    console.log(data.social_links)
     const submitData = {
       ...data,
       social_links: data.social_links
@@ -65,13 +64,11 @@ const EditProfileForm = ({ user }: Props) => {
           ]
         : [],
     }
-    console.log({ submitData })
+
     const { user_photo: avatar, ...userData } = initialValues
     const isDataChanged = JSON.stringify(submitData) !== JSON.stringify(userData)
     const isPhotoChanged = !(avatar as string).includes((user_photo as File)?.name)
     const noChanges = !isDataChanged && !isPhotoChanged
-
-    console.log({ allValues })
 
     if (noChanges) {
       toast.error('Змін не виявлено', {

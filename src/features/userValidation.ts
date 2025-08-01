@@ -102,7 +102,7 @@ export const editProfileSchema = userSchema.extend({
     .string()
     .nonempty('Введіть локацію')
     .regex(/^[^\d!@#$%^&*()_+=<>?/\\]+$/, 'Локація не має містити цифр чи спецсимволів'),
-  social_links: z.string().url('Некоректне посилання').optional(),
+  social_links: z.string().optional(),
   description: z.string().optional(),
 })
 
