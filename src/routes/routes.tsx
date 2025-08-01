@@ -6,7 +6,7 @@ import {
   ForgotPassword,
   Login,
   Orders,
-  ProductDetails,
+  AdDetails,
   Products,
   Profile,
   Register,
@@ -37,7 +37,7 @@ export const routes = [
       },
       {
         path: PATHS.PRODUCTS.details,
-        element: <ProductDetails />,
+        element: <AdDetails />,
       },
       {
         path: PATHS.PRODUCTS.add,
