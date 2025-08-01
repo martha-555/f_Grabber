@@ -52,10 +52,8 @@ export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'
 
 export { default as UserInfoItem } from './UserInfoItem/UserInfoItem'
 
-<<<<<<< HEAD
 export { default as EditEmailForm } from './EditProfile/EditEmailForm'
 
 export { default as EditPasswordForm } from './EditProfile/EditPasswordForm'
-=======
+
 export { default as FavoriteIcon } from './FavoriteIcon/FavoriteIcon'
->>>>>>> 2939a905931a09a69f4ce76d65357633083868b6
