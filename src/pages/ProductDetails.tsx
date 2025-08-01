@@ -2,7 +2,7 @@ import { Comments } from '../components'
 
 const ProductDetails = () => {
   return (
-    <div>
+    <div className="mx-auto max-w-container">
       <Comments />
     </div>
   )
