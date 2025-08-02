@@ -35,7 +35,7 @@ const ProfileInput = ({
           const target = e.target as HTMLInputElement
           target.select()
         }}
-        className="w-[799px] rounded-[20px] border border-grey-500 px-4 pb-[10px] pt-2 text-grey-950 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
+        className={`input-text w-[799px] ${error && 'border-error-default'}`}
         defaultValue={data}
         {...(register && { ...register(name, { required: true }) })}
       />

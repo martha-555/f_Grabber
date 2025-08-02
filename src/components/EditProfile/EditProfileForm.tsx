@@ -198,12 +198,15 @@ const EditProfileForm = ({ user }: Props) => {
                   </label>
                   <textarea
                     {...register('description')}
-                    className="min-h-[104px] w-[799px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
+                    className={`input-text min-h-[104px] w-[799px] ${errors.description && 'border-error-default'}`}
                     placeholder="Опишіть свій досвід як майстра або розкажіть про особливості наданої послуги"
                     name="description"
                     id="description"
                     defaultValue={user.description}
                   />
+                  {errors.description && (
+                    <span className="text-error-default">{errors.description.message}</span>
+                  )}
                 </div>
                 <ProfileInput
                   data={user.location || ''}

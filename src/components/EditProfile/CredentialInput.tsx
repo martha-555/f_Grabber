@@ -26,7 +26,7 @@ const CredentialInput = ({
         disabled={false}
         {...register(name, { required: true })}
         placeholder={placeholder}
-        className={`input-text ${className} ${error ? 'border-error-default' : ''}`}
+        className={`input-text ${className} ${error && 'border-error-default'}`}
         type={visiblePassword ? 'text' : type}
       />
       {error && (
