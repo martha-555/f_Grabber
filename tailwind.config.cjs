@@ -23,12 +23,8 @@ module.exports = {
       },
       colors: {
         primary: {
-          900: '#643C2A',
           950: '#821404',
-          30: '#FAFAFA',
           50: '#FBF7F1',
-          100: '#F6ECDE',
-          300: '#DFBB92',
         },
         secondary: {
           blue: {
@@ -40,6 +36,11 @@ module.exports = {
             600: '#515BDA',
             700: '#4249C0',
             800: '#383F9B',
+          },
+          brown: {
+            900: '#643C2A',
+            100: '#F6ECDE',
+            300: '#DFBB92',
           },
         },
         warning: {
