@@ -5,7 +5,7 @@ import ornament from '../../assets/images/ornament .svg'
 const Footer = () => {
   return (
     <div className="min-w-full bg-primary-950">
-      <div className="flex justify-between p-[7.5rem] text-[#FFFFFF]">
+      <div className="flex justify-evenly py-[80px] text-[#FFFFFF]">
         <Section>
           <h1 className="text-h2 font-medium">Grabber</h1>
           <div>

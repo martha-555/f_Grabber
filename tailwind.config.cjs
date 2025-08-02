@@ -41,6 +41,7 @@ module.exports = {
             900: '#643C2A',
             100: '#F6ECDE',
             300: '#DFBB92',
+            700: '#9A5734',
           },
         },
         warning: {
