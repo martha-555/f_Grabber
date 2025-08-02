@@ -1,52 +1,15 @@
-import defaultAvatar from '../../assets/images/defaultAvatar.svg'
-import searchIcon from '../../assets/images/searchIcon.svg'
-import { Link, Outlet } from 'react-router-dom'
-import LogOutButton from '../../components/LogOutButton/LogOutButton'
-import userProfileStore from '../../store/userProfileStore'
-import PrivateRoute from '../PrivateRoute/PrivateRoute'
-import { PATHS } from '../../paths'
+import { Outlet } from 'react-router-dom'
+import Header from './Header.tsx'
+import Footer from './Footer.tsx'
 
 const PageWrapper = () => {
-  const user = userProfileStore((state) => state.userInfo)
-
   return (
     <>
-      <header className="w-full bg-[#2D336B] px-[6.12rem] py-[2.06rem] text-[#FFFFFF]">
-        <div className="mx-auto flex w-full max-w-[1221px] items-center gap-[5.486%]">
-          <h1 className="text-px20 whitespace-nowrap font-medium">
-            <Link to="/">Grabber</Link>
-          </h1>
-
-          <div className="relative flex-1">
-            <input
-              type="text"
-              placeholder="Пошук товарів"
-              className="text-px16 placeholder:text-px16 h-[40px] w-full rounded-[20px] border-0.5 border-[#FFFFFF] bg-[#2D336B] pl-10 pr-4 font-normal placeholder:font-normal"
-            />
-            <img
-              src={searchIcon}
-              alt="search icon"
-              className="absolute left-4 top-1/2 block h-5 w-5 -translate-y-1/2 transform"
-            />
-          </div>
-          <button className="h-[40px] whitespace-nowrap rounded-[20px] bg-white px-6 text-[16px] text-[#000000]">
-            Створити оголошення
-          </button>
-          <PrivateRoute>
-            <Link to={PATHS.PROFILE.profile}>
-              <img
-                src={(user.user_photo as string) || defaultAvatar}
-                alt="avatar"
-                className="block h-10 w-10 rounded-full"
-              />
-            </Link>
-          </PrivateRoute>
-          <LogOutButton />
-        </div>
-      </header>
-      <section className="content grow-1 w-full items-center">
+      <Header />
+      <section className="content mt-[160px] h-auto min-h-full w-full flex-grow items-center">
         <Outlet />
       </section>
+      <Footer />
     </>
   )
 }

@@ -1,0 +1,84 @@
+import { useState } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import SwiperCore from 'swiper'
+import ArrowLeftIcon from '../../../assets/icons/arrow-left.svg?react'
+import ArrowRight from '../../../assets/icons/arrow-right.svg?react'
+import { RecommendedCard } from '../../index.ts'
+import useFetchRecommended from '../../../api/useFetchRecommended.ts'
+import 'swiper/css'
+import 'swiper/css/navigation'
+
+type RecommendedSectionProps = {
+  text?: string
+  slideView?: number
+  variant?: 'home' | 'adPage'
+}
+
+const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSectionProps) => {
+  const [isBeginning, setIsBeginning] = useState(true)
+  const [isEnd, setIsEnd] = useState(false)
+
+  const handleSwiper = (swiper: SwiperCore) => {
+    setIsBeginning(swiper.isBeginning)
+    setIsEnd(swiper.isEnd)
+  }
+
+  const { data: recommendedAds, isLoading, isError } = useFetchRecommended()
+
+  if (isLoading) return <p>Завантаження...</p>
+  if (isError) return <p>Сталася помилка при завантаженні</p>
+
+  return (
+    <section className="relative mx-auto mb-[100px] max-w-[1200px]">
+      <h2 className="pb-8 text-center text-h3">{text}</h2>
+
+      <div className={variant === 'home' ? 'relative h-[491px]' : 'relative h-[513px]'}>
+        <button
+          className={`swiper-button-prev group absolute left-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-grey-50 transition-colors hover:text-grey-100 active:text-grey-200 ${
+            isBeginning ? 'pointer-events-none opacity-0' : ''
+          }`}
+        >
+          <ArrowLeftIcon className="h-5 w-5 [&_.arrow-path]:fill-gray-200 group-hover:[&_.arrow-path]:fill-gray-400 group-active:[&_.arrow-path]:fill-gray-400" />
+        </button>
+
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={20}
+          slidesPerView={slideView}
+          slidesPerGroup={1}
+          onSwiper={handleSwiper}
+          onSlideChange={handleSwiper}
+          navigation={{
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          }}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: slideView,
+            },
+          }}
+        >
+          {recommendedAds?.map((ad) => (
+            <SwiperSlide key={ad.id}>
+              <RecommendedCard key={ad.id} ad={ad} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <button
+          className={`swiper-button-next group absolute right-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-grey-50 transition-colors hover:text-grey-100 active:text-grey-200 ${
+            isEnd ? 'pointer-events-none opacity-0' : ''
+          }`}
+        >
+          <ArrowRight className="h-5 w-5 [&_.arrow-path]:fill-gray-200 group-hover:[&_.arrow-path]:fill-gray-400 group-active:[&_.arrow-path]:fill-gray-400" />
+        </button>
+      </div>
+    </section>
+  )
+}
+
+export default RecommendedSection
