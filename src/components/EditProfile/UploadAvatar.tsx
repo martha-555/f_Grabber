@@ -66,7 +66,7 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
             />
           )) || (
             <div className="flex h-[221px] w-[221px] items-center justify-center rounded-[20px] bg-grey-100">
-              <DefaultAvatar className="text-primary-900" />
+              <DefaultAvatar className="text-primary-950" />
             </div>
           )
         )}

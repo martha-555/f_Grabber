@@ -23,9 +23,12 @@ module.exports = {
       },
       colors: {
         primary: {
-          900: '#2D336B',
+          900: '#643C2A',
+          950: '#821404',
           30: '#FAFAFA',
+          50: '#FBF7F1',
           100: '#F6ECDE',
+          300: '#DFBB92',
         },
         secondary: {
           blue: {

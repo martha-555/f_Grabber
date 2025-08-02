@@ -227,7 +227,7 @@ const EditProfileForm = ({ user }: Props) => {
             </div>
             <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-end gap-[24px]">
               <Link to={PATHS.PROFILE.profile}>
-                <Button className="custom-button w-[285px] bg-grey-50 text-primary-900">
+                <Button className="custom-button w-[285px] bg-grey-50 text-primary-950">
                   Скасувати зміни
                 </Button>
               </Link>

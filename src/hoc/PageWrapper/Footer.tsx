@@ -1,11 +1,12 @@
 import AboutLink from './AboutLink'
 import Section from './Section'
+import ornament from '../../assets/images/ornament .svg'
 
 const Footer = () => {
   return (
-    <div className="min-w-full bg-primary-900">
+    <div className="min-w-full bg-primary-950">
       <div className="flex justify-between p-[7.5rem] text-[#FFFFFF]">
-        <Section className="justify-between">
+        <Section>
           <h1 className="text-h2 font-medium">Grabber</h1>
           <div>
             <p>
@@ -17,6 +18,9 @@ const Footer = () => {
               <a href="mailto:info@grabber.ua">info@grabber.ua</a>
             </p>
           </div>
+        </Section>
+        <Section>
+          <img src={ornament} alt="" />
         </Section>
         <Section>
           <p className="text-s1">ОФІС</p>

@@ -22,12 +22,12 @@ const Menu = () => {
             className="h-10 w-10 rounded-full border border-white object-cover"
           />
         ) : (
-          <DefaultAvatar className="text-primary-30" />
+          <DefaultAvatar className="text-primary-50" />
         )}
       </Button>
       {isOpen && (
         <div
-          className="absolute right-0 z-50 mt-2 w-48 overflow-hidden rounded-[20px] border bg-primary-30 text-black text-grey-800 shadow-[4px_4px_16px_0px_#00000026] shadow-xl"
+          className="absolute right-0 z-50 mt-2 w-48 overflow-hidden rounded-[20px] border bg-primary-50 text-black text-grey-800 shadow-[4px_4px_16px_0px_#00000026] shadow-xl"
           onClick={(e) => e.stopPropagation()}
         >
           <button

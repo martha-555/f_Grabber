@@ -31,7 +31,7 @@ const Profile = () => {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center rounded-[20px] bg-grey-100">
-                  <DefaultAvatar className="text-primary-900" />
+                  <DefaultAvatar className="text-primary-950" />
                 </div>
               )}
             </div>

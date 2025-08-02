@@ -15,8 +15,8 @@ const SuccessModal = ({ onClose }: Props) => {
       />
 
       <div className="relative z-10 text-center">
-        <h2 className="text-h2 text-primary-900">Підписка оформлена!</h2>
-        <p className="text-b3 text-primary-900">
+        <h2 className="text-h2 text-primary-950">Підписка оформлена!</h2>
+        <p className="text-b3 text-primary-950">
           Тепер ви будете першими отримувати інформацію про оновлення
         </p>
         <Subscribed aria-label="Subscribed" className="mx-auto mt-4" />
