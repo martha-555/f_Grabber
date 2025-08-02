@@ -30,7 +30,7 @@
   }
 
   .card-recommended {
-    @apply border border-transparent bg-primary-30 transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
+    @apply bg-primary-50 border border-transparent transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
   }
 
   /* Стилі для іконки "!" в інпутах */
@@ -55,14 +55,14 @@
 
   /* Стилі для кнопки */
   .button {
-    @apply rounded-[40px] bg-primary-900 px-8 py-4 text-primary-30 transition duration-300;
+    @apply bg-primary-950 text-primary-50 rounded-[40px] px-8 py-4 transition duration-300;
     &:not(:disabled):hover {
-      @apply cursor-pointer bg-secondary-blue-700 text-primary-30;
+      @apply bg-secondary-brown-900 text-primary-50 cursor-pointer;
     }
   }
 
   .button-second {
-    @apply rounded-[30px] border border-transparent bg-primary-30 px-8 py-2 text-grey-950 transition duration-300 hover:bg-grey-100 focus:shadow-[0_0_0_2px_theme('colors.grey.100')] focus:outline-none active:bg-grey-200 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:text-grey-500;
+    @apply bg-primary-50 rounded-[30px] border border-transparent px-8 py-2 text-grey-950 transition duration-300 hover:bg-grey-100 focus:shadow-[0_0_0_2px_theme('colors.grey.100')] focus:outline-none active:bg-grey-200 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:text-grey-500;
   }
 
   .close-button {
@@ -84,7 +84,7 @@
   }
 
   .custom-button {
-    @apply mb-8 mt-6 rounded-[30px] bg-primary-900 px-[33.5px] py-[9px] text-b4 text-primary-30 hover:bg-secondary-blue-700 active:bg-secondary-blue-600 disabled:bg-secondary-blue-200;
+    @apply bg-primary-950 text-primary-50 hover:bg-secondary-brown-900 active:bg-primary-950 disabled:bg-secondary-brown-100 mb-8 mt-6 rounded-[30px] px-[33.5px] py-[9px] text-b4;
   }
   /* Стилі для заголовку секції на сторінці додавання товару */
   .title-add-product-section {
@@ -117,5 +117,11 @@
   .button1.loading .text {
     opacity: 0;
     visibility: hidden;
+  }
+  .editButton {
+    @apply bg-secondary-brown-100 active:bg-primary-950 h-[48px] w-[48px] rounded-full;
+  }
+  .editIcon {
+    @apply text-primary-50 hover:text-primary-950 m-auto;
   }
 }

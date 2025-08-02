@@ -17,8 +17,8 @@ const Profile = () => {
           <div className="mt-24 flex justify-between">
             <h1 className="tex-grey-950 mb-12 ml-[8.33%] text-h3 font-medium">Мій профіль</h1>
             <Link to={PATHS.PROFILE.edit}>
-              <button className="mr-[120px] h-[48px] w-[48px] rounded-full bg-grey-50 hover:bg-grey-100 active:bg-grey-200">
-                <EditPencil className="active:text-secondary-blue-800 m-auto text-secondary-blue-200 hover:text-secondary-blue-400" />
+              <button className="editButton mr-[120px]">
+                <EditPencil className="editIcon" />
               </button>
             </Link>
           </div>
@@ -31,7 +31,7 @@ const Profile = () => {
                 />
               ) : (
                 <div className="flex h-full items-center justify-center rounded-[20px] bg-grey-100">
-                  <DefaultAvatar className="text-primary-900" />
+                  <DefaultAvatar className="text-primary-950" />
                 </div>
               )}
             </div>
@@ -41,10 +41,8 @@ const Profile = () => {
                 data={`${userInfo.first_name} ${userInfo.last_name}`}
               />
               <UserInfoItem text="E-mail" data={userInfo.email} />
-              <UserInfoItem
-                text="Про себе"
-                data="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, beatae accusamus rerum assumenda corporis voluptatem tempora pariatur. Nihil nobis obcaecati odit quidem mollitia, ratione error sunt debitis, blanditiis optio delectus."
-              />
+              <UserInfoItem text="Телефон" data={userInfo.phone_number} />
+              <UserInfoItem text="Про себе" data={userInfo.description} />
               {userInfo.location && (
                 <UserInfoItem
                   text="Місце виготовлення виробу/надання послуги"
@@ -53,17 +51,17 @@ const Profile = () => {
               )}
               <UserInfoItem
                 text=" Соціальні мережі:"
-                icon=<a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/`}>
+                data={userInfo?.social_links?.[0].url}
+                icon=<a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={userInfo?.social_links?.[0].url}
+                >
                   <InstIcon />
                 </a>
               />
             </div>
           </div>
-          {/* <div className="m-auto flex max-w-[94%] justify-between">
-            <Link to={PATHS.PROFILE.changePassword}>
-              <Button className="custom-button">Редагувати пароль</Button>
-            </Link>
-          </div> */}
         </div>
       )}
     </>

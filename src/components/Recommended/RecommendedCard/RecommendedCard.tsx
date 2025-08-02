@@ -39,7 +39,7 @@ const RecommendedCard = ({ ad, cardClassName = '' }: Props) => {
         <p className="mt-3 text-b3 text-grey-950">{ad.price} грн</p>
 
         <div className="mt-6 flex items-center gap-4 pb-2">
-          <LocationIcon aria-label="Location" className="text-primary-900" />
+          <LocationIcon aria-label="Location" className="text-primary-950" />
           <p className="text-b4 text-grey-500">{ad.location}</p>
         </div>
       </div>

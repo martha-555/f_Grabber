@@ -46,7 +46,7 @@ const NewsCard = () => {
 
       <div className="absolute inset-0 bg-black/40" />
       <div className="relative z-10 mx-auto max-w-[1200px] px-4">
-        <h2 className="py-20 text-center text-h3 text-primary-30">Будь у курсі новинок</h2>
+        <h2 className="py-20 text-center text-h3 text-primary-50">Будь у курсі новинок</h2>
         <form className="flex gap-6 pb-24" onSubmit={handleSubmit(onSubmit)}>
           <Input
             name="first_name"
