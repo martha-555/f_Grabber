@@ -103,7 +103,7 @@ export const editProfileSchema = userSchema.extend({
     .nonempty('Введіть локацію')
     .regex(/^[^\d!@#$%^&*()_+=<>?/\\]+$/, 'Локація не має містити цифр чи спецсимволів'),
   social_links: z.string().optional(),
-  description: z.string().optional(),
+  description: z.string().max(255, 'Це поле може містити не більше ніж 255 символів').optional(),
 })
 
 export const addAdsSchema = z.object({
