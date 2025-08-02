@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+@font-face {
+  font-family: 'KyivTypeTitling';
+  src: url('../assets/fonts/KyivTypeTitling-Bold.woff2') format('woff2');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  display: none;
+}
 
 @layer base {
   html {
@@ -12,39 +22,47 @@
 
 @layer components {
   .input-text {
-    @apply w-full rounded-3xl border border-textPrimary px-2 py-3 focus:outline-none;
+    @apply w-full rounded-3xl border border-grey-500 px-4 py-2 text-grey-950 focus:outline-none;
 
     &::placeholder {
-      @apply text-textPrimary;
+      @apply text-b4 text-grey-400;
     }
   }
 
+  .card-recommended {
+    @apply bg-primary-50 border border-transparent transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
+  }
+
+  /* Стилі для іконки "!" в інпутах */
   .warning-icon-for-input {
-    @apply relative after:absolute after:right-10 after:top-1/2 after:block after:h-5 after:w-5 after:translate-y-[-50%] after:bg-warning-icon after:bg-contain after:bg-center after:bg-no-repeat after:content-[""];
+    @apply relative after:absolute after:right-4 after:top-1/2 after:block after:h-5 after:w-5 after:translate-y-[-50%] after:bg-warning-icon after:bg-contain after:bg-center after:bg-no-repeat after:content-[""];
   }
 
+  /* Стилі для форми реєстрації користувача */
   .auth-register-form {
-    @apply flex w-full flex-col gap-5 md:w-1/2;
-
-    button[type='submit'] {
-      @apply mt-16;
-    }
+    @apply flex w-full max-w-96 flex-col gap-4 md:w-1/2;
   }
 
+  /* Стилі для секції форми реєстрації користувача */
   .auth-register-form-section {
-    @apply relative flex flex-col items-center gap-2;
+    @apply relative flex flex-col items-center gap-2 text-grey-500;
+  }
+  /* Стилі для тексту, який з'являється під час виникнення помилки */
 
-    .error-text {
-      @apply text-sm text-error;
+  .error-text {
+    @apply text-d1 text-error-default;
+  }
+
+  /* Стилі для кнопки */
+  .button {
+    @apply bg-primary-950 text-primary-50 rounded-[40px] px-8 py-4 transition duration-300;
+    &:not(:disabled):hover {
+      @apply bg-secondary-brown-900 text-primary-50 cursor-pointer;
     }
   }
 
-  .button {
-    @apply rounded-3xl bg-bgBtn px-2 py-3 text-textSecondary transition duration-300 hover:cursor-pointer hover:bg-bgBtnHover hover:text-textPrimary;
-
-    &:hover {
-      box-shadow: inset rgba(0, 0, 0, 0.5) 0px 0px 6px 0px;
-    }
+  .button-second {
+    @apply bg-primary-50 rounded-[30px] border border-transparent px-8 py-2 text-grey-950 transition duration-300 hover:bg-grey-100 focus:shadow-[0_0_0_2px_theme('colors.grey.100')] focus:outline-none active:bg-grey-200 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:text-grey-500;
   }
 
   .close-button {
@@ -52,14 +70,58 @@
 
     &::after,
     &::before {
-      @apply absolute h-0.5 w-4 bg-textPrimary;
+      @apply absolute h-0.5 w-4 bg-grey-950;
       content: '';
     }
+
     &::after {
       @apply rotate-45;
     }
+
     &::before {
       @apply -rotate-45;
     }
+  }
+
+  .custom-button {
+    @apply bg-primary-950 text-primary-50 hover:bg-secondary-brown-900 active:bg-primary-950 disabled:bg-secondary-brown-100 mb-8 mt-6 rounded-[30px] px-[33.5px] py-[9px] text-b4;
+  }
+  /* Стилі для заголовку секції на сторінці додавання товару */
+  .title-add-product-section {
+    @apply mb-6 text-s1 text-grey-950;
+  }
+  /* Стилі для опису секції на сторінці додавання товару */
+  .description-add-product-section {
+    @apply mb-2 text-b3 text-grey-800;
+  }
+  /* Стилі для інпутів на сторінці додавання товару */
+  .input-add-product-section {
+    @apply mb-2 w-full rounded-[20px] bg-transparent px-4 py-2 text-grey-950 outline outline-1 outline-grey-500 placeholder:text-grey-400 focus:outline-2;
+  }
+
+  .button1 {
+    display: grid;
+    grid-template-areas: 'stack';
+  }
+  .button1 .spinner {
+    grid-area: stack;
+  }
+  .button1 .text {
+    grid-area: stack;
+  }
+
+  .button1.loading .spinner {
+    display: block;
+  }
+
+  .button1.loading .text {
+    opacity: 0;
+    visibility: hidden;
+  }
+  .editButton {
+    @apply bg-secondary-brown-100 active:bg-primary-950 h-[48px] w-[48px] rounded-full;
+  }
+  .editIcon {
+    @apply text-primary-50 hover:text-primary-950 m-auto;
   }
 }

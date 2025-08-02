@@ -1,16 +1,21 @@
 import Button from '../Button/Button'
-import userProfileStore from '../../store/userProfileStore'
+import userProfileStore, { initialState } from '../../store/userProfileStore'
 import useLogout from '../../api/logout'
 
 const LogOutButton = () => {
-  const resetUserProfile = userProfileStore((state) => state.resetUserProfile)
+  const userProfileInStore = userProfileStore.getState()
 
   const { mutateAsync: logout } = useLogout()
 
   const handleLogOut = async () => {
     try {
       await logout()
-      resetUserProfile()
+      userProfileInStore.setUserProfile({
+        ...initialState,
+        isLoggedIn: false,
+        isLoading: false,
+        isError: false,
+      })
     } catch (error) {
       console.error('Logout failed:', error)
     }

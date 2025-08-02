@@ -55,7 +55,7 @@ const ResetPasswordForm = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="mx-auto w-[400px]">
       <div className="flex flex-col gap-4 p-5">
-        <h1 className="text-center text-title">Відновлення паролю</h1>
+        <h1 className="text-center text-h3">Відновлення паролю</h1>
         <div className="mb-8 flex flex-col gap-4">
           <input
             type="password"

@@ -20,3 +20,14 @@ export type TLoginResponse = {
 export type TForgotPasswordRequest = {
   email: string
 }
+
+export type TChangePassword = {
+  old_password: string
+  new_password: string
+  confirm_password: string
+}
+
+export type TChangePasswordRequest = {
+  old_password: string
+  new_password: string
+}

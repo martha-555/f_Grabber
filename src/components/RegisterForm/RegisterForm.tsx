@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { registerSchema } from '../../features/userValidation'
 import useRegister from '../../api/register'
 import userProfileStore from '../../store/userProfileStore'
+import Button from '../Button/Button'
 
 // Тип даних форми, отриманий з схеми
 type FormData = z.infer<typeof registerSchema>
@@ -38,7 +39,12 @@ const RegisterForm: React.FC = () => {
       {
         onSuccess: (response) => {
           console.log('Registration successful:', response) // Успішна реєстрація
-          setUserProfile({ ...response, isLoggedIn: true, isError: false, isLoading: false }) // Збереження профілю користувача в стані
+          setUserProfile({
+            userInfo: { ...response },
+            isLoggedIn: true,
+            isError: false,
+            isLoading: false,
+          }) // Збереження профілю користувача в стані
           reset() // Скидання форми при успішній реєстрації
           navigate(PATHS.PROFILE.profile)
         },
@@ -59,7 +65,7 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register('first_name')}
             id="register-name"
-            className="input-text"
+            className={`input-text ${errors.first_name ? 'border-error-default' : ''}`}
             placeholder="Ім'я"
           />
         </label>
@@ -72,7 +78,7 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register('last_name')}
             id="register-surname"
-            className="input-text"
+            className={`input-text ${errors.last_name ? 'border-error-default' : ''}`}
             placeholder="Прізвище"
           />
         </label>
@@ -85,7 +91,7 @@ const RegisterForm: React.FC = () => {
             type="text"
             {...register('phone_number')}
             id="register-phone"
-            className="input-text"
+            className={`input-text ${errors.phone_number ? 'border-error-default' : ''}`}
             placeholder="Номер телефону"
           />
         </label>
@@ -98,7 +104,7 @@ const RegisterForm: React.FC = () => {
             type="email"
             {...register('email')}
             id="register-email"
-            className="input-text"
+            className={`input-text ${errors.email ? 'border-error-default' : ''}`}
             placeholder="Електронна пошта"
           />
         </label>
@@ -111,42 +117,55 @@ const RegisterForm: React.FC = () => {
             type="password"
             {...register('password')}
             id="register-password"
-            className="input-text"
+            className={`input-text ${errors.password ? 'border-error-default' : ''}`}
             placeholder="Пароль"
           />
         </label>
-        {errors.password && <p className="error-text">{errors.password.message}</p>}
+        {errors?.password?.message?.split(`\n`).map((item, index) => (
+          <p className="error-text" key={index}>
+            {item}
+          </p>
+        ))}
       </section>
       {/* Поле для підтвердження паролю */}
-      <section className="auth-register-form-section">
+      <section className="auth-register-form-section mb-4">
         <label className={`w-full ${errors.confirmPassword ? 'warning-icon-for-input' : ''}`}>
           <input
             type="password"
             {...register('confirmPassword')}
             id="register-confirm-password"
-            className="input-text"
+            className={`input-text ${errors.confirmPassword ? 'border-error-default' : ''}`}
             placeholder="Підтвердження паролю"
           />
         </label>
         {errors.confirmPassword && <p className="error-text">{errors.confirmPassword.message}</p>}
       </section>
       <section className="auth-register-form-section">
-        <ul className="text-px12 flex list-outside list-['-'] flex-col gap-5 self-start">
-          <p>Пароль має містити:</p>
-          <li className="ml-2 pl-2">мінімум 6 символів</li>
-          <li className="ml-2 pl-2">хоча б одну велику літеру</li>
-          <li className="ml-2 pl-2">хоча б одну цифру</li>
+        <ul className="flex list-inside list-disc flex-col gap-0 self-start text-d1 text-grey-600">
+          <p className="mb-4">Пароль має містити:</p>
+          <li className="ml-2 pl-2">мінімум 8 символів</li>
+          <li className="ml-2 pl-2">хоча б 1 велику літеру</li>
+          <li className="ml-2 pl-2">хоча б 1 цифру</li>
+          <li className="ml-2 pl-2">хоча б 1 спеціальний символ (!@#^*$%?_&gt;)</li>
         </ul>
       </section>
+
       {/* Кнопка для відправки форми */}
-      <button type="submit" className="button" disabled={status === 'pending'}>
-        Зареєструватися
-      </button>
+      <Button
+        className="py-2"
+        type="submit"
+        disabled={status === 'pending'}
+        text="Зареєструватися"
+      />
+
       {/* Посилання для переходу на сторінку входу */}
-      <section className="auth-register-form-section">
-        <Link to={PATHS.AUTH.login} className="text-xs">
-          Вже є акаунт? Увійти
-        </Link>
+      <section className="auth-register-form-section mb-32">
+        <p className="text-b4 text-grey-800">
+          Вже є акаунт?
+          <Link to={PATHS.AUTH.login} className="ml-2 text-grey-500 underline">
+            Увійти
+          </Link>
+        </p>
       </section>
     </form>
   )

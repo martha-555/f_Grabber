@@ -1,21 +1,22 @@
-import { PageWrapper } from '../hoc'
-import PrivateRoute from '../hoc/PrivateRoute/PrivateRoute'
+import { PageWrapper, PrivateRoute } from '../hoc'
 import {
   AddProduct,
   Admin,
   Cart,
   ForgotPassword,
   Login,
-  Main,
   Orders,
-  ProductDetails,
+  AdDetails,
   Products,
   Profile,
   Register,
   ResetPassword,
+  EditProfile,
+  Main,
+  ChangeUserEmail,
 } from '../pages'
-import EditProfile from '../pages/EditProfile'
 import { PATHS } from '../paths'
+import ChangeUserPassword from '../pages/ChangeUserPassword'
 
 export const routes = [
   {
@@ -31,8 +32,12 @@ export const routes = [
         element: <Products />,
       },
       {
+        path: `${PATHS.PRODUCTS.category}:category`,
+        element: <Products />,
+      },
+      {
         path: PATHS.PRODUCTS.details,
-        element: <ProductDetails />,
+        element: <AdDetails />,
       },
       {
         path: PATHS.PRODUCTS.add,
@@ -76,10 +81,26 @@ export const routes = [
         ),
       },
       {
+        path: PATHS.PROFILE.change_password,
+        element: (
+          <PrivateRoute>
+            <ChangeUserPassword />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: PATHS.PROFILE.edit,
         element: (
           <PrivateRoute>
             <EditProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: PATHS.PROFILE.change_email,
+        element: (
+          <PrivateRoute>
+            <ChangeUserEmail />
           </PrivateRoute>
         ),
       },

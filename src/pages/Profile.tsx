@@ -1,10 +1,10 @@
-import defaultProfileAvatar from '../assets/images/defaultProfileAvatar.svg'
-import editIcon from '../assets/images/editIcon.png'
-import { formatDate } from '../features/formatDate'
+import EditPencil from '../assets/images/editPencil.svg?react'
+import DefaultAvatar from '../assets/images/defaultAvatar.svg?react'
 import { Link } from 'react-router-dom'
 import { PATHS } from '../paths'
-import ProfileField from '../components/ProfileField/ProfileField'
 import userProfileStore from '../store/userProfileStore'
+import { UserInfoItem } from '../components'
+import InstIcon from '../assets/images/instagramIcon.svg?react'
 
 const Profile = () => {
   const userData = userProfileStore((state) => state)
@@ -13,59 +13,55 @@ const Profile = () => {
   return (
     <>
       {!userData.isLoading && (
-        <div className="mx-auto mt-[6.43rem] max-w-[80%] p-[3px]">
-          <h1 className="text-px32 mb-[5.93rem] p-[0.625rem] font-medium">Мій профіль</h1>
-          <div className="flex justify-center gap-[3.06rem]">
-            <div className="flex max-w-[46%] gap-5 rounded-[25px] py-[4.37rem] pl-[1.94rem] pr-[1.94rem] shadow-blur">
+        <div className="text-b-2 mx-auto mb-40 text-grey-800">
+          <div className="mt-24 flex justify-between">
+            <h1 className="tex-grey-950 mb-12 ml-[8.33%] text-h3 font-medium">Мій профіль</h1>
+            <Link to={PATHS.PROFILE.edit}>
+              <button className="editButton mr-[120px]">
+                <EditPencil className="editIcon" />
+              </button>
+            </Link>
+          </div>
+          <div className="ml-[15.42%] flex max-w-[76.25%] gap-[32px]">
+            <div className="h-[285px] w-[285px] flex-shrink-0">
               {userInfo.user_photo ? (
                 <img
-                  className="h-[173px] w-[173px] rounded-[20px] object-cover object-[50%_20%]"
+                  className="h-full w-full rounded-[25px] object-cover object-[50%_20%]"
                   src={userInfo.user_photo as string}
-                  alt=""
                 />
               ) : (
-                <div className="flex h-[173px] w-[173px] items-center justify-center rounded-[20px] bg-[#F7F7F7]">
-                  <img className="h-[92.11px] w-[78.8px]" src={defaultProfileAvatar} alt="" />
+                <div className="flex h-full items-center justify-center rounded-[20px] bg-grey-100">
+                  <DefaultAvatar className="text-primary-950" />
                 </div>
               )}
-              <div className="column flex flex-col">
-                <p className="text-px24 p-[0.625rem] pr-0">{`${userInfo.first_name} ${userInfo.last_name}`}</p>
-                <p className="text-px16 p-[0.625rem] pr-0">Місцезнаходження: {userInfo.location}</p>
-                <p className="text-px16 p-[0.625rem] pr-0">
-                  Номер телефону: {userInfo.phone_number}
-                </p>
-                {userInfo?.date_joined && (
-                  <p className="text-px16 p-[0.625rem]">
-                    Дата реєстрації: {formatDate(userInfo.date_joined)}
-                  </p>
-                )}
-              </div>
             </div>
-            <div className="max-w-[46%] rounded-[25px] px-[1.25rem] pt-[1.87rem] shadow-blur">
-              <div className="pl-[1.25rem]">
-                <div className="flex items-center gap-[6.06rem] py-[1.15rem] pl-[0.625rem] pr-[1.37rem]">
-                  <p className="text-px24 font-medium">Персональна інформація</p>
-                  <Link to={PATHS.PROFILE.edit}>
-                    <img src={editIcon} alt="" />
-                  </Link>
-                </div>
-                <div className="text-px16 pr-[1.37rem]">
-                  <ProfileField text="Ім’я" data={userInfo.first_name} />
-                  <ProfileField text="Прізвище" data={userInfo.last_name} />
-                  <ProfileField text="Email" data={userInfo.email} />
-                  <ProfileField text="Номер телефону" data={userInfo.phone_number} />
-                </div>
-              </div>
+            <div className="mr-[120px]">
+              <UserInfoItem
+                text="Ім'я та прізвище"
+                data={`${userInfo.first_name} ${userInfo.last_name}`}
+              />
+              <UserInfoItem text="E-mail" data={userInfo.email} />
+              <UserInfoItem text="Телефон" data={userInfo.phone_number} />
+              <UserInfoItem text="Про себе" data={userInfo.description} />
+              {userInfo.location && (
+                <UserInfoItem
+                  text="Місце виготовлення виробу/надання послуги"
+                  data={userInfo.location}
+                />
+              )}
+              <UserInfoItem
+                text=" Соціальні мережі:"
+                data={userInfo?.social_links?.[0].url}
+                icon=<a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={userInfo?.social_links?.[0].url}
+                >
+                  <InstIcon />
+                </a>
+              />
             </div>
           </div>
-          <Link to={PATHS.PROFILE.edit}>
-            <button className="text-px16 my-[6.75rem] rounded-[20px] bg-[#2D336B] px-[2.72rem] py-[0.625rem] text-[#F8F8F8]">
-              Редагувати профіль
-            </button>
-          </Link>
-          <section className="pt-[2.78%]">
-            <div className="text-px32 mb-[4.25rem] p-[0.625rem] font-medium">Мої оголошення</div>
-          </section>
         </div>
       )}
     </>

@@ -7,6 +7,7 @@ import { PATHS } from '../../paths'
 import useLogin from '../../api/login'
 import { LoginSchema } from '../../features/userValidation'
 import userProfileStore from '../../store/userProfileStore'
+import Button from '../Button/Button'
 
 interface LoginFormProps {}
 
@@ -38,7 +39,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
     login(data, {
       onSuccess: (response) => {
         setUserProfile({
-          ...response,
+          userInfo: { ...response },
           isLoggedIn: true,
           isError: false,
           isLoading: false,
@@ -54,14 +55,14 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
-      <h1 className="mb-7 text-center text-3xl font-medium">Увійти</h1>
+      <h1 className="mb-7 text-center text-3xl font-medium">Увійти в акаунт</h1>
       <section className="auth-register-form-section">
         <label className={`w-full ${errors.email ? 'warning-icon-for-input' : ''}`}>
           <input
             type="email"
             {...register('email')}
             id="register-email"
-            className={`input-text ${errors.email ? 'border-error' : ''}`}
+            className={`input-text ${errors.email ? 'border-error-default' : ''}`}
             placeholder="Електронна пошта"
           />
         </label>
@@ -72,7 +73,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
             type="password"
             {...register('password')}
             id="register-password"
-            className={`input-text ${errors.password ? 'border-error' : ''}`}
+            className={`input-text ${errors.password ? 'border-error-default' : ''}`}
             placeholder="Пароль"
           />
         </label>
@@ -86,17 +87,23 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         )}
       </section>
       <section className="auth-register-form-section">
-        <Link to={PATHS.PASSWORD.forgot} className="ml-5 self-start text-xs">
+        <Link to={PATHS.PASSWORD.forgot} className="mb-6 ml-5 mt-3 self-start underline">
           Забули пароль?
         </Link>
-        <Link to={PATHS.AUTH.register} className="ml-5 self-start text-xs">
-          Немає аккаунту? Зареєструватися
-        </Link>
       </section>
-
-      <button type="submit" className="button" disabled={status === 'pending'}>
-        Увійти
-      </button>
+      {/* Кнопка для відправки форми */}
+      <Button
+        disabled={status === 'pending'}
+        type="submit"
+        text="Увійти в акаунт"
+        className="py-2"
+      />
+      <p className="flex justify-center text-b4 text-grey-800">
+        Немає аккаунту?{' '}
+        <Link to={PATHS.AUTH.register} className="ml-2 text-grey-500 underline">
+          Зареєструватися
+        </Link>
+      </p>
     </form>
   )
 }
