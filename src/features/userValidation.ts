@@ -40,8 +40,9 @@ export const passwordSchema = z
     message: 'Паролі не збігаються',
   })
 
-export const registerSchema = baseUserSchema
-  .extend({
+export const registerSchema = z
+  .object({
+    email: z.string().nonempty("Електронна пошта є обов'язковою").email('Некоректний e-mail'),
     password: passwordValidation,
     confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
   })
@@ -57,7 +58,7 @@ export const registerSchema = baseUserSchema
 
 export const LoginSchema = z.object({
   email: z.string().email('Невірний формат електронної пошти'),
-  password: z.string().min(6, 'Пароль має містити щонайменше 6 символів'),
+  password: z.string().min(8, 'Пароль має містити щонайменше 8 символів'),
 })
 
 export const editEmailSchema = LoginSchema.extend({
@@ -72,7 +73,7 @@ export const resetPasswordSchema = z
     password: z
       .string()
       .nonempty("Пароль є обов'язковим")
-      .min(6, 'Пароль має містити щонайменше 6 символів'),
+      .min(6, 'Пароль має містити щонайменше 8 символів'),
     confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
   })
   .superRefine((data, ctx) => {

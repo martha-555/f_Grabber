@@ -61,11 +61,11 @@ const Profile = () => {
               )}
               <UserInfoItem
                 text=" Соціальні мережі:"
-                data={userInfo?.social_links?.[0].url}
+                data={userInfo?.social_links?.[0]?.url}
                 icon=<a
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={userInfo?.social_links?.[0].url}
+                  href={userInfo?.social_links?.[0]?.url}
                 >
                   <InstIcon />
                 </a>
