@@ -5,6 +5,9 @@ import { PATHS } from '../paths'
 import userProfileStore from '../store/userProfileStore'
 import { UserInfoItem } from '../components'
 import InstIcon from '../assets/images/instagramIcon.svg?react'
+import groupIcon2 from '../assets/images/group2.svg'
+import groupIcon25 from '../assets/images/group25.svg'
+import groupIcon26 from '../assets/images/group26.svg'
 
 const Profile = () => {
   const userData = userProfileStore((state) => state)
@@ -13,27 +16,34 @@ const Profile = () => {
   return (
     <>
       {!userData.isLoading && (
-        <div className="text-b-2 mx-auto mb-40 text-grey-800">
+        <div className="text-b-2 mx-auto mb-[96px] text-grey-800">
           <div className="mt-24 flex justify-between">
             <h1 className="tex-grey-950 mb-12 ml-[8.33%] text-h3 font-medium">Мій профіль</h1>
             <Link to={PATHS.PROFILE.edit}>
-              <button className="mr-[120px] h-[48px] w-[48px] rounded-full bg-grey-50 hover:bg-grey-100 active:bg-grey-200">
-                <EditPencil className="active:text-secondary-blue-800 m-auto text-secondary-blue-200 hover:text-secondary-blue-400" />
+              <button className="editButton mr-[120px]">
+                <EditPencil className="editIcon" />
               </button>
             </Link>
           </div>
-          <div className="ml-[15.42%] flex max-w-[76.25%] gap-[32px]">
-            <div className="h-[285px] w-[285px] flex-shrink-0">
-              {userInfo.user_photo ? (
-                <img
-                  className="h-full w-full rounded-[25px] object-cover object-[50%_20%]"
-                  src={userInfo.user_photo as string}
-                />
-              ) : (
-                <div className="flex h-full items-center justify-center rounded-[20px] bg-grey-100">
-                  <DefaultAvatar className="text-primary-900" />
-                </div>
-              )}
+          <div className="ml-[15.42%] flex max-w-[76.25%] gap-[101px]">
+            <div className="flex flex-col justify-between">
+              <div className="h-[285px] w-[285px] flex-shrink-0">
+                {userInfo.user_photo ? (
+                  <img
+                    className="h-full w-full rounded-[25px] object-cover object-[50%_20%]"
+                    src={userInfo.user_photo as string}
+                  />
+                ) : (
+                  <div className="flex h-full items-center justify-center rounded-[20px] bg-grey-100">
+                    <DefaultAvatar className="text-primary-950" />
+                  </div>
+                )}
+              </div>
+              <div className="flex justify-between">
+                <img src={groupIcon2} alt="" />
+                <img src={groupIcon25} alt="" />
+                <img src={groupIcon26} alt="" />
+              </div>
             </div>
             <div className="mr-[120px]">
               <UserInfoItem
@@ -41,10 +51,8 @@ const Profile = () => {
                 data={`${userInfo.first_name} ${userInfo.last_name}`}
               />
               <UserInfoItem text="E-mail" data={userInfo.email} />
-              <UserInfoItem
-                text="Про себе"
-                data="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam, beatae accusamus rerum assumenda corporis voluptatem tempora pariatur. Nihil nobis obcaecati odit quidem mollitia, ratione error sunt debitis, blanditiis optio delectus."
-              />
+              <UserInfoItem text="Телефон" data={userInfo.phone_number} />
+              <UserInfoItem text="Про себе" data={userInfo.description} />
               {userInfo.location && (
                 <UserInfoItem
                   text="Місце виготовлення виробу/надання послуги"
@@ -53,17 +61,17 @@ const Profile = () => {
               )}
               <UserInfoItem
                 text=" Соціальні мережі:"
-                icon=<a target="_blank" rel="noopener noreferrer" href={`https://instagram.com/`}>
+                data={userInfo?.social_links?.[0].url}
+                icon=<a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={userInfo?.social_links?.[0].url}
+                >
                   <InstIcon />
                 </a>
               />
             </div>
           </div>
-          {/* <div className="m-auto flex max-w-[94%] justify-between">
-            <Link to={PATHS.PROFILE.changePassword}>
-              <Button className="custom-button">Редагувати пароль</Button>
-            </Link>
-          </div> */}
         </div>
       )}
     </>

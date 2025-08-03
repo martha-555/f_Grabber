@@ -95,7 +95,7 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
                   onDragOver={(e) => e.preventDefault()}
                   className="rounded-lg p-4 text-center"
                 >
-                  <span className="hidden text-d1 text-grey-500 underline active:text-primary-900 group-hover:inline">
+                  <span className="hidden text-d1 text-grey-500 underline active:text-primary-950 group-hover:inline">
                     Додати зображення
                   </span>
                   {/* Іконка для плейсхолдера */}

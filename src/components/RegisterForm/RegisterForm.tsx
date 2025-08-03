@@ -100,10 +100,11 @@ const RegisterForm: React.FC = () => {
       </section>
       <section className="auth-register-form-section">
         <ul className="flex list-inside list-disc flex-col gap-0 self-start text-d1 text-grey-600">
+        <ul className="flex list-inside list-disc flex-col gap-0 self-start text-d1 text-grey-600">
           <p className="mb-4">Пароль має містити:</p>
           <li className="ml-2 pl-2">мінімум 8 символів</li>
-          <li className="ml-2 pl-2">хоча б одну велику літеру</li>
-          <li className="ml-2 pl-2">хоча б одну цифру</li>
+          <li className="ml-2 pl-2">хоча б 1 велику літеру</li>
+          <li className="ml-2 pl-2">хоча б 1 цифру</li>
           <li className="ml-2 pl-2">хоча б 1 спеціальний символ (!@#^*$%?_&gt;)</li>
         </ul>
       </section>

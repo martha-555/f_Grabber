@@ -2,11 +2,11 @@ export { default as RegisterForm } from './RegisterForm/RegisterForm'
 
 export { default as LoginForm } from './LoginForm/LoginForm'
 
-export { default as EditProfileForm } from './EditProfileForm/EditProfileForm'
+export { default as EditProfileForm } from './EditProfile/EditProfileForm'
 
-export { default as UploadAvatar } from './EditProfileForm/UploadAvatar'
+export { default as UploadAvatar } from './EditProfile/UploadAvatar'
 
-export { default as ProfileInput } from './EditProfileForm/ProfileInput'
+export { default as ProfileInput } from './EditProfile/ProfileInput'
 
 export { default as Modal } from './Modal/Modal'
 
@@ -20,9 +20,9 @@ export { default as ResetPasswordForm } from './ResetPasswordForm/ResetPasswordF
 
 export { default as Menu } from './Menu/Menu'
 
-export { default as PasswordInput } from './PasswordInput/PasswordInput'
+export { default as CredentialInput } from './EditProfile/CredentialInput'
 
-export { default as DeleteUserPhoto } from './EditProfileForm/DeleteUserPhoto'
+export { default as DeleteUserPhoto } from './EditProfile/DeleteUserPhoto'
 
 export { default as ConfirmModal } from './ConfirmModal/ConfirmModal'
 
@@ -51,5 +51,9 @@ export { default as CategoryCard } from './CategoryCard/CategoryCard'
 export { default as CategoryLoader } from './CategoryLoader/CategoryLoader'
 
 export { default as UserInfoItem } from './UserInfoItem/UserInfoItem'
+
+export { default as EditEmailForm } from './EditProfile/EditEmailForm'
+
+export { default as EditPasswordForm } from './EditProfile/EditPasswordForm'
 
 export { default as FavoriteIcon } from './FavoriteIcon/FavoriteIcon'

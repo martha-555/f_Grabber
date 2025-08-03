@@ -14,7 +14,8 @@ export const PATHS = {
   PROFILE: {
     profile: '/profile',
     edit: '/profile/edit',
-    changePassword: '/profile/change-password',
+    change_email: '/profile/change-email',
+    change_password: '/profile/change-password',
   },
   PASSWORD: {
     forgot: '/forgot-password',

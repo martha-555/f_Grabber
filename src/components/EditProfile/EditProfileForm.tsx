@@ -1,7 +1,7 @@
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { editProfileSchema } from '../../features/userValidation'
-import { TUserProfile } from '../../types/types'
+import { TEditUserForm, TUserProfile } from '../../types/types'
 import UploadAvatar from './UploadAvatar'
 import ProfileInput from './ProfileInput'
 import submitUserData from '../../api/useSubmitUserData'
@@ -11,8 +11,9 @@ import { useEffect, useState } from 'react'
 import DeleteUserPhoto from './DeleteUserPhoto'
 import CustomToaster from '../CustomToaster/CustomToaster'
 import Button from '../Button/Button'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import EditIcon from '../../assets/images/editPencil.svg?react'
 
 type Props = {
   user: TUserProfile
@@ -23,46 +24,50 @@ const EditProfileForm = ({ user }: Props) => {
   const initialValues = {
     first_name: user?.first_name,
     last_name: user?.last_name,
-    email: user?.email,
     phone_number: user?.phone_number,
     location: user?.location || '',
     user_photo:
       typeof user?.user_photo === 'string' || user?.user_photo instanceof File
         ? user.user_photo
         : user?.user_photo,
+    description: user.description,
+    social_links: user?.social_links?.[0].url,
   }
 
   const { mutate: profileMutation } = submitUserData()
   const { mutate: photoMutation } = submitUserPhoto()
   const navigate = useNavigate()
 
-  const resetForm = () => {
-    reset({
-      ...initialValues,
-      user_photo: user?.user_photo,
-    })
-  }
-
   const {
     register,
     handleSubmit,
     control,
     getValues,
-    reset,
     resetField,
     formState: { dirtyFields, errors },
-  } = useForm<TUserProfile>({
+  } = useForm<TEditUserForm>({
     resolver: zodResolver(editProfileSchema),
     mode: 'onChange',
-    defaultValues: initialValues,
   })
 
   const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
+    const submitData = {
+      ...data,
+      social_links: data.social_links
+        ? [
+            {
+              platform: 'instagram',
+              url: data.social_links,
+            },
+          ]
+        : [],
+    }
+
     const { user_photo: avatar, ...userData } = initialValues
-    const isDataChanged = JSON.stringify(data) !== JSON.stringify(userData)
-    const isPhotoChanged = !(avatar as string).includes((user_photo as File).name)
+    const isDataChanged = JSON.stringify(submitData) !== JSON.stringify(userData)
+    const isPhotoChanged = !(avatar as string).includes((user_photo as File)?.name)
     const noChanges = !isDataChanged && !isPhotoChanged
 
     if (noChanges) {
@@ -73,15 +78,11 @@ const EditProfileForm = ({ user }: Props) => {
 
     try {
       const mutations = []
-      if (isDataChanged) mutations.push(profileMutation(data))
+      if (isDataChanged) mutations.push(profileMutation(submitData))
       if (user_photo instanceof File && isPhotoChanged) mutations.push(photoMutation(user_photo))
 
       await Promise.all(mutations)
-      toast.success('Зміни збережено успішно!', { id: 'profile-editor-toasts' })
-
-      setTimeout(() => {
-        navigate(PATHS.PROFILE.profile)
-      }, 1500)
+      navigate(PATHS.PROFILE.profile)
     } catch (error) {
       toast.error('Помилка при збереженні', { id: 'profile-editor-toasts' })
     }
@@ -150,15 +151,38 @@ const EditProfileForm = ({ user }: Props) => {
                   error={errors.last_name}
                   inputType="text"
                 />
-                <ProfileInput
-                  data={user.email}
-                  labelText="Email"
-                  placeholder="Наприклад: kateryna.sh@gmail.com"
-                  name="email"
-                  register={register}
-                  error={errors.email}
-                  inputType="email"
-                />
+                <div className="flex">
+                  <ProfileInput
+                    data={user.email}
+                    labelText="Email"
+                    name="email"
+                    inputType="email"
+                    disabled={true}
+                  />
+                  <div className="ml-4 flex items-end">
+                    <Link to={PATHS.PROFILE.change_email}>
+                      <button className="editButton">
+                        <EditIcon className="editIcon" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+                <div className="flex">
+                  <ProfileInput
+                    data="**********"
+                    labelText="Password"
+                    name="password"
+                    inputType="password"
+                    disabled={true}
+                  />
+                  <div className="ml-4 flex items-end">
+                    <Link to={PATHS.PROFILE.change_password}>
+                      <button className="editButton">
+                        <EditIcon className="editIcon" />
+                      </button>
+                    </Link>
+                  </div>
+                </div>
                 <ProfileInput
                   data={user.phone_number}
                   labelText="Контактний номер"
@@ -173,11 +197,16 @@ const EditProfileForm = ({ user }: Props) => {
                     Про себе
                   </label>
                   <textarea
-                    className="min-h-[104px] rounded-[20px] border border-grey-500 px-4 py-2 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
+                    {...register('description')}
+                    className={`input-text min-h-[104px] w-[799px] ${errors.description && 'border-error-default'}`}
                     placeholder="Опишіть свій досвід як майстра або розкажіть про особливості наданої послуги"
                     name="description"
                     id="description"
+                    defaultValue={user.description}
                   />
+                  {errors.description && (
+                    <span className="text-error-default">{errors.description.message}</span>
+                  )}
                 </div>
                 <ProfileInput
                   data={user.location || ''}
@@ -186,28 +215,25 @@ const EditProfileForm = ({ user }: Props) => {
                   register={register}
                   error={errors.location}
                   inputType="text"
+                  placeholder="Наприклад: Полтава"
                 />
                 <ProfileInput
-                  data=""
+                  data={user?.social_links?.[0].url || ''}
                   labelText="Додайте посилання на соцмережу"
-                  name="name"
+                  name="social_links"
                   register={register}
-                  error={errors.first_name}
+                  error={errors?.social_links}
                   inputType="text"
                   placeholder="Наприклад: @kateryna.clay"
                 />
               </div>
             </div>
             <div className="mx-auto mb-[5.06rem] mt-[5.37rem] flex justify-end gap-[24px]">
-              <Button
-                className="custom-button w-[285px] bg-grey-50 text-primary-900"
-                onClick={() => {
-                  resetForm()
-                  navigate(PATHS.PROFILE.profile)
-                }}
-              >
-                Скасувати зміни
-              </Button>
+              <Link to={PATHS.PROFILE.profile}>
+                <Button className="custom-button w-[285px] bg-grey-50 text-primary-950">
+                  Скасувати зміни
+                </Button>
+              </Link>
               <Button className="custom-button w-[285px]" disabled={!canSubmit} type="submit">
                 Зберегти зміни
               </Button>
