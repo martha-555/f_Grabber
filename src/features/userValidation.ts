@@ -58,7 +58,7 @@ export const registerSchema = z
 
 export const LoginSchema = z.object({
   email: z.string().email('Невірний формат електронної пошти'),
-  password: z.string().min(6, 'Пароль має містити щонайменше 6 символів'),
+  password: z.string().min(8, 'Пароль має містити щонайменше 8 символів'),
 })
 
 export const editEmailSchema = LoginSchema.extend({
@@ -73,7 +73,7 @@ export const resetPasswordSchema = z
     password: z
       .string()
       .nonempty("Пароль є обов'язковим")
-      .min(6, 'Пароль має містити щонайменше 6 символів'),
+      .min(6, 'Пароль має містити щонайменше 8 символів'),
     confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
   })
   .superRefine((data, ctx) => {

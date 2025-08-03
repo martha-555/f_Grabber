@@ -57,3 +57,5 @@ export { default as EditEmailForm } from './EditProfile/EditEmailForm'
 export { default as EditPasswordForm } from './EditProfile/EditPasswordForm'
 
 export { default as FavoriteIcon } from './FavoriteIcon/FavoriteIcon'
+
+export { default as PasswordRequirements } from './PasswordRequirements/PasswordRequirements'
