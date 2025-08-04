@@ -28,8 +28,8 @@ const Input = ({
           {...rest}
           type={type}
           placeholder={placeholder}
-          className={`w-full rounded-[20px] border bg-transparent px-4 py-2 pr-10 text-primary-30 outline-none transition duration-200 ${
-            error ? 'border-error-default' : 'border-primary-30'
+          className={`w-full rounded-[20px] border bg-transparent px-4 py-2 pr-10 text-primary-50 outline-none transition duration-200 ${
+            error ? 'border-error-default' : 'border-primary-50'
           } ${className}`}
         />
         {error && (

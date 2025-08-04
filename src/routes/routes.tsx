@@ -6,13 +6,14 @@ import {
   ForgotPassword,
   Login,
   Orders,
-  ProductDetails,
+  AdDetails,
   Products,
   Profile,
   Register,
   ResetPassword,
   EditProfile,
   Main,
+  ChangeUserEmail,
 } from '../pages'
 import { PATHS } from '../paths'
 import ChangeUserPassword from '../pages/ChangeUserPassword'
@@ -35,8 +36,8 @@ export const routes = [
         element: <Products />,
       },
       {
-        path: `${PATHS.PRODUCTS.details}:id`,
-        element: <ProductDetails />,
+        path: PATHS.PRODUCTS.details,
+        element: <AdDetails />,
       },
       {
         path: PATHS.PRODUCTS.add,
@@ -80,7 +81,7 @@ export const routes = [
         ),
       },
       {
-        path: PATHS.PROFILE.changePassword,
+        path: PATHS.PROFILE.change_password,
         element: (
           <PrivateRoute>
             <ChangeUserPassword />
@@ -92,6 +93,14 @@ export const routes = [
         element: (
           <PrivateRoute>
             <EditProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: PATHS.PROFILE.change_email,
+        element: (
+          <PrivateRoute>
+            <ChangeUserEmail />
           </PrivateRoute>
         ),
       },

@@ -50,26 +50,23 @@ const UploadAvatar = ({ uploadedPhoto, onChange, error, userPhoto }: UploadAvata
         accept="image/*"
         className="hidden"
       />
-      <div
-        className="relative mx-auto h-[221px] w-[221px] active:scale-95"
-        onClick={() => inputRef.current?.click()}
-      >
+      <div className="relative mx-auto active:scale-95" onClick={() => inputRef.current?.click()}>
         {preview && !error ? (
           <img
             src={preview}
             alt="User avatar"
-            className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
+            className="h-[221px] w-[221px] rounded-[20px] object-cover object-[50%_20%]"
           />
         ) : (
           (userPhoto && (
             <img
               src={userPhoto}
               alt="Initial avatar"
-              className="h-full w-full rounded-[20px] object-cover object-[50%_20%]"
+              className="h-[221px] w-[221px] rounded-[20px] object-cover object-[50%_20%]"
             />
           )) || (
             <div className="flex h-[221px] w-[221px] items-center justify-center rounded-[20px] bg-grey-100">
-              <DefaultAvatar className="text-primary-900" />
+              <DefaultAvatar className="text-primary-950" />
             </div>
           )
         )}

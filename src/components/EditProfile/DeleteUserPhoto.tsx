@@ -12,7 +12,7 @@ const DeleteUserPhoto = () => {
     <>
       <Button
         onClick={() => setShowModal(true)}
-        className="custom-button mt-0 w-[221px] bg-grey-50 text-primary-900"
+        className="custom-button mt-0 w-[221px] bg-grey-50 text-primary-950"
       >
         Видалити фото
       </Button>
