@@ -20,12 +20,12 @@ const StarRating: React.FC<StarRatingProps> = ({ rating, maxStars = 5 }) => {
   ]
 
   return (
-    <div className="text-primary-900 flex items-center gap-2">
+    <div className="flex items-center gap-2 text-primary-950">
       {stars.map((type, index) => {
         if (type === 'full') return <FillStar key={type + index} />
         if (type === 'half') return <HalfStars key={type + index} />
 
-        return <EmptyStar key={type + index} className="text-warning-notification-300" />
+        return <EmptyStar key={type + index} className="tex" />
       })}
     </div>
   )

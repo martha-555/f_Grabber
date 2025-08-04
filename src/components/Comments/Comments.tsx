@@ -6,14 +6,13 @@ import useFetchComments from '../../api/useFetchComments'
 
 import UserAvatar from '../../assets/icons/persona-icon.svg?react'
 import { formatDate } from '../../features/formatDate'
-// import { formatDate } from '../../utils/formatDate'
 
 interface CommentsProps {}
 
 const Comments: React.FC<CommentsProps> = ({}) => {
   const { pathname } = useLocation()
 
-  const id = pathname.split('/products/')[1]?.split('/')[0]
+  const id = pathname.split('/ad/')[1]?.split('/')[0]
 
   const { data: rating } = useFetchRating(id)
   const { data: comments } = useFetchComments(id)
@@ -41,7 +40,7 @@ const Comments: React.FC<CommentsProps> = ({}) => {
               <div key={review.product_id + review.id} className="flex flex-col gap-4">
                 <StarRating rating={review.rating} />
                 <div className="flex items-center justify-start gap-4">
-                  <UserAvatar className="text-primary-900" />
+                  <UserAvatar className="text-secondary-brown-700" />
                   <p className="text-b3 text-grey-600">{review.user_name}</p>
                 </div>
                 <p className="text-b3 text-grey-800"> {review.comment_text}</p>
