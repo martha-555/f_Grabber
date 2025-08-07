@@ -31,7 +31,7 @@ const EditProfileForm = ({ user }: Props) => {
         ? user.user_photo
         : user?.user_photo,
     description: user.description,
-    social_links: user?.social_links?.[0].url,
+    social_links: user?.social_links?.[0]?.url,
   }
 
   const { mutate: profileMutation } = submitUserData()
@@ -55,7 +55,7 @@ const EditProfileForm = ({ user }: Props) => {
     const { user_photo, ...data } = allValues
     const submitData = {
       ...data,
-      social_links: data.social_links
+      social_links: data?.social_links
         ? [
             {
               platform: 'instagram',
@@ -169,10 +169,11 @@ const EditProfileForm = ({ user }: Props) => {
                 </div>
                 <div className="flex">
                   <ProfileInput
-                    data="**********"
+                    // data="**********"
                     labelText="Password"
                     name="password"
-                    inputType="password"
+                    placeholder="Password"
+                    inputType="text"
                     disabled={true}
                   />
                   <div className="ml-4 flex items-end">
@@ -218,7 +219,7 @@ const EditProfileForm = ({ user }: Props) => {
                   placeholder="Наприклад: Полтава"
                 />
                 <ProfileInput
-                  data={user?.social_links?.[0].url || ''}
+                  data={user?.social_links?.[0]?.url || ''}
                   labelText="Додайте посилання на соцмережу"
                   name="social_links"
                   register={register}

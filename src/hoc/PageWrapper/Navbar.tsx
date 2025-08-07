@@ -41,7 +41,9 @@ const Navbar = () => {
           />
           <SearchIcon className="absolute left-4 top-1/2 block h-5 h-[24px] w-5 w-[24px] -translate-y-1/2 transform text-transp-50" />
           <div ref={ref} onClick={() => setIsOpen(!isOpen)} className="flex">
-            <button className="whitespace-nowrap pr-4">| {category || 'Категорії'}</button>
+            <button className="whitespace-nowrap pr-4">
+              | {(category && decodeURIComponent(category)) || 'Категорії'}
+            </button>
             <BurgerMenu className="m-auto w-[24px] cursor-pointer text-transp-50 group-hover:text-primary-50" />
           </div>
           {isOpen && <CategoriesMenu />}
