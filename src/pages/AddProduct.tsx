@@ -139,6 +139,7 @@ const AddProduct = () => {
           <textarea
             {...register('description')}
             rows={7}
+            maxLength={1000}
             placeholder="Приклад: глиняна тарілка з ручним розписом, висотою 18 мм та діаметром 21 см"
             className={`input-add-product-section ${errors.description ? 'outline-1 outline-error-default' : ''}`}
           ></textarea>
