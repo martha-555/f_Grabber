@@ -53,7 +53,15 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
   }
 
   return (
-    <div className="rounded-lg border border-dashed p-4 text-center">
+    <div
+      className="outline-secondary-brown-700 rounded-lg border border-dashed p-4 text-center focus:outline-2"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          handleClick()
+        }
+      }}
+    >
       {/* Прев'ю зображень (максимум 5) */}
       <div className="mb-4 flex flex-wrap justify-start gap-2">
         {[...Array(4)].map((_, index) => {
@@ -62,7 +70,7 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
           return (
             <div
               key={index}
-              className="group relative flex aspect-[183/127] w-[24%] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent transition-colors duration-300 hover:bg-grey-200"
+              className="bg-secondary-brown-100 group relative flex aspect-[183/127] w-[24%] cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-transparent transition-colors duration-300 hover:outline-1 hover:outline-grey-400"
               onClick={(e) => {
                 e.stopPropagation()
                 handleClick()
@@ -95,7 +103,7 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) 
                   onDragOver={(e) => e.preventDefault()}
                   className="rounded-lg p-4 text-center"
                 >
-                  <span className="hidden text-d1 text-grey-500 underline active:text-primary-950 group-hover:inline">
+                  <span className="active:text-primary-950 hidden text-d1 text-grey-500 underline group-hover:inline">
                     Додати зображення
                   </span>
                   {/* Іконка для плейсхолдера */}
