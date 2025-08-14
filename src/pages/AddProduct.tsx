@@ -161,7 +161,7 @@ const AddProduct = () => {
               categories.map((category, index) => {
                 return (
                   <label
-                    className={`text-regular transition-[background-color, color] border-primary-950 cursor-pointer rounded-full border px-4 py-2 text-b4 duration-300 ${
+                    className={`text-regular transition-[background-color, color] cursor-pointer rounded-full border border-primary-950 px-4 py-2 text-b4 duration-300 ${
                       watchCategory === category.name
                         ? 'bg-primary-950 text-primary-50'
                         : 'text-primary-950 hover:bg-primary-950 hover:text-primary-50'
@@ -301,7 +301,7 @@ const AddProduct = () => {
             </span>
             {/* Спіннер */}
             <div
-              className={`border-t-primary-950 col-start-1 row-start-1 h-4 w-4 animate-spin rounded-full border-4 border-gray-300 ${isPending ? 'block' : 'hidden'} `}
+              className={`col-start-1 row-start-1 h-4 w-4 animate-spin rounded-full border-4 border-gray-300 border-t-primary-950 ${isPending ? 'block' : 'hidden'} `}
             ></div>
           </Button>
         </div>
