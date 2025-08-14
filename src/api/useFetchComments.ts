@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import useBackendRequest from '../hooks/useBackendRequest'
 import { API_ENDPOINTS } from '../paths'
-import { ReviewComment } from '../types/reviewCommentTypes'
+import { TCommentAndRating } from '../types/reviewCommentTypes'
 
 const useFetchComments = (id: string) => {
   const fetchComments = useBackendRequest()
@@ -11,7 +11,7 @@ const useFetchComments = (id: string) => {
   return useQuery({
     queryKey: ['comments-product'],
     queryFn: () =>
-      fetchComments<ReviewComment[]>({
+      fetchComments<TCommentAndRating>({
         path: path,
         method: 'GET',
       }),

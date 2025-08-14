@@ -1,4 +1,4 @@
-export type ReviewComment = {
+export type TComment = {
   id: string
   product_id: string
   user_name: string
@@ -7,16 +7,7 @@ export type ReviewComment = {
   created_at: string
 }
 
-export type TProductRating = {
+export type TCommentAndRating = {
   average_rating: number
-  reviews: [
-    {
-      id: string
-      product_id: string
-      user_name: string
-      rating: number
-      comment_text: string
-      created_at: string
-    },
-  ]
+  comments: TComment[]
 }

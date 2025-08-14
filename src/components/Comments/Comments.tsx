@@ -1,9 +1,7 @@
 import React from 'react'
 import { StarRating } from '../'
 import { useLocation } from 'react-router-dom'
-import useFetchRating from '../../api/useFetchRating'
 import useFetchComments from '../../api/useFetchComments'
-
 import UserAvatar from '../../assets/icons/persona-icon.svg?react'
 import { formatDate } from '../../features/formatDate'
 
@@ -14,8 +12,9 @@ const Comments: React.FC<CommentsProps> = ({}) => {
 
   const id = pathname.split('/ad/')[1]?.split('/')[0]
 
-  const { data: rating } = useFetchRating(id)
-  const { data: comments } = useFetchComments(id)
+  const { data } = useFetchComments(id)
+  const comments = data?.comments || null
+  const rating = data?.average_rating ? data.average_rating : null
 
   return (
     <section className="mb-24 flex max-w-container flex-col items-start justify-center gap-12">
@@ -23,13 +22,11 @@ const Comments: React.FC<CommentsProps> = ({}) => {
         <h3 className="text-h3 font-semibold text-grey-950">Відгуки покупців</h3>
         <hr className="w-full border-t border-grey-200" />
         <div className="flex items-center gap-6">
-          <p className="text-h3">
-            {rating ? rating.average_rating : 'Завантаження рейтингу...'}/5.0
-          </p>
-          <StarRating rating={rating ? rating.average_rating : 0} />
+          <p className="text-h3">{rating ? rating : 'Завантаження рейтингу...'}/5.0</p>
+          <StarRating rating={rating ? rating : 0} />
         </div>
         <p className="text-d1 text-grey-600">
-          на базі {rating ? rating.reviews.length : 'Завантаження відгуків...'} відгуків
+          на базі {comments ? comments.length : 'Завантаження відгуків...'} відгуків
         </p>
       </section>
       <section className="flex w-full flex-col items-start justify-center gap-8">
