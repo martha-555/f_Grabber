@@ -22,15 +22,15 @@
 
 @layer components {
   .input-text {
-    @apply w-full rounded-3xl border border-grey-500 px-4 py-2 text-grey-950 focus:outline-none;
+    @apply w-full rounded-3xl border border-secondary-brown-700 px-4 py-2 text-grey-950 focus:outline-none;
 
     &::placeholder {
-      @apply text-b4 text-grey-400;
+      @apply text-b4 text-secondary-brown-300;
     }
   }
 
   .card-recommended {
-    @apply border border-transparent bg-primary-30 transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
+    @apply border border-transparent bg-primary-50 transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
   }
 
   /* Стилі для іконки "!" в інпутах */
@@ -55,14 +55,14 @@
 
   /* Стилі для кнопки */
   .button {
-    @apply rounded-[40px] bg-primary-900 px-8 py-4 text-primary-30 transition duration-300;
+    @apply rounded-[40px] bg-primary-950 px-8 py-4 text-primary-50 transition duration-300;
     &:not(:disabled):hover {
-      @apply cursor-pointer bg-secondary-blue-700 text-primary-30;
+      @apply cursor-pointer bg-secondary-brown-900 text-primary-50;
     }
   }
 
   .button-second {
-    @apply rounded-[30px] border border-transparent bg-primary-30 px-8 py-2 text-grey-950 transition duration-300 hover:bg-grey-100 focus:shadow-[0_0_0_2px_theme('colors.grey.100')] focus:outline-none active:bg-grey-200 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:text-grey-500;
+    @apply rounded-[30px] border border-transparent bg-primary-50 px-8 py-2 text-grey-950 transition duration-300 hover:bg-grey-100 focus:shadow-[0_0_0_2px_theme('colors.grey.100')] focus:outline-none active:bg-grey-200 disabled:cursor-not-allowed disabled:bg-grey-100 disabled:text-grey-500;
   }
 
   .close-button {
@@ -84,7 +84,7 @@
   }
 
   .custom-button {
-    @apply mb-8 mt-6 rounded-[30px] bg-primary-900 px-[33.5px] py-[9px] text-b4 text-primary-30 hover:bg-secondary-blue-700 active:bg-secondary-blue-600 disabled:bg-secondary-blue-200;
+    @apply mb-8 mt-6 rounded-[30px] bg-primary-950 px-[33.5px] py-[9px] text-b4 text-primary-50 hover:bg-secondary-brown-900 active:bg-primary-950 disabled:bg-secondary-brown-100;
   }
   /* Стилі для заголовку секції на сторінці додавання товару */
   .title-add-product-section {
@@ -117,5 +117,11 @@
   .button1.loading .text {
     opacity: 0;
     visibility: hidden;
+  }
+  .editButton {
+    @apply h-[48px] w-[48px] rounded-full bg-secondary-brown-100 active:bg-primary-950;
+  }
+  .editIcon {
+    @apply m-auto text-primary-50 hover:text-primary-950;
   }
 }

@@ -11,6 +11,16 @@ export type TUserProfile = {
   show_phone?: boolean
   role?: string
   user_photo?: File | string
+  description?: string
+  social_links?: { platform: string; url: string }[]
+}
+
+export type TEditUserEmail = Pick<TUserProfile, 'email'>
+
+export type TSubmitUserData = Omit<TUserProfile, 'email'>
+
+export type TEditUserForm = Omit<TUserProfile, 'email' | 'social_links'> & {
+  social_links?: string
 }
 
 export interface ApiError extends Error {

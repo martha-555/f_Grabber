@@ -2,12 +2,13 @@ import { UseFormRegister, FieldError } from 'react-hook-form'
 
 type Props = {
   labelText: string
-  data: string
-  register: UseFormRegister<any>
+  data: string | ''
+  register?: UseFormRegister<any>
   name: string
   error?: FieldError
   inputType: string
   placeholder?: string
+  disabled?: boolean
 }
 
 const ProfileInput = ({
@@ -18,6 +19,7 @@ const ProfileInput = ({
   error,
   inputType,
   placeholder,
+  disabled = false,
 }: Props) => {
   return (
     <div className="flex flex-col justify-between rounded-[20px]">
@@ -25,6 +27,7 @@ const ProfileInput = ({
         {labelText}
       </label>
       <input
+        disabled={disabled}
         placeholder={placeholder}
         type={inputType}
         id={data}
@@ -32,9 +35,9 @@ const ProfileInput = ({
           const target = e.target as HTMLInputElement
           target.select()
         }}
-        className="rounded-[20px] border border-grey-500 px-4 pb-[10px] pt-2 text-grey-950 placeholder:text-b4 placeholder:text-grey-400 focus:border-2"
+        className={`input-text w-[799px] ${error && 'border-error-default'}`}
         defaultValue={data}
-        {...register(name, { required: true })}
+        {...(register && { ...register(name, { required: true }) })}
       />
       {error && <span className="text-error-default">{error.message}</span>}
     </div>

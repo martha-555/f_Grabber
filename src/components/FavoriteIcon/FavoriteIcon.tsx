@@ -22,7 +22,7 @@ const FavoriteIcon = ({ product_id }: FavoriteIconProps) => {
     <button
       onClick={handleClick}
       aria-label="Toggle favorite"
-      className={isFavorite ? 'text-primary-900' : 'text-primary-30'}
+      className={isFavorite ? 'text-primary-950' : 'text-primary-50'}
     >
       <HeartIcon className="transition-colors" fill={isFavorite ? 'currentColor' : 'none'} />
     </button>
