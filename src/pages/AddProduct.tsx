@@ -115,6 +115,7 @@ const AddProduct = () => {
               {...register('title')}
               type="text"
               maxLength={100}
+              minLength={3}
               placeholder="Приклад: Мед"
               className={`input-add-product-section ${errors.title || watchTitle.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
             />
@@ -140,6 +141,7 @@ const AddProduct = () => {
             {...register('description')}
             rows={7}
             maxLength={1000}
+            minLength={40}
             placeholder="Приклад: глиняна тарілка з ручним розписом, висотою 18 мм та діаметром 21 см"
             className={`input-add-product-section ${errors.description ? 'outline-1 outline-error-default' : ''}`}
           ></textarea>
