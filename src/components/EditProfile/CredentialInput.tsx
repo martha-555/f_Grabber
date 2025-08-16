@@ -5,7 +5,13 @@ type Props = {
   register: UseFormRegister<any>
   visiblePassword?: boolean
   error?: FieldError
-  name: 'email' | 'new_email' | 'password' | 'confirm_password' | 'new_password' | 'old_password'
+  name:
+    | 'current_email'
+    | 'new_email'
+    | 'password'
+    | 'confirm_password'
+    | 'new_password'
+    | 'old_password'
   placeholder: string
   className?: string
   type?: string

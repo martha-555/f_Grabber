@@ -1,4 +1,4 @@
-export type HttpMethod = 'GET' | 'POST' | 'DELETE'
+export type HttpMethod = 'GET' | 'POST' | 'DELETE' | 'PATCH'
 
 export type TUserProfile = {
   date_joined?: Date
@@ -15,7 +15,11 @@ export type TUserProfile = {
   social_links?: { platform: string; url: string }[]
 }
 
-export type TEditUserEmail = Pick<TUserProfile, 'email'>
+export type TEditUserEmail = {
+  current_email: string
+  new_email: string
+  password: string
+}
 
 export type TSubmitUserData = Omit<TUserProfile, 'email'>
 

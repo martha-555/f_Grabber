@@ -53,13 +53,16 @@ const EditProfileForm = ({ user }: Props) => {
   const onSubmit = async () => {
     const allValues = getValues()
     const { user_photo, ...data } = allValues
+    const parsedLink = data?.social_links?.replace('@', '') || ''
     const submitData = {
       ...data,
       social_links: data?.social_links
         ? [
             {
               platform: 'instagram',
-              url: data.social_links,
+              url: data.social_links.includes('https://www.instagram.com/')
+                ? parsedLink
+                : `https://www.instagram.com/${parsedLink}`,
             },
           ]
         : [],
@@ -169,11 +172,10 @@ const EditProfileForm = ({ user }: Props) => {
                 </div>
                 <div className="flex">
                   <ProfileInput
-                    // data="**********"
                     labelText="Password"
                     name="password"
-                    placeholder="Password"
-                    inputType="text"
+                    data="********"
+                    inputType="password"
                     disabled={true}
                   />
                   <div className="ml-4 flex items-end">

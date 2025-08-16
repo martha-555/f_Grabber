@@ -20,8 +20,13 @@ const userSchema = z.object({
     .regex(/^\+380\d{9}$/, 'Номер телефону має бути у форматі +380XXXXXXXXX'),
 })
 
+export const emailSchema = z
+  .string()
+  .nonempty("Електронна пошта є обов'язковою")
+  .email('Некоректний e-mail')
+
 export const baseUserSchema = userSchema.extend({
-  email: z.string().nonempty("Електронна пошта є обов'язковою").email('Некоректний e-mail'),
+  email: emailSchema,
 })
 
 const passwordValidation = z
@@ -42,7 +47,7 @@ export const passwordSchema = z
 
 export const registerSchema = z
   .object({
-    email: z.string().nonempty("Електронна пошта є обов'язковою").email('Некоректний e-mail'),
+    email: emailSchema,
     password: passwordValidation,
     confirmPassword: z.string().nonempty("Підтвердження паролю є обов'язковим"),
   })
@@ -57,16 +62,20 @@ export const registerSchema = z
   })
 
 export const LoginSchema = z.object({
-  email: z.string().email('Невірний формат електронної пошти'),
+  email: emailSchema,
   password: z.string().min(8, 'Пароль має містити щонайменше 8 символів'),
 })
 
-export const editEmailSchema = LoginSchema.extend({
-  new_email: z.string().email('Невірний формат електронної пошти'),
-}).refine((data) => data.email !== data.new_email, {
-  message: 'Новий email не повинен збігатися зі старим',
-  path: ['new_email'],
-})
+export const editEmailSchema = z
+  .object({
+    current_email: emailSchema,
+    new_email: emailSchema,
+    password: z.string().nonempty("Це поле є обов'язковим"),
+  })
+  .refine((data) => data.current_email !== data.new_email, {
+    message: 'Новий email не повинен збігатися зі старим',
+    path: ['new_email'],
+  })
 
 export const resetPasswordSchema = z
   .object({

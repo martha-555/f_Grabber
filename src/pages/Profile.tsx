@@ -25,7 +25,7 @@ const Profile = () => {
               </button>
             </Link>
           </div>
-          <div className="ml-[15.42%] flex max-w-[76.25%] gap-[101px]">
+          <div className="ml-[15.42%] flex h-full max-w-[76.25%] gap-[101px]">
             <div className="flex flex-col justify-between">
               <div className="h-[285px] w-[285px] flex-shrink-0">
                 {userInfo.user_photo ? (
@@ -45,7 +45,7 @@ const Profile = () => {
                 <img src={groupIcon26} alt="" />
               </div>
             </div>
-            <div className="mr-[120px]">
+            <div className="mr-[120px] flex flex-col justify-between">
               <UserInfoItem
                 text="Ім'я та прізвище"
                 data={`${userInfo.first_name} ${userInfo.last_name}`}
