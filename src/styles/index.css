@@ -59,6 +59,9 @@
     &:not(:disabled):hover {
       @apply cursor-pointer bg-secondary-brown-900 text-primary-50;
     }
+    &:disabled {
+      @apply cursor-not-allowed bg-secondary-brown-100 text-secondary-brown-300;
+    }
   }
 
   .button-second {
@@ -96,7 +99,7 @@
   }
   /* Стилі для інпутів на сторінці додавання товару */
   .input-add-product-section {
-    @apply mb-2 w-full rounded-[20px] bg-transparent px-4 py-2 text-grey-950 outline outline-1 outline-grey-500 placeholder:text-grey-400 focus:outline-2;
+    @apply mb-2 w-full rounded-[20px] bg-transparent px-4 py-2 text-secondary-brown-700 outline outline-1 outline-secondary-brown-700 placeholder:text-secondary-brown-300 focus:outline-2;
   }
 
   .button1 {

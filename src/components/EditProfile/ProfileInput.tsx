@@ -2,7 +2,7 @@ import { UseFormRegister, FieldError } from 'react-hook-form'
 
 type Props = {
   labelText: string
-  data: string | ''
+  data?: string | ''
   register?: UseFormRegister<any>
   name: string
   error?: FieldError

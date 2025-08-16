@@ -5,22 +5,33 @@ import showIcon from '../../assets/icons/eye-icon.svg'
 import { useEffect, useState } from 'react'
 import CredentialInput from './CredentialInput'
 import Button from '../Button/Button'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import fetchChangeEmail from '../../api/useFetchChangeEmail'
+import CustomToaster from '../CustomToaster/CustomToaster'
 
 const EditEmailForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false)
-
+  const { mutate: changeEmail, isSuccess } = fetchChangeEmail()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors, isValid },
   } = useForm({
     resolver: zodResolver(editEmailSchema),
     mode: 'onChange',
   })
 
-  const onSubmit = () => {}
+  const onSubmit = () => {
+    const allValues = getValues()
+    changeEmail(allValues)
+  }
+
+  useEffect(() => {
+    isSuccess && navigate(PATHS.PROFILE.profile)
+  }, [isSuccess])
 
   useEffect(() => {
     if (showPassword) {
@@ -37,8 +48,8 @@ const EditEmailForm = () => {
       <CredentialInput
         register={register}
         type="email"
-        name="email"
-        error={errors.email}
+        name="current_email"
+        error={errors.current_email}
         placeholder="Введіть поточний e-mail"
       />
       <CredentialInput
@@ -57,6 +68,7 @@ const EditEmailForm = () => {
           name="password"
           type="password"
           placeholder="Введіть пароль"
+          error={errors.password}
         />
         <img
           onClick={() => setShowPassword(true)}
@@ -75,6 +87,7 @@ const EditEmailForm = () => {
           Зберегти зміни
         </Button>
       </div>
+      <CustomToaster />
     </form>
   )
 }

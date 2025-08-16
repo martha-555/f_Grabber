@@ -1,6 +1,6 @@
 import { Toaster } from 'react-hot-toast'
 type Props = {
-  id: string
+  id?: string
   className?: string
 }
 

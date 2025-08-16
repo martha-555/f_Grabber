@@ -45,6 +45,7 @@ const useBackendRequest = () => {
         }
 
         const apiError: ApiError = new Error(error.message)
+        apiError.message = error.response?.data
         apiError.status = error.response?.status
         apiError.isAxiosError = true
         throw apiError
