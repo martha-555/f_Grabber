@@ -51,6 +51,9 @@ export const API_ENDPOINTS = {
     reset: 'user/reset-password/',
     change: 'user/change-password/',
   },
+  EMAIL: {
+    change: 'user/change-email/',
+  },
   AD: {
     details: '/listings/{ad_id}',
   },
