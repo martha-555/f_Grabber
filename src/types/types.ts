@@ -11,7 +11,7 @@ export type TUserProfile = {
   show_phone?: boolean
   role?: string
   user_photo?: File | string
-  description?: string
+  description: string
   social_links?: { platform: string; url: string }[]
 }
 
