@@ -8,7 +8,7 @@ interface CategoryLoaderProps {
 const CategoryLoader: React.FC<CategoryLoaderProps> = ({ countItems }) => {
   return Array.from({ length: countItems }).map((_, index) => (
     <article
-      className="grid max-w-sm animate-pulse grid-cols-1 grid-rows-[auto_auto_1fr] overflow-hidden rounded-2xl border border-grey-200 p-4 p-6 shadow md:p-6 dark:border-grey-400"
+      className="animate-pulse grid max-w-sm grid-cols-1 grid-rows-[auto_auto_1fr] overflow-hidden rounded-2xl border border-grey-200 p-4 p-6 shadow md:p-6 dark:border-grey-400"
       key={'categoryLoader_' + index}
     >
       <div className="mb-4 flex h-48 items-center justify-center rounded-lg bg-grey-300 dark:bg-grey-400">
