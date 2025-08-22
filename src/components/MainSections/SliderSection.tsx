@@ -5,7 +5,7 @@ import ArrowLeft from '../../assets/icons/arrow-left.svg?react'
 import ArrowRight from '../../assets/icons/arrow-right.svg?react'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
-import { Link } from 'react-router-dom'
+import SliderBlock from './SliderBlock'
 
 const SliderSection = () => {
   return (
@@ -24,28 +24,24 @@ const SliderSection = () => {
         slidesPerView={1}
       >
         <SwiperSlide className="m-auto">
-          <div
-            className="flex h-[400px] items-end justify-around rounded-[20px] bg-cover bg-center pb-[48px]"
-            style={{ backgroundImage: `url(${sliderImg})` }}
-          >
-            <div className="text-primary-50">
-              <p className="mb-4 text-h31">
-                Вироби ручної роботи <br /> напряму від майстрів
-              </p>
-              <p className="text-b3">Підтримайте місцевих кравців та кравчинь</p>
-            </div>
-            <div>
-              <Link to="#">
-                <button className="!light-button">Ознайомитися</button>
-              </Link>
-            </div>
-          </div>
+          <SliderBlock
+            primaryText=" Вироби ручної роботи"
+            primaryText2="напряму від майстрів"
+            secondaryText="Підтримайте місцевих кравців та кравчинь"
+            sliderImg={sliderImg}
+            buttonText="Ознайомитися"
+            path="#"
+          />
         </SwiperSlide>
         <SwiperSlide className="m-auto">
-          <div
-            className="h-[400px] w-full rounded-xl bg-cover bg-center"
-            style={{ backgroundImage: `url(${sliderImg})` }}
-          ></div>
+          <SliderBlock
+            primaryText=" Вироби ручної роботи"
+            primaryText2="напряму від майстрів"
+            secondaryText="Підтримайте місцевих кравців та кравчинь"
+            sliderImg={sliderImg}
+            buttonText="Ознайомитися"
+            path="#"
+          />
         </SwiperSlide>
       </Swiper>
     </div>
