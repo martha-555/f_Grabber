@@ -301,7 +301,7 @@ const AddProduct = () => {
             </span>
             {/* Спіннер */}
             <div
-              className={`col-start-1 row-start-1 h-4 w-4 animate-spin rounded-full border-4 border-gray-300 border-t-primary-950 ${isPending ? 'block' : 'hidden'} `}
+              className={`animate-spin col-start-1 row-start-1 h-4 w-4 rounded-full border-4 border-gray-300 border-t-primary-950 ${isPending ? 'block' : 'hidden'} `}
             ></div>
           </Button>
         </div>

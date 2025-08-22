@@ -115,7 +115,8 @@ export const editProfileSchema = userSchema.extend({
   social_links: z.string().optional(),
   description: z
     .string()
-    .max(255, 'Це поле може містити не більше ніж 255 символів')
+    .max(255, 'Максимальна довжина: 255 символів')
+    .min(10, 'Поле повинно містити щонайменше 10 символів')
     .nonempty('Опис є обовʼязковим'),
 })
 

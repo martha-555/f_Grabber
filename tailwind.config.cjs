@@ -12,6 +12,7 @@ module.exports = {
       fontSize: {
         h1: ['57px', { lineHeight: '140%', fontWeight: '600' }],
         h2: ['48px', { lineHeight: '140%', fontWeight: '500' }],
+        h21: ['42px', { lineHeight: '140%', fontWeight: '700' }],
         h3: ['32px', { lineHeight: '130%', fontWeight: '400' }],
         h4: ['24px', { lineHeight: '130%', fontWeight: '400' }],
         s1: ['24px', { lineHeight: '140%', fontWeight: '500' }],
@@ -92,6 +93,22 @@ module.exports = {
         'warning-icon': "url('./src/assets/icons/exclamation-icon.svg')",
         'bg-news': "url('/src/assets/images/BG.jpg')",
       },
+    },
+    keyframes: {
+      slide1: {
+        '0%': { transform: 'translateY(-100%)' },
+        '50%': { transform: 'translateY(100%)' },
+        '100%': { transform: 'translateY(200%)' },
+      },
+      slide2: {
+        '0%': { transform: 'translateY(-200%)' },
+        '50%': { transform: 'translateY(-100%)' },
+        '100%': { transform: 'translateY(100%)' },
+      },
+    },
+    animation: {
+      slide1: 'slide1 4s linear infinite',
+      slide2: 'slide2 4s linear infinite',
     },
   },
   plugins: [],
