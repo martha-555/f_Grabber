@@ -55,12 +55,18 @@
 
   /* Стилі для кнопки */
   .button {
-    @apply rounded-[40px] bg-primary-950 px-8 py-4 text-primary-50 transition duration-300;
-    &:not(:disabled):hover {
+    @apply rounded-[30px] bg-primary-950 px-8 py-4 text-primary-50 transition duration-300;
+
+    &:hover:not(:disabled) {
       @apply cursor-pointer bg-secondary-brown-900 text-primary-50;
     }
+
+    &:active:not(:disabled) {
+      @apply bg-secondary-brown-950 text-primary-30;
+    }
+
     &:disabled {
-      @apply cursor-not-allowed bg-secondary-brown-100 text-secondary-brown-300;
+      @apply cursor-not-allowed bg-secondary-brown-100 text-primary-50;
     }
   }
 
@@ -88,6 +94,10 @@
 
   .custom-button {
     @apply mb-8 mt-6 rounded-[30px] bg-primary-950 px-[33.5px] py-[9px] text-b4 text-primary-50 hover:bg-secondary-brown-900 active:bg-primary-950 disabled:bg-secondary-brown-100;
+  }
+
+  .light-button {
+    @apply h-10 whitespace-nowrap rounded-full bg-primary-50 px-6 text-primary-950 hover:bg-secondary-brown-100 focus:border focus:border-primary-950 focus:bg-secondary-brown-100 active:bg-secondary-brown-300 active:shadow-[inset_0_0_4px_2px_#ABC2F6];
   }
   /* Стилі для заголовку секції на сторінці додавання товару */
   .title-add-product-section {
@@ -126,5 +136,14 @@
   }
   .editIcon {
     @apply m-auto text-primary-50 hover:text-primary-950;
+  }
+  .sliderButton {
+    @apply cursor-pointer rounded-full text-secondary-brown-100 active:text-primary-950;
+  }
+  .arrowIcon {
+    @apply [&_.arrow-path]:fill-primary-50 group-hover:[&_.arrow-path]:fill-primary-950 group-active:[&_.arrow-path]:fill-primary-50;
+  }
+  .sliderButton.swiper-button-disabled {
+    @apply pointer-events-none cursor-not-allowed opacity-50;
   }
 }
