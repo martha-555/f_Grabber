@@ -25,8 +25,11 @@ const SliderSection = () => {
       >
         <SwiperSlide className="m-auto">
           <SliderBlock
-            primaryText=" Вироби ручної роботи"
-            primaryText2="напряму від майстрів"
+            primaryText={
+              <>
+                Вироби ручної роботи <br /> напряму від майстрів
+              </>
+            }
             secondaryText="Підтримайте місцевих кравців та кравчинь"
             sliderImg={sliderImg}
             buttonText="Ознайомитися"
@@ -35,8 +38,11 @@ const SliderSection = () => {
         </SwiperSlide>
         <SwiperSlide className="m-auto">
           <SliderBlock
-            primaryText=" Вироби ручної роботи"
-            primaryText2="напряму від майстрів"
+            primaryText={
+              <>
+                Вироби ручної роботи <br /> напряму від майстрів
+              </>
+            }
             secondaryText="Підтримайте місцевих кравців та кравчинь"
             sliderImg={sliderImg}
             buttonText="Ознайомитися"
