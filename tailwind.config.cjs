@@ -13,6 +13,7 @@ module.exports = {
         h1: ['57px', { lineHeight: '140%', fontWeight: '600' }],
         h2: ['48px', { lineHeight: '140%', fontWeight: '500' }],
         h21: ['42px', { lineHeight: '140%', fontWeight: '700' }],
+        h31: ['32px', { lineHeight: '130%', fontWeight: '600' }],
         h3: ['32px', { lineHeight: '130%', fontWeight: '400' }],
         h4: ['24px', { lineHeight: '130%', fontWeight: '400' }],
         s1: ['24px', { lineHeight: '140%', fontWeight: '500' }],
@@ -26,6 +27,7 @@ module.exports = {
         primary: {
           950: '#821404',
           50: '#FBF7F1',
+          30: '#FAFAFA',
         },
         secondary: {
           blue: {
@@ -40,6 +42,7 @@ module.exports = {
           },
           brown: {
             900: '#643C2A',
+            950: '#361E14',
             100: '#F6ECDE',
             300: '#DFBB92',
             700: '#9A5734',

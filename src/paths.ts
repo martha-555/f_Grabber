@@ -23,6 +23,7 @@ export const PATHS = {
   },
   ORDERS: '/orders',
   ADMIN: '/admin',
+  FAQ: '/faq',
 }
 
 export const API_ENDPOINTS = {
