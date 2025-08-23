@@ -35,7 +35,7 @@ const NewsCard = () => {
   }
 
   return (
-    <div className="relative min-h-[384px] bg-bg-news bg-cover bg-center bg-no-repeat">
+    <div className="relative bottom-[71px] min-h-[384px] bg-bg-news bg-cover bg-center bg-no-repeat">
       {isSuccessModalOpen && (
         <div className="absolute inset-0 z-20 flex items-center justify-center px-2 py-10">
           <div className="w-full max-w-[1200px]">

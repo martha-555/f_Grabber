@@ -17,6 +17,7 @@ import {
 } from '../pages'
 import { PATHS } from '../paths'
 import ChangeUserPassword from '../pages/ChangeUserPassword'
+import { FAQSection } from '../components'
 
 export const routes = [
   {
@@ -26,6 +27,10 @@ export const routes = [
       {
         index: true,
         element: <Main />,
+      },
+      {
+        path: PATHS.FAQ,
+        element: <FAQSection />,
       },
       {
         path: PATHS.PRODUCTS.list,

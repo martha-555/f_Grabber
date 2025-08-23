@@ -50,9 +50,7 @@ const Navbar = () => {
         </div>
       </div>
       <Link to={PATHS.PRODUCTS.add}>
-        <button className="active:bg-secondary-brown-3000 h-10 whitespace-nowrap rounded-full bg-primary-50 px-6 text-primary-950 hover:bg-secondary-brown-100 focus:border focus:border-primary-950 focus:bg-secondary-brown-100 active:shadow-[inset_0_0_4px_2px_#ABC2F6]">
-          Створити оголошення
-        </button>
+        <button className="light-button">Створити оголошення</button>
       </Link>
       <Link to="#">
         <BasketIcon />

@@ -67,3 +67,5 @@ export { default as Comment } from './Comment/Comment'
 export { default as StarRating } from './StarRating/StarRating'
 
 export { default as AnimationSection } from './MainSections/AnimationSection'
+
+export { default as SliderSection } from './MainSections/SliderSection'
