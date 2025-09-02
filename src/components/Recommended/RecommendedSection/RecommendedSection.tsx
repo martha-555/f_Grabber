@@ -31,7 +31,7 @@ const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSe
 
   return (
     <section className="relative mx-auto mb-[100px] max-w-[1200px]">
-      <h2 className="pb-8 text-center text-h3">{text}</h2>
+      <h2 className="pb-8 text-h31">{text}</h2>
 
       <div className={variant === 'home' ? 'relative h-[491px]' : 'relative h-[513px]'}>
         <button

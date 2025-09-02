@@ -69,3 +69,5 @@ export { default as StarRating } from './StarRating/StarRating'
 export { default as AnimationSection } from './MainSections/AnimationSection'
 
 export { default as SliderSection } from './MainSections/SliderSection'
+
+export { default as PopularSection } from './MainSections/PopularSection'
