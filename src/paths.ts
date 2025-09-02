@@ -59,7 +59,7 @@ export const API_ENDPOINTS = {
     change: 'user/change-email/',
   },
   AD: {
-    details: '/listings/{ad_id}',
+    details: '/listings/{ad_id}/',
   },
   PROFILE: {
     get: 'user/profile/',
