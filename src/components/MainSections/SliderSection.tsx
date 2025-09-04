@@ -2,7 +2,6 @@ import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import sliderImg from '../../assets/images/frame334.jpg'
 import sliderImg2 from '../../assets/images/frame332.jpg'
-
 import ArrowLeft from '../../assets/icons/arrow-left.svg?react'
 import ArrowRight from '../../assets/icons/arrow-right.svg?react'
 import 'swiper/css/pagination'
