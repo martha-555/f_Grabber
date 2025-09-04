@@ -15,7 +15,7 @@ const SliderBlock = ({ sliderImg, path, primaryText, secondaryText, buttonText }
       style={{ backgroundImage: `url(${sliderImg})` }}
     >
       <div className="text-primary-50">
-        <p className="text-h31 mb-4">{primaryText}</p>
+        <p className="mb-4 text-h31">{primaryText}</p>
         <p className="text-b3">{secondaryText}</p>
       </div>
       <div>

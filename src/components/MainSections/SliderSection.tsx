@@ -1,6 +1,7 @@
 import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import sliderImg from '../../assets/images/frame334.jpg'
+import sliderImg2 from '../../assets/images/frame332.jpg'
 import ArrowLeft from '../../assets/icons/arrow-left.svg?react'
 import ArrowRight from '../../assets/icons/arrow-right.svg?react'
 import 'swiper/css/pagination'
@@ -38,13 +39,9 @@ const SliderSection = () => {
         </SwiperSlide>
         <SwiperSlide className="m-auto">
           <SliderBlock
-            primaryText={
-              <>
-                Вироби ручної роботи <br /> напряму від майстрів
-              </>
-            }
-            secondaryText="Підтримайте місцевих кравців та кравчинь"
-            sliderImg={sliderImg}
+            primaryText={<>Обирайте за виробником</>}
+            secondaryText="Дивіться колекцію від виробника у єдиному стилі"
+            sliderImg={sliderImg2}
             buttonText="Ознайомитися"
             path="#"
           />
