@@ -31,6 +31,7 @@ export const API_ENDPOINTS = {
     create: 'listings/create/',
     details: 'listings/{ad_id}',
     getFavorites: '/listings/favorite/',
+    popularProducts: '/listings/popular/',
     favorites: 'listings/favorites/',
     removeFavorite: 'listings/favorites/{product_id}/',
     moderation: 'listings/moderation/',
