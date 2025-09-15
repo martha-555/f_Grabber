@@ -76,7 +76,7 @@ module.exports = {
       },
       minWidth: {
         'btn-small': '100px',
-        'btn-medium': '250px',
+        'btn-medium': '285px',
         'btn-large': '350px',
         'profile-button': '15.875rem',
       },
