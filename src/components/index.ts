@@ -16,7 +16,7 @@ export { default as ForgotPasswordForm } from './ForgotPasswordForm/ForgotPasswo
 
 export { default as LogOutButton } from './LogOutButton/LogOutButton'
 
-export { default as ResetPasswordForm } from './ResetPasswordForm/ResetPasswordForm'
+export { default as ResetPasswordForm } from './ForgotPasswordForm/ResetPasswordForm.tsx'
 
 export { default as Menu } from './Menu/Menu'
 
