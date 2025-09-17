@@ -35,11 +35,11 @@ const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSe
 
       <div className={variant === 'home' ? 'relative h-[491px]' : 'relative h-[513px]'}>
         <button
-          className={`swiper-button-prev group absolute left-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-grey-50 transition-colors hover:text-grey-100 active:text-grey-200 ${
+          className={`swiper-button-prev group absolute left-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-secondary-brown-100 transition-colors hover:text-secondary-brown-100 active:text-primary-950 ${
             isBeginning ? 'pointer-events-none opacity-0' : ''
           }`}
         >
-          <ArrowLeftIcon className="h-5 w-5 [&_.arrow-path]:fill-gray-200 group-hover:[&_.arrow-path]:fill-gray-400 group-active:[&_.arrow-path]:fill-gray-400" />
+          <ArrowLeftIcon className="arrowIcon" />
         </button>
 
         <Swiper
@@ -70,11 +70,11 @@ const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSe
         </Swiper>
 
         <button
-          className={`swiper-button-next group absolute right-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-grey-50 transition-colors hover:text-grey-100 active:text-grey-200 ${
+          className={`swiper-button-next group absolute right-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-secondary-brown-100 transition-colors hover:text-secondary-brown-100 active:text-primary-950 ${
             isEnd ? 'pointer-events-none opacity-0' : ''
           }`}
         >
-          <ArrowRight className="h-5 w-5 [&_.arrow-path]:fill-gray-200 group-hover:[&_.arrow-path]:fill-gray-400 group-active:[&_.arrow-path]:fill-gray-400" />
+          <ArrowRight className="arrowIcon" />
         </button>
       </div>
     </section>

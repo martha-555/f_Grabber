@@ -30,7 +30,7 @@
   }
 
   .card-recommended {
-    @apply border border-transparent bg-primary-50 transition duration-300 hover:bg-grey-100 focus:border-grey-950 focus:!bg-grey-100 focus:outline-none active:bg-grey-200;
+    @apply border border-transparent bg-primary-50 transition duration-300 hover:bg-secondary-brown-100 focus:border-secondary-brown-900 focus:outline-none active:bg-secondary-brown-300;
   }
 
   /* Стилі для іконки "!" в інпутах */
@@ -47,8 +47,8 @@
   .auth-register-form-section {
     @apply relative flex flex-col items-center gap-2 text-grey-500;
   }
-  /* Стилі для тексту, який з'являється під час виникнення помилки */
 
+  /* Стилі для тексту, який з'являється під час виникнення помилки */
   .error-text {
     @apply text-d1 text-error-default;
   }
@@ -79,7 +79,7 @@
 
     &::after,
     &::before {
-      @apply absolute h-0.5 w-4 bg-grey-950;
+      @apply absolute h-0.5 w-4 bg-grey-950 hover:bg-primary-950;
       content: '';
     }
 
@@ -99,14 +99,29 @@
   .light-button {
     @apply h-10 whitespace-nowrap rounded-full bg-primary-50 px-6 text-primary-950 hover:bg-secondary-brown-100 focus:border focus:border-primary-950 focus:bg-secondary-brown-100 active:bg-secondary-brown-300 active:shadow-[inset_0_0_4px_2px_#ABC2F6];
   }
+
   /* Стилі для заголовку секції на сторінці додавання товару */
   .title-add-product-section {
     @apply mb-6 text-s1 text-grey-950;
   }
+
   /* Стилі для опису секції на сторінці додавання товару */
   .description-add-product-section {
     @apply mb-2 text-b3 text-grey-800;
   }
+
+  .title-h2 {
+    @apply font-kyiv text-h3 text-grey-950;
+  }
+
+  .description-add {
+    @apply text-b3 text-grey-800;
+  }
+
+  .description-info {
+    @apply text-d1 text-grey-600;
+  }
+
   /* Стилі для інпутів на сторінці додавання товару */
   .input-add-product-section {
     @apply mb-2 w-full rounded-[20px] bg-transparent px-4 py-2 text-secondary-brown-700 outline outline-1 outline-secondary-brown-700 placeholder:text-secondary-brown-300 focus:outline-2;
@@ -116,9 +131,11 @@
     display: grid;
     grid-template-areas: 'stack';
   }
+
   .button1 .spinner {
     grid-area: stack;
   }
+
   .button1 .text {
     grid-area: stack;
   }
@@ -131,18 +148,23 @@
     opacity: 0;
     visibility: hidden;
   }
+
   .editButton {
     @apply h-[48px] w-[48px] rounded-full bg-secondary-brown-100 active:bg-primary-950;
   }
+
   .editIcon {
     @apply m-auto text-primary-50 hover:text-primary-950;
   }
+
   .sliderButton {
     @apply cursor-pointer rounded-full text-secondary-brown-100 active:text-primary-950;
   }
+
   .arrowIcon {
     @apply [&_.arrow-path]:fill-primary-50 group-hover:[&_.arrow-path]:fill-primary-950 group-active:[&_.arrow-path]:fill-primary-50;
   }
+
   .sliderButton.swiper-button-disabled {
     @apply pointer-events-none cursor-not-allowed opacity-50;
   }
