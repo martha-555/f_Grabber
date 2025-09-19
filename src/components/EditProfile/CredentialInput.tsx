@@ -34,23 +34,30 @@ const CredentialInput = ({ register, error, name, placeholder, className, type }
         className={`input-text ${className} ${error && 'border-error-default'}`}
         type={inputType}
       />
-      {error && (
-        <>
-          <span className="error-text ml-5 self-start text-xs">{error.message}</span>
+      {error && <span className="error-text ml-5 self-start text-xs">{error.message}</span>}
+      {isPassword &&
+        (error ? (
           <img
-            className="absolute right-[40px] top-[13px] h-[1.13rem] w-[1.13rem]"
+            className="absolute right-3 top-[13px] h-[1.13rem] w-[1.13rem]"
             src={errorIcon}
+            alt="error"
           />
-        </>
-      )}
-      {isPassword && (
-        <button
-          type="button"
-          onClick={() => setShowPassword((prev) => !prev)}
-          className="absolute right-3 top-[13px]"
-        >
-          <img src={showIcon} alt="toggle password" className="h-[1.13rem] w-[1.13rem]" />
-        </button>
+        ) : (
+          <button
+            type="button"
+            onClick={() => setShowPassword((prev) => !prev)}
+            className="absolute right-3 top-[13px]"
+          >
+            <img src={showIcon} alt="toggle password" className="h-[1.13rem] w-[1.13rem]" />
+          </button>
+        ))}
+
+      {!isPassword && error && (
+        <img
+          className="absolute right-3 top-[13px] h-[1.13rem] w-[1.13rem]"
+          src={errorIcon}
+          alt="error"
+        />
       )}
     </div>
   )
