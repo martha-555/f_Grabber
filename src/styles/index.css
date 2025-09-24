@@ -22,7 +22,7 @@
 
 @layer components {
   .input-text {
-    @apply w-full rounded-3xl border border-secondary-brown-700 px-4 py-2 text-grey-950 focus:outline-none;
+    @apply h-[40px] w-full rounded-[20px] border border-secondary-brown-700 px-4 text-grey-950 focus:outline-none;
 
     &::placeholder {
       @apply text-b4 text-secondary-brown-300;
@@ -124,6 +124,7 @@
   .description-add-product-section {
     @apply mb-2 text-b3 text-grey-800;
   }
+
 
   .title-h2 {
     @apply font-kyiv text-h3 text-grey-950;
