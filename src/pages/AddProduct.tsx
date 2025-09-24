@@ -7,6 +7,7 @@ import useAdsCreate from '../api/adsCreate'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import useFetchCategories from '../api/useFetchCategories'
+import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
 
 export type TFormData = z.infer<typeof addAdsSchema>
 
@@ -34,6 +35,7 @@ const AddProduct = () => {
   } = useForm<TFormData>({
     defaultValues,
     resolver: zodResolver(addAdsSchema),
+    mode: 'onChange',
   })
 
   const { mutateAsync: createAds, isPending } = useAdsCreate()
@@ -45,15 +47,15 @@ const AddProduct = () => {
   const handleSubmitForm = async (data: TFormData) => {
     const newAds = new FormData()
 
-    newAds.append('title', data.title)
-    newAds.append('description', data.description)
+    newAds.append('title', capitalizeFirstLetter(data.title))
+    newAds.append('description', capitalizeFirstLetter(data.description))
     newAds.append('price', data.price)
     newAds.append('status', 'draft')
     newAds.append('category', data.category_name)
-    newAds.append('contact_name', data.contact_name)
+    newAds.append('contact_name', capitalizeFirstLetter(data.contact_name))
     newAds.append('email', data.email)
     newAds.append('phone', data.phone)
-    newAds.append('location', data.location)
+    newAds.append('location', capitalizeFirstLetter(data.location))
 
     // Додаємо зображення (може бути File або string)
     data.images.forEach((img) => {
