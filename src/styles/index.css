@@ -58,15 +58,20 @@
     @apply rounded-[30px] bg-primary-950 px-8 py-4 text-primary-50 transition duration-300;
 
     &:hover:not(:disabled) {
-      @apply cursor-pointer bg-secondary-brown-900 text-primary-50;
+      @apply cursor-pointer bg-secondary-brown-900;
+    }
+
+    &:focus:not(:disabled),
+    &:focus-visible:not(:disabled) {
+      @apply border-secondary-brown-50 border-4 bg-secondary-brown-900 outline-1 outline-secondary-brown-950;
     }
 
     &:active:not(:disabled) {
-      @apply bg-secondary-brown-950 text-primary-30;
+      @apply border-none bg-secondary-brown-950 outline-none;
     }
 
     &:disabled {
-      @apply cursor-not-allowed bg-secondary-brown-100 text-primary-50;
+      @apply cursor-not-allowed bg-secondary-brown-100;
     }
   }
 

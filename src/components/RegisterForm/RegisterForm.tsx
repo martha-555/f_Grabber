@@ -104,7 +104,7 @@ const RegisterForm: React.FC = () => {
 
       {/* Кнопка для відправки форми */}
       <Button
-        className="py-2"
+        className="py-2 disabled:bg-secondary-brown-900"
         type="submit"
         disabled={status === 'pending'}
         text="Зареєструватися"

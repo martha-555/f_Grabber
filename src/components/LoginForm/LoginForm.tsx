@@ -97,7 +97,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         disabled={status === 'pending'}
         type="submit"
         text="Увійти в акаунт"
-        className="py-2"
+        className="py-2 disabled:bg-secondary-brown-900"
       />
 
       <p className="flex justify-between text-b4">
