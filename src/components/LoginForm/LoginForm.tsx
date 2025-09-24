@@ -98,9 +98,9 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
         text="Увійти в акаунт"
         className="py-2"
       />
-      <p className="flex justify-center text-b4 text-grey-800">
+      <p className="flex justify-center text-b4">
         Немає аккаунту?{' '}
-        <Link to={PATHS.AUTH.register} className="ml-2 text-grey-500 underline">
+        <Link to={PATHS.AUTH.register} className="ml-2 underline">
           Зареєструватися
         </Link>
       </p>

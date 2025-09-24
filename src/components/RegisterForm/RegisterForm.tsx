@@ -113,9 +113,9 @@ const RegisterForm: React.FC = () => {
 
       {/* Посилання для переходу на сторінку входу */}
       <section className="auth-register-form-section mb-32">
-        <p className="text-b4 text-grey-800">
+        <p className="text-b4">
           Вже є акаунт?
-          <Link to={PATHS.AUTH.login} className="ml-2 text-grey-500 underline">
+          <Link to={PATHS.AUTH.login} className="ml-2 underline">
             Увійти
           </Link>
         </p>

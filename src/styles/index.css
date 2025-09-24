@@ -40,12 +40,12 @@
 
   /* Стилі для форми реєстрації користувача */
   .auth-register-form {
-    @apply flex w-full max-w-96 flex-col gap-4 md:w-1/2;
+    @apply flex w-full max-w-96 flex-col gap-4 text-secondary-brown-900 md:w-1/2;
   }
 
   /* Стилі для секції форми реєстрації користувача */
   .auth-register-form-section {
-    @apply relative flex flex-col items-center gap-2 text-grey-500;
+    @apply relative flex flex-col items-center gap-2 text-secondary-brown-900;
   }
 
   /* Стилі для тексту, який з'являється під час виникнення помилки */
