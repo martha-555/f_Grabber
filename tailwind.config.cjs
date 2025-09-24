@@ -101,17 +101,17 @@ module.exports = {
       slide1: {
         '0%': { transform: 'translateY(-100%)' },
         '50%': { transform: 'translateY(100%)' },
-        '100%': { transform: 'translateY(200%)' },
+        '100%': { transform: 'translateY(100%)' },
       },
       slide2: {
         '0%': { transform: 'translateY(-200%)' },
         '50%': { transform: 'translateY(-100%)' },
-        '100%': { transform: 'translateY(100%)' },
+        '100%': { transform: 'translateY(200%)' },
       },
     },
     animation: {
-      slide1: 'slide1 4s linear infinite',
-      slide2: 'slide2 4s linear infinite',
+      slide1: 'slide1 12s linear infinite',
+      slide2: 'slide2 12s linear infinite',
     },
   },
   plugins: [],
