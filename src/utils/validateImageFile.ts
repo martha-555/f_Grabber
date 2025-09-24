@@ -6,8 +6,10 @@ export const validateImage = (file: File): string | null => {
   if (!allowedTypes.includes(file.type)) {
     return 'Дозволені лише JPG, PNG'
   }
+
   if (file.size > maxSize) {
     return 'Максимальний розмір зображення 5MB'
   }
+
   return null
 }

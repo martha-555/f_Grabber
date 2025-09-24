@@ -23,8 +23,10 @@ const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch, se
 
     for (const file of newFiles) {
       const error = validateImage(file)
+
       if (error) {
         setError('images', { message: error })
+
         return
       }
     }

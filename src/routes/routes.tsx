@@ -54,11 +54,19 @@ export const routes = [
       },
       {
         path: PATHS.AUTH.login,
-        element: <LoginRegister title="Увійти в акаунт" children={<LoginForm />} />,
+        element: (
+          <LoginRegister title="Увійти в акаунт">
+            <LoginForm />
+          </LoginRegister>
+        ),
       },
       {
         path: PATHS.AUTH.register,
-        element: <LoginRegister title="Реєстрація" children={<RegisterForm />} />,
+        element: (
+          <LoginRegister title="Реєстрація">
+            <RegisterForm />
+          </LoginRegister>
+        ),
       },
       {
         path: PATHS.PASSWORD.forgot,

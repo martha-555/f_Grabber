@@ -7,7 +7,8 @@ import { PATHS } from '../../paths'
 import useLogin from '../../api/login'
 import { LoginSchema } from '../../features/userValidation'
 import userProfileStore from '../../store/userProfileStore'
-import Button from '../Button/Button'
+import { Button } from '../'
+import CredentialInput from '../EditProfile/CredentialInput'
 
 interface LoginFormProps {}
 
@@ -56,42 +57,30 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
       <section className="auth-register-form-section">
-        <label className={`w-full ${errors.email ? 'warning-icon-for-input' : ''}`}>
-          <input
-            type="email"
-            {...register('email')}
-            id="register-email"
-            className={`input-text ${errors.email ? 'border-error-default' : ''}`}
-            placeholder="Електронна пошта"
-          />
-        </label>
+        <CredentialInput
+          name="email"
+          placeholder="Електронна пошта"
+          register={register}
+          error={errors.email}
+          type="email"
+        />
       </section>
       <section className="auth-register-form-section">
-        <label className={`w-full ${errors.password ? 'warning-icon-for-input' : ''}`}>
-          <input
-            type="password"
-            {...register('password')}
-            id="register-password"
-            className={`input-text ${errors.password ? 'border-error-default' : ''}`}
-            placeholder="Пароль"
-          />
-        </label>
+        <CredentialInput
+          name="password"
+          placeholder="Пароль"
+          register={register}
+          error={errors.password}
+          type="password"
+        />
       </section>
-      {Object.keys(errors).length > 0 && (
-        <section className="auth-register-form-section">
-          {errors.email && (
-            <p className="error-text ml-5 self-start text-xs">{errors.email.message}</p>
-          )}
-          {errors.password && (
-            <p className="error-text ml-5 self-start text-xs">{errors.password.message}</p>
-          )}
-        </section>
-      )}
+
       <section className="auth-register-form-section">
         <Link to={PATHS.PASSWORD.forgot} className="mb-6 mt-6 self-start underline">
           Забули пароль?
         </Link>
       </section>
+
       {/* Кнопка для відправки форми */}
       <Button
         disabled={status === 'pending'}
