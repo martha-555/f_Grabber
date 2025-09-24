@@ -55,7 +55,6 @@ const RegisterForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="auth-register-form">
-      <h1 className="mb-7 text-center text-3xl font-medium">Реєстрація</h1>
       {/* Поле для введення електронної пошти */}
       <section className="auth-register-form-section">
         <label className={`w-full ${errors.email ? 'warning-icon-for-input' : ''}`}>
@@ -99,7 +98,7 @@ const RegisterForm: React.FC = () => {
         </label>
         {errors.confirmPassword && <p className="error-text">{errors.confirmPassword.message}</p>}
       </section>
-      <section className="auth-register-form-section">
+      <section className="auth-register-form-section mb-12 mt-6">
         <PasswordRequirements />
       </section>
 
@@ -112,14 +111,13 @@ const RegisterForm: React.FC = () => {
       />
 
       {/* Посилання для переходу на сторінку входу */}
-      <section className="auth-register-form-section mb-32">
-        <p className="text-b4">
-          Вже є акаунт?
-          <Link to={PATHS.AUTH.login} className="ml-2 underline">
-            Увійти
-          </Link>
-        </p>
-      </section>
+
+      <p className="flex justify-center gap-4 text-b4">
+        Вже є акаунт?
+        <Link to={PATHS.AUTH.login} className="underline">
+          Увійти
+        </Link>
+      </p>
     </form>
   )
 }
