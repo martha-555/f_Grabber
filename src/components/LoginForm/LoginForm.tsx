@@ -46,7 +46,7 @@ const LoginForm: React.FC<LoginFormProps> = ({}) => {
           isLoading: false,
         })
         reset()
-        navigate(PATHS.PROFILE.profile)
+        navigate(PATHS.HOME)
       },
       onError: (error) => {
         console.error('Login error:', error)

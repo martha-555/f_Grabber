@@ -84,7 +84,7 @@
 
     &:focus:not(:disabled),
     &:focus-visible:not(:disabled) {
-      @apply border-4 border-secondary-brown-50 bg-secondary-brown-900 outline-1 outline-secondary-brown-950;
+      @apply border-4 border-secondary-brown-50 bg-secondary-brown-900 outline-1 outline-secondary-brown-900;
     }
 
     &:active:not(:disabled) {
