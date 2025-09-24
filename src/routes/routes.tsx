@@ -15,6 +15,7 @@ import {
   Main,
   ChangeUserEmail,
   ComingSoon,
+  Favorites,
 } from '../pages'
 import { PATHS } from '../paths'
 import ChangeUserPassword from '../pages/ChangeUserPassword'
@@ -54,6 +55,10 @@ export const routes = [
         ),
       },
       {
+        path: PATHS.PRODUCTS.favorites,
+        element: <Favorites />,
+      },
+      {
         path: PATHS.AUTH.login,
         element: <Login />,
       },
@@ -69,7 +74,6 @@ export const routes = [
         path: PATHS.PASSWORD.reset,
         element: <ResetPassword />,
       },
-
       {
         path: PATHS.CART,
         element: <Cart />,
