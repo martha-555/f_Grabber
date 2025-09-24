@@ -31,7 +31,11 @@ export const addAdsSchema = z.object({
     .string()
     .nonempty('Ціна є обовʼязковою')
     .refine((val) => !isNaN(Number(val)) && Number(val) >= 1, 'Ціна має бути числом більше за 0'),
-  location: z.string().nonempty('Локація є обовʼязковою'),
+  location: z
+    .string()
+    .nonempty('Локація є обовʼязковою')
+    .min(2, 'Локація має містити не менше 2 символів')
+    .max(100, 'Локація має містити не більше 100 символів'),
   contact_name: z
     .string()
     .nonempty("Ім'я контактної особи є обов'язковим")

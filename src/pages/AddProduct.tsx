@@ -195,6 +195,7 @@ const AddProduct = () => {
               {...register('location')}
               type="text"
               maxLength={100}
+              minLength={2}
               placeholder="Приклад: Полтава"
               className={`input-add-product-section ${errors.location || watchLocation.length >= 101 ? 'outline-1 outline-error-default' : ''}`}
             />
@@ -202,7 +203,7 @@ const AddProduct = () => {
           <div
             className={`flex justify-between text-d1 ${errors.title ? 'text-error-default' : 'text-grey-400'}`}
           >
-            <p>Мінімум 3 символи</p>
+            <p>Мінімум 2 символи</p>
             <p>{watchLocation.length}/100</p>
           </div>
           {(errors.location || watchLocation.length >= 101) && (
