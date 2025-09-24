@@ -3,11 +3,11 @@ import { addAdsSchema } from '../features/adsValidation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { AdsImageUploader, Button } from '../components'
 import { z } from 'zod'
-import useAdsCreate from '../api/adsCreate'
 import toast, { Toaster } from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import useFetchCategories from '../api/useFetchCategories'
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter'
+import useAdsCreate from '../api/adsCreate'
 
 export type TFormData = z.infer<typeof addAdsSchema>
 
@@ -30,7 +30,7 @@ const AddProduct = () => {
     watch,
     setValue,
     reset,
-
+    setError,
     formState: { errors },
   } = useForm<TFormData>({
     defaultValues,
@@ -39,9 +39,7 @@ const AddProduct = () => {
   })
 
   const { mutateAsync: createAds, isPending } = useAdsCreate()
-
   const { data: categories } = useFetchCategories()
-
   const navigate = useNavigate()
 
   const handleSubmitForm = async (data: TFormData) => {
@@ -57,10 +55,9 @@ const AddProduct = () => {
     newAds.append('phone', data.phone)
     newAds.append('location', capitalizeFirstLetter(data.location))
 
-    // Додаємо зображення (може бути File або string)
     data.images.forEach((img) => {
       if (img instanceof File) {
-        newAds.append('images', img) // бекенд має бути готовий до images[]
+        newAds.append('images', img)
       }
     })
 
@@ -219,8 +216,8 @@ const AddProduct = () => {
           <p className="description-add-product-section">
             Перетягніть файли або натисніть для завантаження
           </p>
-
-          <AdsImageUploader setValue={setValue} watch={watch} />
+          <AdsImageUploader setValue={setValue} watch={watch} setError={setError} />
+          {errors.images && <p className="error-text">{errors.images.message}</p>}
         </section>
 
         {/* Секція для введення ціни */}

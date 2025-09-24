@@ -1,55 +1,60 @@
 import React, { useRef } from 'react'
-import { UseFormSetValue, UseFormWatch } from 'react-hook-form'
+import { UseFormSetValue, UseFormWatch, UseFormSetError } from 'react-hook-form'
 import { TFormData } from '../../pages/AddProduct'
 import IconPlaseholder from '../../assets/icons/photo-icon.svg?react'
+import { validateImage } from '../../utils/validateImageFile'
 
 // Описуємо пропси для компонента
 interface AdsImageUploaderProps {
   setValue: UseFormSetValue<TFormData>
   watch: UseFormWatch<TFormData>
+  setError: UseFormSetError<TFormData>
 }
 
-const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch }) => {
-  // Реф для input type="file"
+const AdsImageUploader: React.FC<AdsImageUploaderProps> = ({ setValue, watch, setError }) => {
   const fileInputRef = useRef<HTMLInputElement>(null)
-  // Отримуємо поточний масив зображень з форми
   const images = watch('images')
 
-  // Обробка додавання файлів
   const handleFiles = (files: FileList | null) => {
     if (!files) return
 
-    const newFiles = Array.from(files) // Перетворюємо FileList у масив
-    const currentFiles = watch('images') || [] // Поточні файли
+    const newFiles = Array.from(files)
+    const currentFiles = watch('images') || []
 
-    // Об'єднуємо старі та нові файли, максимум 5
+    for (const file of newFiles) {
+      const error = validateImage(file)
+      if (error) {
+        setError('images', { message: error })
+        return
+      }
+    }
+
     const combined = [...currentFiles, ...newFiles].slice(0, 5)
-    setValue('images', combined, { shouldValidate: true }) // Оновлюємо значення у формі
+    setValue('images', combined, { shouldValidate: true })
+    setError('images', { type: 'manual', message: '' }) // очищаємо помилку, якщо все ок
   }
 
-  // Обробка події drag&drop
   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     handleFiles(e.dataTransfer.files)
   }
 
-  // Відкриваємо діалог вибору файлів
   const handleClick = () => {
     fileInputRef.current?.click()
   }
 
-  // Очищення всіх зображень
   const clearImages = () => {
     setValue('images', [], { shouldValidate: true })
+    setError('images', { type: 'manual', message: '' })
     if (fileInputRef.current) fileInputRef.current.value = ''
   }
 
-  // Видалення одного зображення за індексом
   const handleRemoveImage = (index: number) => {
     const currentFiles = watch('images') || []
     const updated = [...currentFiles]
-    updated.splice(index, 1) // Видаляємо елемент за індексом
+    updated.splice(index, 1)
     setValue('images', updated, { shouldValidate: true })
+    setError('images', { type: 'manual', message: '' })
   }
 
   return (
