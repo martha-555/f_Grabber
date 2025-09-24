@@ -76,7 +76,7 @@
 
   /* Стилі для кнопки базової */
   .button {
-    @apply min-h-[48px] rounded-[30px] bg-primary-950 px-8 py-3 text-primary-50 transition duration-300 hover:bg-secondary-brown-900;
+    @apply min-h-[48px] rounded-[30px] border border-transparent bg-primary-950 px-8 py-3 text-primary-50 outline-none transition duration-300 hover:bg-secondary-brown-900;
 
     &:hover:not(:disabled) {
       @apply cursor-pointer bg-secondary-brown-900;
@@ -84,7 +84,7 @@
 
     &:focus:not(:disabled),
     &:focus-visible:not(:disabled) {
-      @apply border-4 border-secondary-brown-50 bg-secondary-brown-900 outline-1 outline-secondary-brown-900;
+      @apply border border-secondary-brown-50 bg-secondary-brown-900 outline-1 outline-secondary-brown-900;
     }
 
     &:active:not(:disabled) {
