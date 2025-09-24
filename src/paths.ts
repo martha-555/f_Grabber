@@ -21,6 +21,7 @@ export const PATHS = {
     forgot: '/forgot-password',
     reset: '/reset-password/:uid/:token',
   },
+  SOON: '/soon',
   ORDERS: '/orders',
   ADMIN: '/admin',
   FAQ: '/faq',

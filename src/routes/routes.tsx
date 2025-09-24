@@ -12,6 +12,7 @@ import {
   EditProfile,
   Main,
   ChangeUserEmail,
+  ComingSoon,
   LoginRegister,
 } from '../pages'
 import { PATHS } from '../paths'
@@ -75,6 +76,10 @@ export const routes = [
       {
         path: PATHS.ORDERS,
         element: <Orders />,
+      },
+      {
+        path: PATHS.SOON,
+        element: <ComingSoon />,
       },
       {
         path: PATHS.PROFILE.profile,
