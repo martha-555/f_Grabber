@@ -1,7 +1,8 @@
-import { FieldError, UseFormRegister } from 'react-hook-form'
-import errorIcon from '../../assets/icons/exclamation-icon.svg'
-import showIcon from '../../assets/icons/eye-icon.svg'
 import { useState } from 'react'
+import { FieldError, UseFormRegister } from 'react-hook-form'
+import ErrorIcon from '../../assets/icons/exclamation-icon.svg?react'
+import ShowIcon from '../../assets/icons/eye-icon.svg?react'
+import CloseIcon from '../../assets/icons/closed-eye-icon.svg?react'
 
 type Props = {
   register: UseFormRegister<any>
@@ -27,37 +28,34 @@ const CredentialInput = ({ register, error, name, placeholder, className, type }
 
   return (
     <div className="relative">
-      <input
-        disabled={false}
-        {...register(name, { required: true })}
-        placeholder={placeholder}
-        className={`input-text ${className} ${error && 'border-error-default'}`}
-        type={inputType}
-      />
-      {error && <span className="error-text ml-5 self-start text-xs">{error.message}</span>}
-      {isPassword &&
-        (error ? (
-          <img
-            className="absolute right-3 top-[13px] h-[1.13rem] w-[1.13rem]"
-            src={errorIcon}
-            alt="error"
-          />
-        ) : (
+      <div className="relative w-full">
+        <input
+          {...register(name, { required: true })}
+          placeholder={placeholder}
+          type={inputType}
+          className={`input-text pr-10 ${className} ${error ? 'border-error-default' : ''}`}
+        />
+
+        {isPassword && (
           <button
             type="button"
             onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-[13px]"
+            className="absolute inset-y-0 right-3 flex items-center"
           >
-            <img src={showIcon} alt="toggle password" className="h-[1.13rem] w-[1.13rem]" />
+            {showPassword ? (
+              <CloseIcon className="h-[24px] w-[24px]" />
+            ) : (
+              <ShowIcon className="h-[24px] w-[24px]" />
+            )}
           </button>
-        ))}
+        )}
+      </div>
 
-      {!isPassword && error && (
-        <img
-          className="absolute right-3 top-[13px] h-[1.13rem] w-[1.13rem]"
-          src={errorIcon}
-          alt="error"
-        />
+      {error && (
+        <div className="mt-1 flex items-center gap-2 text-error-default">
+          <ErrorIcon className="h-[24px] w-[24px]" />
+          <span className="text-d1 text-error-default">{error.message}</span>
+        </div>
       )}
     </div>
   )

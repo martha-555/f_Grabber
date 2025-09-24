@@ -1,12 +1,11 @@
-import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import CredentialInput from './CredentialInput'
+import { Link } from 'react-router-dom'
+import { zodResolver } from '@hookform/resolvers/zod'
 import useFetchChangePassword from '../../api/useFetchChangePassword'
 import { TChangePassword } from '../../types/authTypes'
 import { passwordSchema } from '../../features/userValidation'
-import Button from '../Button/Button'
-import { Link } from 'react-router-dom'
 import { PATHS } from '../../paths'
+import { CredentialInput, Button } from '../../components'
 
 const EditPasswordForm = () => {
   const {

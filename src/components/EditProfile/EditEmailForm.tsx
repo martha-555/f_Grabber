@@ -1,14 +1,12 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useForm } from 'react-hook-form'
-import { editEmailSchema } from '../../features/userValidation'
-import { useEffect } from 'react'
-import { toast } from 'react-hot-toast'
-import CredentialInput from './CredentialInput'
-import Button from '../Button/Button'
 import { Link, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { editEmailSchema } from '../../features/userValidation'
+import { toast } from 'react-hot-toast'
 import { PATHS } from '../../paths'
 import fetchChangeEmail from '../../api/useFetchChangeEmail'
-import CustomToaster from '../CustomToaster/CustomToaster'
+import { CustomToaster, Button, CredentialInput } from '../../components'
 
 const EditEmailForm = () => {
   const { mutate: changeEmail, isSuccess } = fetchChangeEmail()
@@ -57,16 +55,14 @@ const EditEmailForm = () => {
         error={errors.new_email}
         placeholder="Введіть новий e-mail"
       />
-      <div className="relative">
-        <CredentialInput
-          register={register}
-          className="mb-8"
-          name="password"
-          type="password"
-          placeholder="Введіть пароль"
-          error={errors.password}
-        />
-      </div>
+      <CredentialInput
+        register={register}
+        className="mb-2"
+        name="password"
+        type="password"
+        placeholder="Введіть пароль"
+        error={errors.password}
+      />
       <Link to={PATHS.PASSWORD.forgot} className="ml-2 text-grey-500 underline">
         Забули пароль?
       </Link>
