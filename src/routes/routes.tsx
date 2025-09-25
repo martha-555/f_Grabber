@@ -4,22 +4,21 @@ import {
   Admin,
   Cart,
   ForgotPassword,
-  Login,
   Orders,
   AdDetails,
   Products,
   Profile,
-  Register,
   ResetPassword,
   EditProfile,
   Main,
   ChangeUserEmail,
   ComingSoon,
   Favorites,
+  LoginRegister,
 } from '../pages'
 import { PATHS } from '../paths'
 import ChangeUserPassword from '../pages/ChangeUserPassword'
-import { FAQSection } from '../components'
+import { FAQSection, LoginForm, RegisterForm } from '../components'
 
 export const routes = [
   {
@@ -60,11 +59,19 @@ export const routes = [
       },
       {
         path: PATHS.AUTH.login,
-        element: <Login />,
+        element: (
+          <LoginRegister title="Увійти в акаунт">
+            <LoginForm />
+          </LoginRegister>
+        ),
       },
       {
         path: PATHS.AUTH.register,
-        element: <Register />,
+        element: (
+          <LoginRegister title="Реєстрація">
+            <RegisterForm />
+          </LoginRegister>
+        ),
       },
       {
         path: PATHS.PASSWORD.forgot,
