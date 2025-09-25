@@ -46,6 +46,7 @@ module.exports = {
             100: '#F6ECDE',
             300: '#DFBB92',
             700: '#9A5734',
+            50: '#FBF7F1',
           },
         },
         warning: {
@@ -76,7 +77,7 @@ module.exports = {
       },
       minWidth: {
         'btn-small': '100px',
-        'btn-medium': '250px',
+        'btn-medium': '285px',
         'btn-large': '350px',
         'profile-button': '15.875rem',
       },
@@ -101,17 +102,17 @@ module.exports = {
       slide1: {
         '0%': { transform: 'translateY(-100%)' },
         '50%': { transform: 'translateY(100%)' },
-        '100%': { transform: 'translateY(200%)' },
+        '100%': { transform: 'translateY(100%)' },
       },
       slide2: {
         '0%': { transform: 'translateY(-200%)' },
         '50%': { transform: 'translateY(-100%)' },
-        '100%': { transform: 'translateY(100%)' },
+        '100%': { transform: 'translateY(200%)' },
       },
     },
     animation: {
-      slide1: 'slide1 4s linear infinite',
-      slide2: 'slide2 4s linear infinite',
+      slide1: 'slide1 12s linear infinite',
+      slide2: 'slide2 12s linear infinite',
     },
   },
   plugins: [],

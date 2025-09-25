@@ -7,7 +7,7 @@ const PopularSection = () => {
   return (
     <section className="m-auto mb-[64px] max-w-[1200px]">
       <h2 className="mb-8 text-h31">Популярні товари</h2>
-      <div className="flex flex-wrap gap-5">
+      <div className="grid grid-cols-3 grid-rows-2 gap-5">
         {data &&
           data.map((product) => (
             <RecommendedCard
