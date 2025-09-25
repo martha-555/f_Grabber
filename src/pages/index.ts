@@ -26,4 +26,6 @@ export { default as ChangeUserPassword } from './ChangeUserPassword'
 
 export { default as ComingSoon } from './ComingSoon'
 
+export { default as Favorites } from './Favorites.tsx'
+
 export { default as LoginRegister } from './LoginRegister'

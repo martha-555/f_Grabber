@@ -13,6 +13,7 @@ import {
   Main,
   ChangeUserEmail,
   ComingSoon,
+  Favorites,
   LoginRegister,
 } from '../pages'
 import { PATHS } from '../paths'
@@ -53,6 +54,10 @@ export const routes = [
         ),
       },
       {
+        path: PATHS.PRODUCTS.favorites,
+        element: <Favorites />,
+      },
+      {
         path: PATHS.AUTH.login,
         element: (
           <LoginRegister title="Увійти в акаунт">
@@ -76,7 +81,6 @@ export const routes = [
         path: PATHS.PASSWORD.reset,
         element: <ResetPassword />,
       },
-
       {
         path: PATHS.CART,
         element: <Cart />,
