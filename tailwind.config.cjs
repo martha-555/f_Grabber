@@ -111,8 +111,8 @@ module.exports = {
       },
     },
     animation: {
-      slide1: 'slide1 12s linear infinite',
-      slide2: 'slide2 12s linear infinite',
+      slide1: 'slide1 17s linear infinite',
+      slide2: 'slide2 17s linear infinite',
     },
   },
   plugins: [],
