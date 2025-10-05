@@ -34,7 +34,6 @@ const Navbar = () => {
       <h1 className="whitespace-nowrap text-[20px] font-medium">
         <Link to={PATHS.HOME}>Grabber</Link>
       </h1>
-
       <div className="relative flex-1">
         <div className="group flex rounded-[20px] border border-transp-50 px-8 text-b3 text-transp-50 hover:border-primary-50 hover:text-primary-50">
           <input
@@ -42,7 +41,7 @@ const Navbar = () => {
             placeholder="Пошук товарів"
             className="ml-4 h-[40px] w-full rounded-[20px] bg-primary-950 placeholder:pl-[1rem] placeholder:text-b3 placeholder:font-normal placeholder:text-secondary-brown-100/50 focus:border-r-0 focus:outline-none"
           />
-          <SearchIcon className="absolute left-4 top-1/2 block h-[24px] w-[24px] -translate-y-1/2 transform text-transp-50" />
+          <SearchIcon className="absolute left-4 top-1/2 block h-[24px] w-[24px] translate-y-1/2 transform text-transp-50" />
           <div ref={ref} onClick={() => setIsOpen(!isOpen)} className="flex">
             <button className="whitespace-nowrap pr-4">
               | {(category && decodeURIComponent(category)) || 'Категорії'}
@@ -56,7 +55,7 @@ const Navbar = () => {
         <button className="light-button min-w-btn-medium">Створити оголошення</button>
       </Link>
       <div className="relative">
-        <Link to="#">
+        <Link to={PATHS.SOON}>
           <BasketIcon />
           {totalCount > 0 && (
             <span className="absolute -right-2 -top-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs text-white">
