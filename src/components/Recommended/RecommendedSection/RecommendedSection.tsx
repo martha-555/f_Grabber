@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Navigation } from 'swiper/modules'
 import SwiperCore from 'swiper'
-import ArrowLeftIcon from '../../../assets/icons/arrow-left.svg?react'
 import ArrowRight from '../../../assets/icons/arrow-right.svg?react'
 import { RecommendedCard } from '../../index.ts'
 import useFetchRecommended from '../../../api/useFetchRecommended.ts'
@@ -13,9 +12,15 @@ type RecommendedSectionProps = {
   text?: string
   slideView?: number
   variant?: 'home' | 'adPage'
+  className?: string
 }
 
-const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSectionProps) => {
+const RecommendedSection = ({
+  slideView,
+  text,
+  variant = 'home',
+  className,
+}: RecommendedSectionProps) => {
   const [isBeginning, setIsBeginning] = useState(true)
   const [isEnd, setIsEnd] = useState(false)
 
@@ -30,18 +35,15 @@ const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSe
   if (isError) return <p>Сталася помилка при завантаженні</p>
 
   return (
-    <section className="relative mx-auto mb-[96px] max-w-[1200px]">
+    <section className={`relative mx-auto mb-[96px] max-w-[1200px] ${className}`}>
       <h2 className="pb-8 text-h31">{text}</h2>
 
-      <div className={variant === 'home' ? 'relative h-[491px]' : 'relative h-[513px]'}>
+      <div className={variant === 'home' ? 'relative' : 'relative h-[513px]'}>
         <button
           className={`swiper-button-prev group absolute left-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-secondary-brown-100 transition-colors hover:text-secondary-brown-100 active:text-primary-950 ${
             isBeginning ? 'pointer-events-none opacity-0' : ''
           }`}
-        >
-          <ArrowLeftIcon className="arrowIcon" />
-        </button>
-
+        ></button>
         <Swiper
           modules={[Navigation]}
           spaceBetween={20}
@@ -61,6 +63,7 @@ const RecommendedSection = ({ slideView, text, variant = 'home' }: RecommendedSe
               slidesPerView: slideView,
             },
           }}
+          className="p-6"
         >
           {recommendedAds?.map((ad) => (
             <SwiperSlide key={ad.id}>
