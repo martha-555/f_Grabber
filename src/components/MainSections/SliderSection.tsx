@@ -1,4 +1,4 @@
-import { Navigation } from 'swiper/modules'
+import { Navigation, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import sliderImg from '../../assets/images/frame334.jpg'
 import sliderImg2 from '../../assets/images/frame332.jpg'
@@ -7,38 +7,23 @@ import ArrowRight from '../../assets/icons/arrow-right.svg?react'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import SliderBlock from './SliderBlock'
-import { PATHS } from '../../paths.ts'
-import { useState } from 'react'
-import SwiperCore from 'swiper'
+import { PATHS } from '../../paths'
 
 const SliderSection = () => {
-  const [isBeginning, setIsBeginning] = useState(true)
-  const [isEnd, setIsEnd] = useState(false)
-
-  const handleSwiper = (swiper: SwiperCore) => {
-    setIsBeginning(swiper.isBeginning)
-    setIsEnd(swiper.isEnd)
-  }
-
   return (
-    <div className="relative mx-auto my-[96px] max-w-container">
-      <button
-        className={`swiper-button-prev group absolute left-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-secondary-brown-100 transition-colors hover:text-secondary-brown-100 active:text-primary-950${
-          isBeginning ? 'pointer-events-none opacity-0' : ''
-        }`}
-      >
+    <div className="relative my-[96px]">
+      <button className="sliderButton prevBtn group absolute left-[110px] top-[190px]">
         <ArrowLeft className="arrowIcon" />
       </button>
+      <button className="sliderButton nextBtn group absolute right-[110px] top-[190px]">
+        <ArrowRight className="arrowIcon" />
+      </button>
       <Swiper
-        className="max-h-[450px]"
-        modules={[Navigation]}
-        navigation={{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }}
+        className="max-h-[450px] max-w-[1202px]"
+        modules={[Pagination, Navigation]}
+        navigation={{ nextEl: '.nextBtn', prevEl: '.prevBtn' }}
+        pagination={{ clickable: true, el: null }}
         slidesPerView={1}
-        onSwiper={handleSwiper}
-        onSlideChange={handleSwiper}
       >
         <SwiperSlide className="m-auto">
           <SliderBlock
@@ -63,13 +48,6 @@ const SliderSection = () => {
           />
         </SwiperSlide>
       </Swiper>
-      <button
-        className={`swiper-button-next group absolute right-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-secondary-brown-100 transition-colors hover:text-secondary-brown-100 active:text-primary-950${
-          isEnd ? 'pointer-events-none opacity-0' : ''
-        }`}
-      >
-        <ArrowRight className="arrowIcon" />
-      </button>
     </div>
   )
 }

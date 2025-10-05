@@ -13,7 +13,7 @@ type Props = {
 
 const RecommendedCard = ({ ad, cardClassName = '' }: Props) => {
   return (
-    <section className={cardClassName}>
+    <section className={`rounded-[20px] shadow-[0px_4px_26.2px_0px_#0000001F] ${cardClassName}`}>
       <div
         tabIndex={0}
         className="card-recommended mx-auto flex h-full flex-col justify-between rounded-[20px] p-6 shadow-transp-50"
