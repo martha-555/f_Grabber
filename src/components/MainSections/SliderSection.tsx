@@ -7,6 +7,7 @@ import ArrowRight from '../../assets/icons/arrow-right.svg?react'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 import SliderBlock from './SliderBlock'
+import { PATHS } from '../../paths'
 
 const SliderSection = () => {
   return (
@@ -34,7 +35,7 @@ const SliderSection = () => {
             secondaryText="Підтримайте місцевих кравців та кравчинь"
             sliderImg={sliderImg}
             buttonText="Ознайомитися"
-            path="#"
+            path={PATHS.SOON}
           />
         </SwiperSlide>
         <SwiperSlide className="m-auto">
@@ -43,7 +44,7 @@ const SliderSection = () => {
             secondaryText="Дивіться колекцію від виробника у єдиному стилі"
             sliderImg={sliderImg2}
             buttonText="Ознайомитися"
-            path="#"
+            path={PATHS.SOON}
           />
         </SwiperSlide>
       </Swiper>

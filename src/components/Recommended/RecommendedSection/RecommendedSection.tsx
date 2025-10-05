@@ -38,7 +38,7 @@ const RecommendedSection = ({
     <section className={`relative mx-auto mb-[96px] max-w-[1200px] ${className}`}>
       <h2 className="pb-8 text-h31">{text}</h2>
 
-      <div className={variant === 'home' ? 'relative' : 'relative h-[513px]'}>
+      <div className={variant === 'home' ? 'relative h-[491px]' : 'relative h-[513px]'}>
         <button
           className={`swiper-button-prev group absolute left-[-40px] top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-secondary-brown-100 transition-colors hover:text-secondary-brown-100 active:text-primary-950 ${
             isBeginning ? 'pointer-events-none opacity-0' : ''
