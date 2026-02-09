@@ -21,14 +21,13 @@ const Favorites = () => {
         <h1 className="pb-[64px] text-center font-kyiv text-h21">
           Тут з’являться оголошення, <br /> які ви вподобали
         </h1>
-        <HeartsIcon />
-        <p className="mt-8 font-kyiv text-h21"> ...</p>
+        <HeartsIcon className="mb-[298px]" />
       </section>
     )
   }
 
   return (
-    <section className="m-auto mb-[160px] mt-[220px] flex max-w-container flex-col items-center">
+    <section className="m-auto mb-[160px] mt-[72px] flex max-w-container flex-col items-center">
       <div className="mb-[80px] flex items-center gap-2">
         <HeartsIconLeft />
         <h2 className="text-h31">Оголошення, які вам сподобалися</h2>
